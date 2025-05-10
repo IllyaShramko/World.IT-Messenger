@@ -1,0 +1,56 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        {% block head %}{% endblock %}
+        <link rel="stylesheet" href="{% static 'css/base_auth_register.css' %} ">
+    </head>
+    <body>
+        <header>
+            <img src="{% static 'images/WIA.svg' %}">
+        </header>
+        <div class="form-img">
+            <form method="post">
+                {% csrf_token %}
+                {% if type_form == "registration" %}
+                    <div class="type-form">
+                        <span>Реєстрація</span>
+                        <a href="{% url 'login' %}">Авторизація</a>
+                    </div>
+                    <h2>Приєднуйся до World IT</h2>
+                {% else %}
+                    <div class="type-form">
+                        <a href="{% url 'reg' %}">Реєстрація</a>
+                        <span>Авторизація</span>
+                    </div>
+                    <h2>Раді тебе знову бачити!</h2>
+                {% endif %}
+                
+                {% block content %}
+                
+                {% endblock %}
+    
+                {% if type_form == "registration" %}
+                    <button type="submit">
+                        Створити аккаунт
+                    </button>
+                {% else %}
+                    <button type="submit">
+                        Увійти
+                    </button>
+                    <div class="or-qrcode">
+                        <div class="qrcode-text">
+                            <div></div>
+                            <p>або увійдіть за допомогою QR-коду</p>
+                            <div></div>
+                        </div>
+                        <img src="{% static 'images/qrcode.png' %}">
+                    </div>
+                {% endif %}
+            </form>
+            <img src="{% static 'images/laptop_phone.png' %}" class="laptop-phone">
+        </div>
+    </body>
+</html>

@@ -1,0 +1,146 @@
+@font-face {
+    font-family: GT Walsheim Pro;
+    src: url(../fonts/GTWalsheimPro-Regular.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal
+}
+@font-face {
+    font-family: GT Walsheim Pro;
+    src: url(../fonts/GTWalsheimPro-Bold.ttf) format("truetype");
+    font-weight: 700;
+    font-style: normal
+}
+@font-face {
+    font-family: GT Walsheim Pro;
+    src: url(../fonts/GTWalsheimPro-Medium.ttf) format("truetype");
+    font-weight: 500;
+    font-style: normal
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: GT Walsheim Pro;
+    font-weight: 400;
+}
+
+body{
+    background-color: #E9E5EE;
+}
+
+header{
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+.laptop-phone {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    z-index: 0;
+}
+
+.form-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 1100px;
+    
+}
+
+form{
+    background-color: #FFFFFF;
+    text-align: center;
+    width: 487px;
+    padding: 32px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 1;
+}
+.type-form{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ece5e5;
+    padding-bottom: 16px;
+}
+
+.type-form span, .type-form a {
+    font-size: 18px;
+    color: #495057;
+    text-decoration: none;
+    font-size: 34px;
+}
+
+.type-form span {
+    color: #212529;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+button{
+    background-color: #543C52;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 14px;
+    margin-top: 8px;
+    width: 100%;
+    cursor: pointer;
+}
+
+p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.or-qrcode{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+
+}
+.or-qrcode img{
+    width: 107px;
+    height: 116px;
+}
+
+.qrcode-text{
+    display:  flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+.qrcode-text div{
+    width: 55px;
+    height: 0px;
+    border: 1px #81818D solid;
+}
