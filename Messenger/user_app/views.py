@@ -5,10 +5,10 @@ from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
-from .models import User, RegistrationCodes
+from .models import User, RegistrationCodes, Profile
 from .forms import RegistrationForm, EmailLoginForm, ConfirmEmailForm
 from django.urls import reverse_lazy
-import secrets, string
+import secrets, string, os
 # Create your views here.
 code = []
 
@@ -79,21 +79,12 @@ class RegistrationPageView(View):
                     if entered_code == auth_code:
                         password = request.COOKIES.get('password')
                         print('User Created')
-                        User.objects.create_user(username=email, email=email, password=password)
+                        Profile.objects.create(user=User.objects.create_user(username=email, email=email, password=password))
+                        os.mkdir(os.path.join("..", "..", "media", "images", "profiles", email))
                         response = HttpResponseRedirect("/")
                         response.delete_cookie('email')
                         response.delete_cookie('password')
                         return response
-                    
-    def form_valid(self, form):
-        form.save(form.cleaned_data["email"], form.cleaned_data["password"])
-        return super().form_valid(form)
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["type_form"] = "registration"
-        return context
-    
 class AuthPageView(LoginView):
     template_name = "user_app/login.html"
     authentication_form = EmailLoginForm

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block links %}
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 
@@ -12,4 +12,190 @@
 
 
 {% block content %}
+    <div class="scroll">
+        <form class="post-form" method="post">
+            {% csrf_token %}
+            <textarea type="text" class="post-text" placeholder="Про що ти зараз думаєш?"></textarea>
+            <div class="post-other">
+                <button type="button" id="image" class="post-image">
+                    <img src="{% static 'images/image.svg' %}">
+                </button>
+                <button type="button" id="smile" class="post-smile">
+                    <img src="{% static 'images/emodji.svg' %}">
+                </button>
+                <button type="button" class="post-send">
+                    Публікація
+                    <img src="{% static 'images/send.svg' %}">
+                </button>
+            </div>
+        </form>
+        <div class="post-random">
+            <div class="random-post-profile">
+                <div class="random-post-profile-pr">
+                    <div>
+                        <img src="{% static 'images/ranalda.jpg' %}">
+                        <h1>X_AE_A-13</h1>
+                    </div>
+                    <div class="rezise-div"></div>
+                    <img src="{% static 'images/podpis.png' %}">
+                </div>
+                <button class="dots">
+                    <img src="{% static 'images/Dots.svg' %}">
+                </button>
+            </div>
+            <div class="random-post-profile-info">
+                <div class="random-post-profile-text">
+                    <p>Інколи найкращі ідеї народжуються в тиші 🌿</p>
+                    <p>Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
+                    <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
+                </div>
+                <div class="random-post-profile-images">
+                    <img src="{% static 'images/Frame.png' %}" alt="1">
+                    <img src="{% static 'images/Frame-1.png' %}" alt="2">
+                    <img src="{% static 'images/Frame-2.png' %}" alt="3">
+                    <img src="{% static 'images/Frame-3.png' %}" alt="4">
+                    <img src="{% static 'images/Frame-4.png' %}" alt="5">
+                </div>
+                <div class="random-post-profile-bottom">
+                    <div>
+                        <img src="{% static 'images/Like.svg' %}">
+                        <p>120 Вподобань</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'images/eye (1).svg' %}">
+                        <p>890 Переглядів</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="post-random">
+            <div class="random-post-profile">
+                <div class="random-post-profile-pr">
+                    <div>
+                        <img src="{% static 'images/ranalda.jpg' %}">
+                        <h1>X_AE_A-13</h1>
+                    </div>
+                    <div class="rezise-div"></div>
+                    <img src="{% static 'images/podpis.png' %}">
+                </div>
+                <button type="button" class="dots">
+                    <img src="{% static 'images/Dots.svg' %}">
+                </button>
+            </div>
+            <div class="random-post-profile-info">
+                <div class="random-post-profile-text">
+                    <p>Інколи найкращі ідеї народжуються в тиші 🌿</p>
+                    <p>Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
+                    <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
+                </div>
+                <div class="random-post-profile-bottom">
+                    <div>
+                        <img src="{% static 'images/Like.svg' %}">
+                        <p>120 Вподобань</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'images/eye (1).svg' %}">
+                        <p>890 Переглядів</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-random">
+            <div class="random-post-profile">
+                <div class="random-post-profile-pr">
+                    <div>
+                        <img src="{% static 'images/ranalda.jpg' %}">
+                        <h1>X_AE_A-13</h1>
+                    </div>
+                    <div class="rezise-div"></div>
+                    <img src="{% static 'images/podpis.png' %}">
+                </div>
+                <button type="button" class="dots">
+                    <img src="{% static 'images/Dots.svg' %}">
+                </button>
+            </div>
+            <div class="random-post-profile-info">
+                <div class="random-post-profile-text">
+                    <p>Інколи найкращі ідеї народжуються в тиші 🌿</p>
+                    <p>Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
+                    <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
+                </div>
+                <div class="random-post-profile-bottom">
+                    <div>
+                        <img src="{% static 'images/Like.svg' %}">
+                        <p>120 Вподобань</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'images/eye (1).svg' %}">
+                        <p>890 Переглядів</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-random">
+            <div class="random-post-profile">
+                <div class="random-post-profile-pr">
+                    <div>
+                        <img src="{% static 'images/ranalda.jpg' %}">
+                        <h1>X_AE_A-13</h1>
+                    </div>
+                    <div class="rezise-div"></div>
+                    <img src="{% static 'images/podpis.png' %}">
+                </div>
+                <button type="button" class="dots">
+                    <img src="{% static 'images/Dots.svg' %}">
+                </button>
+            </div>
+            <div class="random-post-profile-info">
+                <div class="random-post-profile-text">
+                    <p>Інколи найкращі ідеї народжуються в тиші 🌿</p>
+                    <p>Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
+                    <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
+                </div>
+                <div class="random-post-profile-bottom">
+                    <div>
+                        <img src="{% static 'images/Like.svg' %}">
+                        <p>120 Вподобань</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'images/eye (1).svg' %}">
+                        <p>890 Переглядів</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-random">
+            <div class="random-post-profile">
+                <div class="random-post-profile-pr">
+                    <div>
+                        <img src="{% static 'images/ranalda.jpg' %}">
+                        <h1>X_AE_A-13</h1>
+                    </div>
+                    <div class="rezise-div"></div>
+                    <img src="{% static 'images/podpis.png' %}">
+                </div>
+                <button type="button" class="dots">
+                    <img src="{% static 'images/Dots.svg' %}">
+                </button>
+            </div>
+            <div class="random-post-profile-info">
+                <div class="random-post-profile-text">
+                    <p>Інколи найкращі ідеї народжуються в тиші 🌿</p>
+                    <p>Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
+                    <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
+                </div>
+                <div class="random-post-profile-bottom">
+                    <div>
+                        <img src="{% static 'images/Like.svg' %}">
+                        <p>120 Вподобань</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'images/eye (1).svg' %}">
+                        <p>890 Переглядів</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

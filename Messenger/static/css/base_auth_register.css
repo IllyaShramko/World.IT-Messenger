@@ -81,6 +81,7 @@ form{
 .type-form span {
     color: #212529;
     font-weight: 600;
+    text-decoration: underline;
 }
 
 h2 {
@@ -144,4 +145,8 @@ p{
     width: 55px;
     height: 0px;
     border: 1px #81818D solid;
+}
+
+a {
+    text-decoration: none;
 }

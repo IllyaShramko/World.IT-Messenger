@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/user.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 {% endblock %}
 
 
@@ -63,7 +63,7 @@
         <button name="submitform" value="codeform" type="submit">
             Підтвердити
         </button>
-        <a href="{% url 'reg' %}">Назад</a>
+        <a href="{% url 'reg' %}" class="reg">Назад</a>
     {% endif %}
 {% endblock %}
 
@@ -71,4 +71,5 @@
 
 {% block script %}
     <script src="{% static 'js/eye.js' %}"></script>
+    <script src="{% static 'js/enter_code.js' %}"></script>
 {% endblock %}

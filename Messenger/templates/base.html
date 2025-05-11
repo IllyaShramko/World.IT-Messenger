@@ -41,6 +41,9 @@
                 </form>
             </nav>
         </header>
+        <!-- <div>
+            
+        </div> -->
         <div class="profile">
             <div class="me">
                 <div class="me-about">
@@ -152,7 +155,12 @@
                 </div>
             </div>
         </div>
-
+        <div class="scroll-div">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+        
         {% block script %}
         
         {% endblock %}
