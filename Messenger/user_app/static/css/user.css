@@ -1,0 +1,33 @@
+.eye {
+    width: 20px;
+    height: 20px;
+    position: absolute; 
+    width: fit-content;
+    height: fit-content;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.form-inputs {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
+}
+
+.reg-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.password-confirm-eye, .password-eye {
+    background: none;
+    width: 20px;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}

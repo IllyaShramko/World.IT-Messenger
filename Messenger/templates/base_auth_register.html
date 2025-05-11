@@ -14,41 +14,10 @@
         <div class="form-img">
             <form method="post">
                 {% csrf_token %}
-                {% if type_form == "registration" %}
-                    <div class="type-form">
-                        <span>Реєстрація</span>
-                        <a href="{% url 'login' %}">Авторизація</a>
-                    </div>
-                    <h2>Приєднуйся до World IT</h2>
-                {% else %}
-                    <div class="type-form">
-                        <a href="{% url 'reg' %}">Реєстрація</a>
-                        <span>Авторизація</span>
-                    </div>
-                    <h2>Раді тебе знову бачити!</h2>
-                {% endif %}
                 
                 {% block content %}
                 
-                {% endblock %}
-    
-                {% if type_form == "registration" %}
-                    <button type="submit">
-                        Створити аккаунт
-                    </button>
-                {% else %}
-                    <button type="submit">
-                        Увійти
-                    </button>
-                    <div class="or-qrcode">
-                        <div class="qrcode-text">
-                            <div></div>
-                            <p>або увійдіть за допомогою QR-коду</p>
-                            <div></div>
-                        </div>
-                        <img src="{% static 'images/qrcode.png' %}">
-                    </div>
-                {% endif %}
+                {% endblock %}        
             </form>
             <img src="{% static 'images/laptop_phone.png' %}" class="laptop-phone">
         </div>

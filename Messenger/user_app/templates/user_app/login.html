@@ -12,5 +12,23 @@
 
 
 {% block content %}
+    <div class="type-form">
+        <a href="{% url 'reg' %}">Реєстрація</a>
+        <span>Авторизація</span>
+    </div>
+    <h2>Раді тебе знову бачити!</h2>
+
     {{ form.as_p }}
+
+    <button type="submit">
+        Увійти
+    </button>
+    <div class="or-qrcode">
+        <div class="qrcode-text">
+            <div></div>
+            <p>або увійдіть за допомогою QR-коду</p>
+            <div></div>
+        </div>
+        <img src="{% static 'images/qrcode.png' %}">
+    </div>
 {% endblock %}

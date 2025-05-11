@@ -17,9 +17,10 @@ class RegistrationForm(forms.Form):
         "type": "password"
     }))
     confirm_password = forms.CharField(max_length=255,widget=forms.TextInput(attrs={
-        "placeholder":"Повтори пароль"
+        "placeholder":"Повтори пароль",
+        "class": "password-confirm-input",
+        "type": "password"
     }))
-
     def save(self, email: str, password):
         self.cleaned_data['username'] = self.cleaned_data['email']
         if not User.objects.filter(username=email).exists():
