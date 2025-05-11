@@ -4,24 +4,87 @@ from django.views import View
 from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
-from user_app.models import User
-from .forms import RegistrationForm
-from .forms import EmailLoginForm
+from django.core.mail import send_mail
+from .models import User, RegistrationCodes
+from .forms import RegistrationForm, EmailLoginForm, ConfirmEmailForm
 from django.urls import reverse_lazy
+import secrets, string
 # Create your views here.
 code = []
 
-class RegistrationPageView(FormView):
-    form_class = RegistrationForm
-    template_name = "user_app/signup.html"
-    success_url = reverse_lazy("login")
+class RegistrationPageView(View):
     
-    # def get(self, request: HttpRequest):
-    #     return render(request, 'registration_app/registration.html', {
-    #         'form': RegistrationForm(),
-    #         'page' :"reg"
-    #     })
-    
+    def get(self, request: HttpRequest):
+        return render(request, 'user_app/signup.html', {
+            'form': RegistrationForm(),
+            'page' :"reg"
+        })
+    def post(self, request: HttpRequest):
+        button = request.POST.get('submitform')
+        print(button)
+        if button == 'mainform':
+            form = RegistrationForm(request.POST)
+            if form.is_valid():
+                if form.cleaned_data['password'] == form.cleaned_data['confirm_password']:
+                    code = ''
+                    for number in range(6):
+                        code += secrets.choice(string.digits)
+                    email=form.cleaned_data['email']
+
+                    RegistrationCodes.objects.create(
+                        email=email,
+                        code=code
+                    )
+                    send_mail(
+                        'Код підтвердження електронної пошти',
+                        f'Дякуємо що користуєтесь World IT Messenger!\nКод підтвердження реєстрації: {code}',
+                        None,
+                        [email],
+                    )
+                    response = render(request, 'user_app/signup.html', {
+                        'form': ConfirmEmailForm,
+                        'email': email,
+                        'enter_code': True
+                    })
+                    response.set_cookie('email', form.cleaned_data['email'])
+                    response.set_cookie('password', form.cleaned_data['password'])
+
+                    return response
+                else:
+                    form.add_error('confirm_password', 'Паролі не співпадають')
+                    return render(
+                        request, 'user_app/signup.html',
+                        {
+                            'form': RegistrationForm(),
+                            'enter_code': False
+                        })
+            else:
+                return render(
+                    request,
+                    'user_app/signup.html',
+                    {
+                        'form': RegistrationForm(),
+                        'enter_code': False
+                    }
+                    )
+        elif button == 'codeform':
+            form = ConfirmEmailForm(request.POST)
+            if form.is_valid():
+                email = request.COOKIES.get('email')
+                print(email, RegistrationCodes.objects.filter(email=email).exists())
+                if User.objects.filter(username=email).exists() == False:
+                    auth_code = RegistrationCodes.objects.get(email=email).code
+                    entered_code = f"{form.cleaned_data['number_of_code1']}{form.cleaned_data['number_of_code2']}{form.cleaned_data['number_of_code3']}{form.cleaned_data['number_of_code4']}{form.cleaned_data['number_of_code5']}{form.cleaned_data['number_of_code6']}"
+                    print(auth_code, entered_code)
+                    if entered_code == auth_code:
+                        password = request.COOKIES.get('password')
+                        print('User Created')
+                        User.objects.create_user(username=email, email=email, password=password)
+                        response = HttpResponseRedirect("/")
+                        response.delete_cookie('email')
+                        response.delete_cookie('password')
+                        return response
+                    
     def form_valid(self, form):
         form.save(form.cleaned_data["email"], form.cleaned_data["password"])
         return super().form_valid(form)

@@ -12,31 +12,63 @@
 
 
 {% block content %}
-    <div class="type-form">
-        <span>Реєстрація</span>
-        <a href="{% url 'login' %}">Авторизація</a>
-    </div>
-
-    <h2>Приєднуйся до World IT</h2>
-
-    <div class="reg-inputs">
-        <div class="email form-inputs">
-            <label for="email">Електронна пошта</label>
-            {{ form.email }}
+    {% if not enter_code %}
+        <div class="type-form">
+            <span>Реєстрація</span>
+            <a href="{% url 'login' %}">Авторизація</a>
         </div>
-        <div class="password form-inputs">
-            <label for="password">Напиши пароль</label>
-            {{ form.password }}
-            <button class="password-eye"><img src="{% static 'images/eye.svg' %}" class="eye"></button>
-        </div>
-        <div class="password-confirm form-inputs">
-            <label for="password-confirm">Повтори пароль</label>
-            {{ form.email }}
-            <button class="password-confirm-eye"><img src="{% static 'images/eye.svg' %}" class="eye"></button>
-        </div>
-    </div>
 
-    <button type="submit">
-        Створити аккаунт
-    </button>
+        <h2>Приєднуйся до World IT</h2>
+
+        <div class="reg-inputs">
+            <div class="email form-inputs">
+                <label for="email">Електронна пошта</label>
+                {{ form.email }}
+            </div>
+            <div class="password form-inputs">
+                <label for="password">Напиши пароль</label>
+                {{ form.password }}
+                <button type="button" id="password-eye" class="password-eye"><img src="{% static 'images/eye.svg' %}" class="eye"></button>
+            </div>
+            <div class="password-confirm form-inputs">
+                <label for="password-confirm">Повтори пароль</label>
+                {{ form.confirm_password }}
+                <button type="button" id="password-confirm-eye-button"  class="password-confirm-eye"><img src="{% static 'images/eye.svg' %}" class="eye"></button>
+            </div>
+        </div>
+
+        <button name="submitform" value="mainform" type="submit">
+            Створити аккаунт
+        </button>
+    {% else %}
+        <span class="popup-confirm-email">Підтвердження пошти</span>
+        <p>Ми надіслали 6-значний код на вашу пошту (you@example.com). Введіть його нижче, щоб підтвердити акаунт</p>
+        <div class="inputs-of-code-numbers">
+            <label>Код підтвердження</label>
+            <div class="inputs">
+                <div class="two-inputs-of-numbers">
+                    {{ form.number_of_code1 }}
+                    {{ form.number_of_code2 }}
+                </div>
+                <div class="two-inputs-of-numbers">
+                    {{ form.number_of_code3 }}
+                    {{ form.number_of_code4 }}
+                </div>
+                <div class="two-inputs-of-numbers">
+                    {{ form.number_of_code5 }}
+                    {{ form.number_of_code6 }}
+                </div>
+            </div>
+        </div>
+        <button name="submitform" value="codeform" type="submit">
+            Підтвердити
+        </button>
+        <a href="{% url 'reg' %}">Назад</a>
+    {% endif %}
+{% endblock %}
+
+
+
+{% block script %}
+    <script src="{% static 'js/eye.js' %}"></script>
 {% endblock %}

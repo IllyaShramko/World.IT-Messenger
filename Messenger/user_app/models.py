@@ -7,3 +7,7 @@ class Profile(models.Model):
     
     def __str__(self):
         return self.email, self.password
+
+class RegistrationCodes(models.Model):
+    email = models.EmailField(unique=True)
+    code = models.CharField(max_length=6)

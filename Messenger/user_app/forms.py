@@ -14,12 +14,14 @@ class RegistrationForm(forms.Form):
     password = forms.CharField(widget= forms.TextInput(attrs={
         "placeholder": "Напиши пароль",
         "class": "password-input",
-        "type": "password"
+        "type": "password",
+        "id": "password-input"
     }))
-    confirm_password = forms.CharField(max_length=255,widget=forms.TextInput(attrs={
+    confirm_password = forms.CharField(widget=forms.TextInput(attrs={
         "placeholder":"Повтори пароль",
         "class": "password-confirm-input",
-        "type": "password"
+        "type": "password",
+        "id": "password-confirm-input"
     }))
     def save(self, email: str, password):
         self.cleaned_data['username'] = self.cleaned_data['email']
