@@ -121,10 +121,10 @@ body {
     gap: 10px;
     width: 100%;
     background: #FFFFFF;
-    border: 1px solid #CDCED2;
+    border: #CDCED2 1px solid;
     border-radius: 10px;
+    overflow: hidden;
 }
-
 .random-post-profile {
     box-sizing: border-box;
     position: relative;

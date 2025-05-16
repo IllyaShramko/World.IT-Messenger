@@ -527,7 +527,7 @@ body {
 }
 .scroll-div {
     width: 1030px;
-    
+    gap: 8px;
     /* padding: 24px 80px 0px 24px; */
 }
 .content {

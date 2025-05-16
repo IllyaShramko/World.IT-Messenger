@@ -1,9 +1,12 @@
 
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
+from django.views import View
 from django.http import HttpRequest
+from django.urls import reverse_lazy
 from .forms import PostForm
 from .models import User_Post
+import os
 # Create your views here.
 class MyPostsView(ListView):
     model = User_Post
@@ -24,6 +27,7 @@ class MyPostsView(ListView):
         print(button)
         if button == "startform":
             print(button)
+            text = request.POST.get('text')
             return render(
                 request,
                 "my_posts_app/my_post_app.html",
@@ -35,16 +39,38 @@ class MyPostsView(ListView):
             )
         elif button=="submitform":
             form = PostForm(request.POST, request.FILES)
-            
-            
             if form.is_valid():
-                form.save()
-                return render(
-                    request,
-                    "my_posts_app/my_post_app.html",
-                    context = {
-                        "form": PostForm,
-                        "popup": False,
-                        "my_posts": User_Post.objects.filter(user= request.user)
-                        }
-                )
+                post = form.save(commit=False)
+                post.user = request.user
+                post.likes = 0
+                post.views = 0
+                post.tags = []
+                text = form.cleaned_data["text"].split("#")
+                del text[0]
+                for tag in text:
+                    print(tag)
+                    post.tags.append(tag)
+                post.save()
+
+                
+            return render(
+                request,
+                "my_posts_app/my_post_app.html",
+                context = {
+                    "form": PostForm,
+                    "popup": False,
+                    "my_posts": User_Post.objects.filter(user= request.user)
+                    }
+            )
+
+def delete_post(request, post_id):
+    post = User_Post.objects.filter(user = request.user)[0]
+    print(post)
+    if post:
+        os.remove(
+            os.path.abspath(
+                __file__ + "../../../media/" + str(post.images)
+            )
+        )
+        post.delete()
+    return redirect(reverse_lazy("my_posts"))

@@ -10,7 +10,7 @@ class User_Post(models.Model):
     tags = models.JSONField()
     text = models.TextField()
     links = models.CharField(max_length = 255)
-    images = models.ImageField(upload_to = f"profile/posts/images")
+    images = models.ImageField(upload_to = f"profile/posts/images", null= True, blank=True)
     views = models.IntegerField()
     likes = models.IntegerField()
 

@@ -13,7 +13,7 @@
 {% block content %}
     <form class="post-form" method="post">
         {% csrf_token %}
-        <textarea type="text" class="post-text" placeholder="Про що ти зараз думаєш?"></textarea>
+        <textarea type="text" name="text" class="post-text" placeholder="Про що ти зараз думаєш?"></textarea>
         <div class="post-other">
             <button type="button" id="smile" class="post-smile">
                 <img src="{% static 'images/emodji.svg' %}">
@@ -33,9 +33,9 @@
                 </div>
                 <img class="podpis" src="{% static 'images/podpis.png' %}">
                 </div>
-                <button class="dots">
+                <a href="{% url 'delete_post' post.id %}" class="dots">
                     <img class="dots-img" src="{% static 'images/Dots.svg' %}">
-                </button>
+                </a>
             </div>
             <div class="random-post-profile-info">
                 <h2>{{ post.title }}</h2>
@@ -47,9 +47,11 @@
                         {% endfor %}
                     </p>
                 </div>
-                <div class="random-post-profile-images">
-                    <img src="{{ post.images.url }}" alt="1">
-                </div>
+                {% if post.images %}
+                    <div class="random-post-profile-images">
+                        <img src="{{ post.images.url }}" alt="1">
+                    </div>                    
+                {% endif %}
                 <div class="random-post-profile-bottom">
                     <div>
                         <img src="{% static 'images/Like.svg' %}">
@@ -72,7 +74,7 @@
 {% block popups %}
     {% if popup %}
     <div class="bg-popup"></div>
-    <form method="post" class="form-popup" action="{% url 'my_posts' %}">
+    <form method="post" class="form-popup" enctype="multipart/form-data" action="{% url 'my_posts' %}">
         {% csrf_token %}
         <a href="">
             <img src="{% static 'my_post_app/images/cancel.png' %}">
