@@ -64,7 +64,7 @@ class MyPostsView(ListView):
             )
 
 def delete_post(request, post_id):
-    post = User_Post.objects.filter(user = request.user)[0]
+    post = User_Post.objects.filter(user = request.user, id = post_id)[0]
     print(post)
     if post:
         os.remove(
