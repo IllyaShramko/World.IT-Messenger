@@ -1,4 +1,5 @@
 {% load static %}
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -6,7 +7,7 @@
         <title>{% block title %} {% endblock %}</title>
         {% block links %}{% endblock %}
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
-
+        
     </head>
     <body>
         <header>
@@ -16,7 +17,7 @@
                     <img src="{% static 'images/home.svg' %}">
                     <p>Головна</p>
                 </a>
-                <a href="{% url 'login' %}">
+                <a href="{% url 'my_posts' %}">
                     <img src="{% static 'images/published.svg' %}">
                     <p>Мої публікації</p>
                 </a>
@@ -41,128 +42,48 @@
                 </form>
             </nav>
         </header>
-        <!-- <div>
-            
-        </div> -->
-        <div class="profile">
-            <div class="me">
-                <div class="me-about">
-                    <div class="me-image">
-                        <img src="{% static 'images/profile-avatar.jpg' %}" class="profile-image">
-                        <div class="profile-status"></div>
+        <div class="content">
+            <div class="profile">
+                <div class="me">
+                    <div class="me-about">
+                        <div class="me-image">
+                            <img src="{% static 'images/profile-avatar.jpg' %}" class="profile-image">
+                            <div class="profile-status"></div>
+                        </div>
+                        <p class="me-name">Lina Li</p>
+                        <p class="me-tag">@thelili</p>
                     </div>
-                    <p class="me-name">Lina Li</p>
-                    <p class="me-tag">@thelili</p>
+                    <div class="me-info">
+                        <div>
+                            <p>566</p>
+                            <h1>Дописи</h1>
+                        </div>
+                        <div>
+                            <p>12.1K</p>
+                            <h1>Читачі</h1>
+                        </div>
+                        <div>
+                            <p>222</p>
+                            <h1>Друзі</h1>
+                        </div>
+                    </div>
                 </div>
-                <div class="me-info">
-                    <div>
-                        <p>566</p>
-                        <h1>Дописи</h1>
-                    </div>
-                    <div>
-                        <p>12.1K</p>
-                        <h1>Читачі</h1>
-                    </div>
-                    <div>
-                        <p>222</p>
-                        <h1>Друзі</h1>
-                    </div>
-                </div>
+                {% block profile_info %}
+                
+                {% endblock %}
             </div>
-            <div class="invite">
-                <div class="invites-text">
-                    <div>
-                        <img src="{% static 'images/friends.svg' %}">
-                        <p>Запити</p>
-                    </div>
-                    <a href="invites">Дивитись всі</a>
-                </div>
-                <div class="invites">
-                    <div>
-                        <div>
-                            <img src="{% static 'images/inv-1.jpg' %}">
-                        </div>
-                        <div>
-                            <h1>Yehor Aung</h1>
-                            <p>4.3к підписників</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="{% static 'images/inv-2.jpg' %}">
-                        </div>
-                        <div>
-                            <h1>Ann Ann</h1>
-                            <p>1.6к підписників</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="{% static 'images/inv-3.jpg' %}">
-                        </div>
-                        <div>
-                            <h1>Yeugen Jenua</h1>
-                            <p>10.3к підписників</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="message">
-                <div class="messages-text">
-                    <div>
-                        <img src="{% static 'images/chats.svg' %}">
-                        <p>Повідомлення</p>
-                    </div>
-                    <a href="messages">Дивитись всі</a>
-                </div>
-                <div class="messages">
-                    <div>
-                        <div>
-                            <img src="{% static 'images/msg-1.jpg' %}">
-                        </div>
-                        <div>
-                            <div>
-                                <h1>Mona Lisa</h1>
-                                <p>09:41</p>
-                            </div>
-                            <p>Привіт! Як справи ?</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="{% static 'images/msg-2.jpg' %}">
-                        </div>
-                        <div>
-                            <div>
-                                <h1>Ann Ti</h1>
-                                <p>25.04.2025</p>
-                            </div>
-                            <p>Привіт!</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="{% static 'images/msg-3.jpg' %}">
-                        </div>
-                        <div>
-                            <div>
-                                <h1>Ness Ty</h1>
-                                <p>25.04.2025</p>
-                            </div>
-                            <p>Привіт!</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="scroll-div">
+                {% block content %}
+                
+                {% endblock %}
             </div>
         </div>
-        <div class="scroll-div">
-            {% block content %}
+        {% block popups %}
             
-            {% endblock %}
-        </div>
+        {% endblock %}
         
         {% block script %}
         
         {% endblock %}
     </body>
-</html>
+    </html>

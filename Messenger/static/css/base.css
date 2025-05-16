@@ -36,7 +36,9 @@ header {
     position: fixed;
     width: 100%;
     height: fit-content;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
     padding: 24px 80px;
     background-color: #ffffff;
     z-index: 4;
@@ -106,14 +108,13 @@ body {
 
 .profile {
     display: flex;
+    /* position: fixed; */
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
     gap: 8px;
-    position: fixed;
     width: 350.87px;
     height: 801px;
-    left: 80.47px;
     top: 104px;
 }
 
@@ -525,7 +526,18 @@ body {
     color: #81818E;
 }
 .scroll-div {
-    width: auto;
-    margin-left: 430px;
-    padding: 24px 80px 0px 24px;
+    width: 1030px;
+    
+    /* padding: 24px 80px 0px 24px; */
+}
+.content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 104px;
+    gap: 30px;
+    width: 100%;
 }

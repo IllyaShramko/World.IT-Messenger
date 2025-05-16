@@ -24,7 +24,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MainPageView.as_view()),
-    path('user/', include('user_app.urls'))
+    path('user/', include('user_app.urls')),
+    path('posts/', include('my_posts_app.urls'))
 ]
 
 if settings.DEBUG:

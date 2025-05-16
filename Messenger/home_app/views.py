@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from user_app.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
-class MainPageView(ListView):
+class MainPageView(LoginRequiredMixin, ListView):
     model = User
     context_object_name = "user"
     template_name = "home_app/home.html"

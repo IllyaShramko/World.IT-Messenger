@@ -5,12 +5,47 @@ from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
-from .models import User, RegistrationCodes, Profile
+from .models import User, RegistrationCodes
 from .forms import RegistrationForm, EmailLoginForm, ConfirmEmailForm
 from django.urls import reverse_lazy
 import secrets, string, os
+
 # Create your views here.
 code = []
+
+# class CustomRegistrationPageView(CreateView):
+#     form_class = RegistrationForm
+#     template_name = 'user_app/signup.html'
+#     success_url = "/"
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         print("PFfkfdfjdsff")
+#         context['page'] = "reg"
+#         return context
+    
+#     def form_valid(self, form):
+#         print("PFfkfdfjds1231231231fasdfafasdfff")
+#         email=form.cleaned_data['email']
+#         form.cleaned_data["username"] = email
+#         code = ''
+#         for number in range(6):
+#             code += secrets.choice(string.digits)
+#         RegistrationCodes.objects.create(
+#             email=email,
+#             code=code
+#         )
+#         send_mail(
+#             'Код підтвердження електронної пошти',
+#             f'Дякуємо що користуєтесь World IT Messenger!\nКод підтвердження реєстрації: {code}',
+#             None,
+#             [email],
+#         )
+#         form_valid= super().form_valid(form).set_cookie("email", email)
+#         return form_valid
+    
+# class ConfirmCodeView(View):
+#     def get()
 
 class RegistrationPageView(View):
     
@@ -25,7 +60,7 @@ class RegistrationPageView(View):
         if button == 'mainform':
             form = RegistrationForm(request.POST)
             if form.is_valid():
-                if form.cleaned_data['password'] == form.cleaned_data['confirm_password']:
+                if form.cleaned_data['password1'] == form.cleaned_data['password2']:
                     code = ''
                     for number in range(6):
                         code += secrets.choice(string.digits)
@@ -47,7 +82,7 @@ class RegistrationPageView(View):
                         'enter_code': True
                     })
                     response.set_cookie('email', form.cleaned_data['email'])
-                    response.set_cookie('password', form.cleaned_data['password'])
+                    response.set_cookie('password', form.cleaned_data['password1'])
 
                     return response
                 else:
@@ -79,14 +114,13 @@ class RegistrationPageView(View):
                     if entered_code == auth_code:
                         password = request.COOKIES.get('password')
                         print('User Created')
-                        Profile.objects.create(user=User.objects.create_user(username=email, email=email, password=password))
-                        os.mkdir(os.path.join("..", "..", "media", "images", "profiles", email))
+                        User.objects.create_user(username=email, email=email, password=password)
                         response = HttpResponseRedirect("/")
                         response.delete_cookie('email')
                         response.delete_cookie('password')
                         return response
 class AuthPageView(LoginView):
-    template_name = "user_app/login.html"
+    template_name = "user_app/login.html"           
     authentication_form = EmailLoginForm
     success_url = "/"
 

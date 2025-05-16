@@ -10,6 +10,94 @@
     Home
 {% endblock %}
 
+{% block profile_info %}
+    <div class="invite">
+        <div class="invites-text">
+            <div>
+                <img src="{% static 'images/friends.svg' %}">
+                <p>Запити</p>
+            </div>
+            <a href="invites">Дивитись всі</a>
+        </div>
+        <div class="invites">
+            <div>
+                <div>
+                    <img src="{% static 'images/inv-1.jpg' %}">
+                </div>
+                <div>
+                    <h1>Yehor Aung</h1>
+                    <p>4.3к підписників</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="{% static 'images/inv-2.jpg' %}">
+                </div>
+                <div>
+                    <h1>Ann Ann</h1>
+                    <p>1.6к підписників</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="{% static 'images/inv-3.jpg' %}">
+                </div>
+                <div>
+                    <h1>Yeugen Jenua</h1>
+                    <p>10.3к підписників</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="message">
+        <div class="messages-text">
+            <div>
+                <img src="{% static 'images/chats.svg' %}">
+                <p>Повідомлення</p>
+            </div>
+            <a href="messages">Дивитись всі</a>
+        </div>
+        <div class="messages">
+            <div>
+                <div>
+                    <img src="{% static 'images/msg-1.jpg' %}">
+                </div>
+                <div>
+                    <div>
+                        <h1>Mona Lisa</h1>
+                        <p>09:41</p>
+                    </div>
+                    <p>Привіт! Як справи ?</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="{% static 'images/msg-2.jpg' %}">
+                </div>
+                <div>
+                    <div>
+                        <h1>Ann Ti</h1>
+                        <p>25.04.2025</p>
+                    </div>
+                    <p>Привіт!</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="{% static 'images/msg-3.jpg' %}">
+                </div>
+                <div>
+                    <div>
+                        <h1>Ness Ty</h1>
+                        <p>25.04.2025</p>
+                    </div>
+                    <p>Привіт!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 
 {% block content %}
     <div class="scroll">
@@ -36,11 +124,10 @@
                         <img src="{% static 'images/ranalda.jpg' %}">
                         <h1>X_AE_A-13</h1>
                     </div>
-                    <div class="rezise-div"></div>
-                    <img src="{% static 'images/podpis.png' %}">
+                    <img class="podpis" src="{% static 'images/podpis.png' %}">
                 </div>
                 <button class="dots">
-                    <img src="{% static 'images/Dots.svg' %}">
+                    <img class="dots-img" src="{% static 'images/Dots.svg' %}">
                 </button>
             </div>
             <div class="random-post-profile-info">
@@ -77,106 +164,10 @@
                         <h1>X_AE_A-13</h1>
                     </div>
                     <div class="rezise-div"></div>
-                    <img src="{% static 'images/podpis.png' %}">
+                    <img class="podpis" src="{% static 'images/podpis.png' %}">
                 </div>
-                <button type="button" class="dots">
-                    <img src="{% static 'images/Dots.svg' %}">
-                </button>
-            </div>
-            <div class="random-post-profile-info">
-                <div class="random-post-profile-text">
-                    <p>Інколи найкращі ідеї народжуються в тиші 🌿</p>
-                    <p>Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
-                    <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
-                </div>
-                <div class="random-post-profile-bottom">
-                    <div>
-                        <img src="{% static 'images/Like.svg' %}">
-                        <p>120 Вподобань</p>
-                    </div>
-                    <div>
-                        <img src="{% static 'images/eye (1).svg' %}">
-                        <p>890 Переглядів</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="post-random">
-            <div class="random-post-profile">
-                <div class="random-post-profile-pr">
-                    <div>
-                        <img src="{% static 'images/ranalda.jpg' %}">
-                        <h1>X_AE_A-13</h1>
-                    </div>
-                    <div class="rezise-div"></div>
-                    <img src="{% static 'images/podpis.png' %}">
-                </div>
-                <button type="button" class="dots">
-                    <img src="{% static 'images/Dots.svg' %}">
-                </button>
-            </div>
-            <div class="random-post-profile-info">
-                <div class="random-post-profile-text">
-                    <p>Інколи найкращі ідеї народжуються в тиші 🌿</p>
-                    <p>Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
-                    <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
-                </div>
-                <div class="random-post-profile-bottom">
-                    <div>
-                        <img src="{% static 'images/Like.svg' %}">
-                        <p>120 Вподобань</p>
-                    </div>
-                    <div>
-                        <img src="{% static 'images/eye (1).svg' %}">
-                        <p>890 Переглядів</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="post-random">
-            <div class="random-post-profile">
-                <div class="random-post-profile-pr">
-                    <div>
-                        <img src="{% static 'images/ranalda.jpg' %}">
-                        <h1>X_AE_A-13</h1>
-                    </div>
-                    <div class="rezise-div"></div>
-                    <img src="{% static 'images/podpis.png' %}">
-                </div>
-                <button type="button" class="dots">
-                    <img src="{% static 'images/Dots.svg' %}">
-                </button>
-            </div>
-            <div class="random-post-profile-info">
-                <div class="random-post-profile-text">
-                    <p>Інколи найкращі ідеї народжуються в тиші 🌿</p>
-                    <p>Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
-                    <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
-                </div>
-                <div class="random-post-profile-bottom">
-                    <div>
-                        <img src="{% static 'images/Like.svg' %}">
-                        <p>120 Вподобань</p>
-                    </div>
-                    <div>
-                        <img src="{% static 'images/eye (1).svg' %}">
-                        <p>890 Переглядів</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="post-random">
-            <div class="random-post-profile">
-                <div class="random-post-profile-pr">
-                    <div>
-                        <img src="{% static 'images/ranalda.jpg' %}">
-                        <h1>X_AE_A-13</h1>
-                    </div>
-                    <div class="rezise-div"></div>
-                    <img src="{% static 'images/podpis.png' %}">
-                </div>
-                <button type="button" class="dots">
-                    <img src="{% static 'images/Dots.svg' %}">
+                <button class="dots">
+                    <img class="dots-img" src="{% static 'images/Dots.svg' %}">
                 </button>
             </div>
             <div class="random-post-profile-info">

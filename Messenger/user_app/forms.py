@@ -1,36 +1,31 @@
 from django import forms
-from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
-class RegistrationForm(forms.Form):
-    
+
+class RegistrationForm(UserCreationForm):
+    username = forms.CharField(required= False, widget= forms.TextInput(attrs={
+        "type": "hidden"
+    }))
+
     email = forms.EmailField(widget= forms.TextInput(attrs={
         "placeholder": "you@example.com",
         "class": "email-input"
     }))
-    password = forms.CharField(widget= forms.TextInput(attrs={
+    password1 = forms.CharField(widget= forms.TextInput(attrs={
         "placeholder": "Напиши пароль",
         "class": "password-input",
         "type": "password",
         "id": "password-input"
     }))
-    confirm_password = forms.CharField(widget=forms.TextInput(attrs={
+    password2 = forms.CharField(widget=forms.TextInput(attrs={
         "placeholder":"Повтори пароль",
         "class": "password-confirm-input",
         "type": "password",
         "id": "password-confirm-input"
     }))
-    def save(self, email: str, password):
-        self.cleaned_data['username'] = self.cleaned_data['email']
-        if not User.objects.filter(username=email).exists():
-            Profile.objects.create(
-                user = User.objects.create_user(username=email, email=email, password=password)
-            )
-        else:
-            raise forms.ValidationError("User with this email already exists")
         
 
 class EmailLoginForm(AuthenticationForm):
@@ -38,12 +33,6 @@ class EmailLoginForm(AuthenticationForm):
         "type": "email"
     }))
 
-    def clean(self):
-        cleaned_data = super().clean()
-        email = self.cleaned_data.get("username")
-        if email:
-            self.cleaned_data["username"] = email.split("@")[0]
-        return self.cleaned_data
 
 class ConfirmEmailForm(forms.Form):
     number_of_code1 = forms.CharField(max_length = 1, widget = forms.TextInput(attrs = {
