@@ -15,4 +15,5 @@ class MainPageView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_auth'] = User.is_authenticated
+        context['page'] = "home"
         return context

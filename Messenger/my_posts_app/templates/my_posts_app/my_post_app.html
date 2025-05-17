@@ -33,9 +33,20 @@
                 </div>
                 <img class="podpis" src="{% static 'images/podpis.png' %}">
                 </div>
-                <a href="{% url 'delete_post' post.id %}" class="dots">
+                <button id="dotsButton" class="dots">
                     <img class="dots-img" src="{% static 'images/Dots.svg' %}">
-                </a>
+                </button>
+                <div class="modal-del-edit" id="modal-del-edit">
+                    <button value="{{ post.pk }}" id="deleteButton">
+                        <img src="{% static 'my_post_app/images/delete.png' %}" alt="delete">
+                        <p>Редагувати допис</p>
+                    </button>
+                    <div class="line-beetwen-buttons"></div>
+                    <a href="{% url 'delete_post' post.pk %}" id="editButton">
+                        <img src="{% static 'my_post_app/images/edit.png' %}" alt="edit">
+                        <p>Видалити публікацію</p>
+                    </a>
+                </div>
             </div>
             <div class="random-post-profile-info">
                 <h2>{{ post.title }}</h2>
@@ -67,36 +78,33 @@
         {% endfor %}
 {% endblock %}
 
-{% block scripts %}
-    <script src="{% static 'my_post_app/js/my_post_app.js' %}"></script>
-{% endblock %}
 
 {% block popups %}
-    {% if popup %}
-    <div class="bg-popup"></div>
-    <form method="post" class="form-popup" enctype="multipart/form-data" action="{% url 'my_posts' %}">
-        {% csrf_token %}
-        <a href="">
-            <img src="{% static 'my_post_app/images/cancel.png' %}">
-        </a>
-        <h1>Створення публікації</h1>
-        <div class="inputs-div">
-            <p>Назва публікації</p>
-            {{ form.title }}
-        </div>
-        <div class="inputs-div">
-            <p>Тема публікації</p>
-            {{ form.topic }}
-        </div>
-        <div class="inputs-div">
-            {{ form.text }}
+{% if popup %}
+<div class="bg-popup"></div>
+<form method="post" class="form-popup" enctype="multipart/form-data" action="{% url 'my_posts' %}">
+    {% csrf_token %}
+    <a href="">
+        <img src="{% static 'my_post_app/images/cancel.png' %}">
+    </a>
+    <h1>Створення публікації</h1>
+    <div class="inputs-div">
+        <p>Назва публікації</p>
+        {{ form.title }}
+    </div>
+    <div class="inputs-div">
+        <p>Тема публікації</p>
+        {{ form.topic }}
+    </div>
+    <div class="inputs-div">
+        {{ form.text }}
         </div>
         <div class="inputs-div">
             <p>Посилання</p>
             {{ form.links }}
         </div>
         <div class="modal-images">
-
+            
         </div>
         <div class="submit-div">
             <div>
@@ -111,5 +119,9 @@
             </button>
         </div>
     </form>
-    {% endif %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'my_post_app/js/my_post_app.js' %}"></script>
 {% endblock %}
