@@ -37,13 +37,13 @@
                     <img class="dots-img" src="{% static 'images/Dots.svg' %}">
                 </button>
                 <div class="modal-del-edit" id="modal-del-edit">
-                    <button value="{{ post.pk }}" id="deleteButton">
-                        <img src="{% static 'my_post_app/images/delete.png' %}" alt="delete">
+                    <button value="{% url 'edit_post' post.pk %}" class="editButton" id="editButton">
+                        <img src="{% static 'my_post_app/images/edit.png' %}" alt="delete">
                         <p>Редагувати допис</p>
                     </button>
                     <div class="line-beetwen-buttons"></div>
-                    <a href="{% url 'delete_post' post.pk %}" id="editButton">
-                        <img src="{% static 'my_post_app/images/edit.png' %}" alt="edit">
+                    <a href="{% url 'delete_post' post.pk %}" class="deleteButton" id="deleteButton">
+                        <img src="{% static 'my_post_app/images/delete.png' %}" alt="edit">
                         <p>Видалити публікацію</p>
                     </a>
                 </div>
@@ -56,6 +56,9 @@
                         {% for tag in post.tags %}
                         #{{ tag }} 
                         {% endfor %}
+                    </p>
+                    <p>
+                        {{ post.links }}
                     </p>
                 </div>
                 {% if post.images %}
@@ -89,39 +92,50 @@
     </a>
     <h1>Створення публікації</h1>
     <div class="inputs-div">
-        <p>Назва публікації</p>
+        <p>{{ form.title.label }}</p>
         {{ form.title }}
     </div>
     <div class="inputs-div">
-        <p>Тема публікації</p>
+        <p>{{ form.topic.label }}</p>
         {{ form.topic }}
     </div>
     <div class="inputs-div">
         {{ form.text }}
+    </div>
+    <div class="inputs-div">
+        <p>{{ form.links.label }}</p>
+        {{ form.links }}
+    </div>
+    <div class="modal-images">
+        
+    </div>
+    <div class="submit-div">
+        <div>
+            <label for="images">
+                <img src="{% static 'my_post_app/images/image.svg' %}">
+            </label>
+            {{ form.images }}
         </div>
-        <div class="inputs-div">
-            <p>Посилання</p>
-            {{ form.links }}
-        </div>
-        <div class="modal-images">
-            
-        </div>
-        <div class="submit-div">
-            <div>
-                <label for="images">
-                    <img src="{% static 'my_post_app/images/image.svg' %}">
-                </label>
-                {{ form.images }}
-            </div>
-            <button type="submit" name="button" value="submitform">
-                Відправити
+        {% if post_modal == "create" %}
+            <button class="create-post" type="submit" name="button" value="submitFormCreate">
+                Публікація
                 <img src="{% static 'my_post_app/images/create-post.png' %}">
             </button>
-        </div>
+        {% else %}
+            <input type="hidden" name="post_pk" value="{{ post_pk }}">
+            <button class="edit-post" type="submit" name="button" value="submitFormEdit">
+                Публікація
+                <img src="{% static 'my_post_app/images/create-post.png' %}">
+            </button>
+        {% endif %}
+    </div>
     </form>
 {% endif %}
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'my_post_app/js/my_post_app.js' %}"></script>
+    <script src="{% static 'my_post_app/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'my_post_app/js/modal_window_open_close.js' %}"></script>
+    <script src="{% static 'my_post_app/js/edit_post.js' %}"></script>
+    <script src="{% static 'my_post_app/js/images_form.js' %}"></script>
 {% endblock %}

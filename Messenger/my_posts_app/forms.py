@@ -39,6 +39,12 @@ class PostForm(forms.ModelForm):
             'links',
             'images'
         ]
+        
+        labels = {
+            'title': "Назва публікації",
+            'topic': "Тема публікації",
+            'links': "Посилання",
+        }
 
         widgets = {
             "title": forms.TextInput(attrs={
