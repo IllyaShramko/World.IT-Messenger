@@ -444,7 +444,22 @@
 .modal-del-edit {
     display: none;
 }
-
+.modal-images{
+    position: relative;
+}
 .preview-img {
     max-width: 100%;
+}
+.preview-delete-img {
+    position: absolute;
+    display: flex;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: #543C52 1px solid;
+    border-radius: 45px;
 }

@@ -111,9 +111,9 @@
                 <button type="button" id="smile" class="post-smile">
                     <img src="{% static 'images/emodji.svg' %}">
                 </button>
-                <button type="button" class="post-send">
-                    Перейти до оформленння
-                </button>
+                <a href="{% url 'my_posts' %}" type="button" class="post-send">
+                    Перейти до оформлення
+                </a>
             </div>
         </form>
         <div class="post-random">

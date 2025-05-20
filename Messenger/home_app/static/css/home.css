@@ -13,33 +13,36 @@ body {
 }
 .post-form {
     box-sizing: border-box;
-    display: flex;
+    position: relative;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 16px;
+    display: flex;
     gap: 10px;
+    padding-bottom: 11px;
     width: 100%;
+    min-height: 120px;
+    height: fit-content;
     background: #FFFFFF;
     border: 1px solid #CDCED2;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .post-text {
     display: flex;
     flex-direction: row;
+    position: relative;
     align-items: center;
-    padding: 0px;
-    gap: 8px;
-    margin: 0 auto;
+    left: 0;
+    top: 0;
+    padding: 12px;
     width: 100%;
-    height: auto;
-    min-height: 20px;
+    height: 100%;
     border: 0;
-    border-width: 0;
     border-style: none;
     white-space: normal;
     overflow-wrap: break-word;
     resize: vertical;
+    outline: none;
 }
 
 .post-text::placeholder {
@@ -52,13 +55,15 @@ body {
 }
 
 .post-other {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-start;
     padding: 0px;
     gap: 10px;
-    margin: 0 auto;
     width: 100%;
 }
 
@@ -69,7 +74,6 @@ body {
     align-items: center;
     padding: 10px 16px;
     gap: 8px;
-    width: 130px;
     height: 40px;
     background: #583B53;
     border: none;
@@ -81,6 +85,7 @@ body {
     line-height: 20px;
     color: #FFFFFF;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .post-smile {
