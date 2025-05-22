@@ -339,8 +339,10 @@
 }
 
 .random-post-profile-images img {
-    width: fit-content;
-    max-height: 300px;
+    min-height: 325px;
+    max-height: 500px;
+    min-width: 283px;
+    max-width: 100%;
 }
 
 .random-post-profile-bottom {

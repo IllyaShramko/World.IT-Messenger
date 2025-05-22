@@ -94,6 +94,7 @@ class RegistrationPageView(View):
                             'enter_code': False
                         })
             else:
+                print("error")
                 return render(
                     request,
                     'user_app/signup.html',
