@@ -21,8 +21,9 @@ class MyPostsView(ListView):
         context = super().get_context_data(**kwargs)
         context["popup"] = False
         context['page'] = "my_posts"
+        context['images'] = Images_Post.objects.all()
         return context
-
+    
     def post(self, request: HttpRequest):
         button = request.POST.get('button')
         print(button)
@@ -41,14 +42,15 @@ class MyPostsView(ListView):
                     "form": form,
                     "popup": True,
                     "post_modal": "create",
+                    "page": "my_posts",
+                    "images": Images_Post.objects.all(),
                     "my_posts": User_Post.objects.filter(user= request.user)
                 }
             )
         elif button=="submitFormCreate":
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                images = request.FILES.get("images")
-                print(images)
+                images = request.FILES.getlist("images")
                 post = form.save(commit=False)
                 post.user = request.user
                 post.likes = 0
@@ -61,6 +63,11 @@ class MyPostsView(ListView):
                     print(tag)
                     post.tags.append(tag)
                 post.save()
+                for image in images:
+                    Images_Post.objects.create(
+                        image = image,
+                        post = post
+                    )
 
                 
             return render(
@@ -69,6 +76,8 @@ class MyPostsView(ListView):
                 context = {
                     "form": PostForm,
                     "popup": False,
+                    "page": "my_posts",
+                    "images": Images_Post.objects.all(),
                     "my_posts": User_Post.objects.filter(user= request.user)
                     }
             )
@@ -84,11 +93,13 @@ class MyPostsView(ListView):
                 for tag in text:
                     print(tag)
                     post.tags.append(tag)
-                print(form.files)
+
                 if request.FILES.getlist("images"):
-                    post.images = request.FILES.getlist("images")[0]
-                else:
-                    post.images = ""
+                    for image in request.FILES.getlist("images"):
+                        Images_Post.objects.create(
+                            image = image,
+                            post = post
+                        )
                 post.save()
 
             return render(
@@ -97,6 +108,8 @@ class MyPostsView(ListView):
                 context = {
                     "form": PostForm,
                     "popup": False,
+                    "page": "my_posts",
+                    "images": Images_Post.objects.all(),
                     "my_posts": User_Post.objects.filter(user= request.user)
                     }
             )    
@@ -136,8 +149,9 @@ def get_post(request, post_id):
         "links",
         post.links
     )
+    images = Images_Post.objects.filter(post_id = post_id)
     if post:
-        if post.images:
+        if images:
             return render(
                 request,
                 "my_posts_app/form_edit.html",
@@ -146,7 +160,7 @@ def get_post(request, post_id):
                     "popup": True,
                     "post_modal": "edit",            
                     "post_pk": post_id,
-                    "images": post.images.url,
+                    "images": images,
                     "my_posts": User_Post.objects.filter(user= request.user)
                     })
         

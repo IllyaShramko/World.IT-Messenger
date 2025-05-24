@@ -22,19 +22,23 @@
         {{ form.links }}
     </div>
     <div class="modal-images">
-        {% if image_src %}
-            <img src="{{ image_src }}" class="preview-img">
-            <button style="z-index: 10;" class="preview-delete-img" type="button" id="deleteImage">
-                <img src="{% static 'my_post_app/images/delete.png' %}" alt="">
-            </button>
+        {% if images %}
+            {% for image in images %}
+                <div class="images-div">
+                    <img src="{{ image.image.url }}" class="preview-img">
+                    <button style="z-index: 10;" class="preview-delete-img" type="button" id="deleteImage">
+                        <img src="{% static 'my_post_app/images/delete.png' %}" alt="">
+                    </button>
+                </div>
+            {% endfor %}
         {% endif %}
     </div>
     <div class="submit-div">
-        <div>
+        <div class="images-div">
             <label for="images">
                 <img src="{% static 'my_post_app/images/image.svg' %}">
             </label>
-            {{ form.images }}
+            <input type="file" name="images" id="images" class="images" multiple>
         </div>
         {% if post_modal == "create" %}
             <button class="create-post" type="submit" name="button" value="submitFormCreate">

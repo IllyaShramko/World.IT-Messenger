@@ -10,38 +10,43 @@ $(document).ready(function(){
                     $(".popups").html(response)
                     const blockImages = document.querySelector('.modal-images');
                     const inputImages = document.getElementsByName("images")[0];
-                    let imageElement = document.createElement("img");
-                    let imageDelete = document.createElement("img");
-                    let divImageDelete = document.createElement("button");
 
                     inputImages.addEventListener('change', function(event) {
-                        const image = event.target.files[0];
-                        console.log("любое")
-                        if (image) {
+                        const files = event.target.files;
+
+                        for (let i = 0; i < files.length; i++) {
+                            const image = files[i];
                             const reader = new FileReader();
+
                             reader.addEventListener('load', function(e) {
-                                imageElement.src = e.target.result
-                                imageElement.className = "preview-img"
-                                imageDelete.src = "/static/my_post_app/images/delete.png"
-                                divImageDelete.className = "preview-delete-img"
-                                divImageDelete.id = "deleteImage"
-                                divImageDelete.type = "button"
-                                blockImages.appendChild(imageElement)
-                                blockImages.appendChild(divImageDelete)
-                                divImageDelete.appendChild(imageDelete)
+                                const imageElement = document.createElement("img");
+                                const imageDelete = document.createElement("img");
+                                const divImageDelete = document.createElement("button");
+                                const imageDiv = document.createElement('div');
+
+                                imageElement.src = e.target.result;
+                                imageElement.className = "preview-img";
+
+                                imageDelete.src = "/static/my_post_app/images/delete.png";
+                                divImageDelete.className = "preview-delete-img";
+                                divImageDelete.id = "deleteImage";
+                                divImageDelete.type = "button";
+
+                                imageDiv.className = "images-div";
+
+                                blockImages.appendChild(imageDiv);
+                                imageDiv.appendChild(imageElement);
+                                imageDiv.appendChild(divImageDelete);
+                                divImageDelete.appendChild(imageDelete);
+
+                                divImageDelete.addEventListener("click", function () {
+                                    imageDiv.remove();
+                                });
                             });
+
                             reader.readAsDataURL(image);
                         }
-                    });
-                    divImageDelete.addEventListener(
-                        "click",
-                        function () {
-                            console.log("dslfdkfasdf")
-                            inputImages.value = ""
-                            imageElement.remove()
-                            divImageDelete.remove()
-                        }
-                    );
+                    })
                     document.getElementById("deleteImage").addEventListener(
                         "click",
                         function () {

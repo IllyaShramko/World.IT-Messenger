@@ -152,15 +152,16 @@
                     </p>
                     {% if post.links != None %}
                         <a href="{{post.links}}" class="link">
-                            
                             {{ post.links }}
                         </a>
                     {% endif %}
                 </div>
                 <div class="random-post-profile-images">
-                    {% if post.images %}
-                        <img src="{{ post.images.url }}" alt="1">
-                    {% endif %}
+                    {% for image in images %}
+                        {% if image.post_id == post.id %}
+                            <img src="{{ image.image.url }}" alt="1">
+                        {% endif %}
+                    {% endfor %}
                 </div>                    
                 <div class="random-post-profile-bottom">
                     <div>

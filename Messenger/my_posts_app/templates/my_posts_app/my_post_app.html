@@ -64,11 +64,14 @@
                         </a>
                     {% endif %}
                 </div>
-                {% if post.images %}
-                    <div class="random-post-profile-images">
-                        <img src="{{ post.images.url }}" alt="1">
-                    </div>                    
-                {% endif %}
+                <div class="random-post-profile-images">
+                {% for image in images %}
+                    {% if image.post_id == post.id %}
+                        <img src="{{ image.image.url }}" alt="1">
+                        
+                    {% endif %}
+                {% endfor %}  
+                </div>          
                 <div class="random-post-profile-bottom">
                     <div>
                         <img src="{% static 'images/Like.svg' %}">
@@ -113,7 +116,7 @@
         
     </div>
     <div class="submit-div">
-        <div>
+        <div class="images-div">
             <label for="images">
                 <img src="{% static 'my_post_app/images/image.svg' %}">
             </label>
