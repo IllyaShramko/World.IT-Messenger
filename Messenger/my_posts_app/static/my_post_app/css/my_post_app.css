@@ -305,7 +305,11 @@
 }
 
 .random-post-profile-text {
+    height: 54px;
     position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
     font-family: 'GT Walsheim Pro';
     font-style: normal;
     font-weight: 400;
@@ -313,12 +317,8 @@
     line-height: 18px;
     color: #060A1D;
 }
-.random-post-profile-text p {
-    width: 100%;
-}
+
 .tags {
-    width: 638px;
-    height: 54px;
     font-family: 'GT Walsheim Pro';
     font-style: normal;
     font-weight: 400;
@@ -326,7 +326,6 @@
     line-height: 18px;
     color: #583B53;
 }
-
 .random-post-profile-images {
     display: flex;
     align-items: center;
@@ -464,4 +463,14 @@
     background-color: #FFFFFF;
     border: #543C52 1px solid;
     border-radius: 45px;
+}
+
+.link {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: none;
+    color: #583B53;
 }

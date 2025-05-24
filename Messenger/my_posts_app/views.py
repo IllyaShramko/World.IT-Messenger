@@ -81,10 +81,11 @@ class MyPostsView(ListView):
                 for tag in text:
                     print(tag)
                     post.tags.append(tag)
-                try:
-                    post.images = form.files["images"]
-                except:
-                    pass
+                print(form.files)
+                if request.FILES.getlist("images"):
+                    post.images = request.FILES.getlist("images")[0]
+                else:
+                    post.images = ""
                 post.save()
 
             return render(
@@ -133,14 +134,29 @@ def get_post(request, post_id):
         post.links
     )
     if post:
-        return render(
-            request,
-            "my_posts_app/form_edit.html",
-            context = {
-                "form": form,
-                "popup": True,
-                "post_modal": "edit",            
-                "post_pk": post_id,
-                "my_posts": User_Post.objects.filter(user= request.user)
-                }
-        )
+        if post.images:
+            return render(
+                request,
+                "my_posts_app/form_edit.html",
+                context = {
+                    "form": form,
+                    "popup": True,
+                    "post_modal": "edit",            
+                    "post_pk": post_id,
+                    "image_src": post.images.url,
+                    "my_posts": User_Post.objects.filter(user= request.user)
+                    })
+        
+        else:
+            return render(
+                request,
+                "my_posts_app/form_edit.html",
+                context = {
+                    "form": form,
+                    "popup": True,
+                    "post_modal": "edit",            
+                    "post_pk": post_id,
+                    "my_posts": User_Post.objects.filter(user= request.user)
+                    })
+                
+            

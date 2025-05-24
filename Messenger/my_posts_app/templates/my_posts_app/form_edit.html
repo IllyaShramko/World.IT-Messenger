@@ -22,7 +22,12 @@
         {{ form.links }}
     </div>
     <div class="modal-images">
-        
+        {% if image_src %}
+            <img src="{{ image_src }}" class="preview-img">
+            <button style="z-index: 10;" class="preview-delete-img" type="button" id="deleteImage">
+                <img src="{% static 'my_post_app/images/delete.png' %}" alt="">
+            </button>
+        {% endif %}
     </div>
     <div class="submit-div">
         <div>
@@ -45,4 +50,3 @@
         {% endif %}
     </div>
 </form>
-<script src="{% static 'my_post_app/js/images_form.js' %}" defer></script>
