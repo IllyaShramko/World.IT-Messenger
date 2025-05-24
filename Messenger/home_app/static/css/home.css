@@ -323,13 +323,15 @@
     justify-content: center;
     position: relative;
     width: 100%;
-    gap: 16px; 
+    gap: 1vh; 
     flex-wrap: wrap;
 }
 
+
 .random-post-profile-images img {
-    width: 100%; 
-    /* height: 50vh; */
+    width: 45%;
+    height: 25vh;
+    border-radius: 1vh;
 }
 
 .random-post-profile-bottom {
