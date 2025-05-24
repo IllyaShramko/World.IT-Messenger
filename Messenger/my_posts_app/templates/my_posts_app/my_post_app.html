@@ -117,7 +117,7 @@
             <label for="images">
                 <img src="{% static 'my_post_app/images/image.svg' %}">
             </label>
-            {{ form.images }}
+            <input type="file" name="images" id="images" class="images" multiple>
         </div>
         {% if post_modal == "create" %}
             <button class="create-post" type="submit" name="button" value="submitFormCreate">

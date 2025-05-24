@@ -5,7 +5,7 @@ from django.views import View
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from .forms import PostForm
-from .models import User_Post
+from .models import User_Post, Images_Post
 import os
 # Create your views here.
 class MyPostsView(ListView):
@@ -47,6 +47,8 @@ class MyPostsView(ListView):
         elif button=="submitFormCreate":
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
+                images = request.FILES.get("images")
+                print(images)
                 post = form.save(commit=False)
                 post.user = request.user
                 post.likes = 0
@@ -59,6 +61,7 @@ class MyPostsView(ListView):
                     print(tag)
                     post.tags.append(tag)
                 post.save()
+
                 
             return render(
                 request,
@@ -143,7 +146,7 @@ def get_post(request, post_id):
                     "popup": True,
                     "post_modal": "edit",            
                     "post_pk": post_id,
-                    "image_src": post.images.url,
+                    "images": post.images.url,
                     "my_posts": User_Post.objects.filter(user= request.user)
                     })
         

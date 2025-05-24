@@ -58,36 +58,36 @@
             <a href="messages">Дивитись всі</a>
         </div>
         <div class="messages">
-            <div>
-                <div>
+            <div class="message1">
+                <div class="avatar-message">
                     <img src="{% static 'images/msg-1.jpg' %}">
                 </div>
-                <div>
-                    <div>
+                <div class="name-message">
+                    <div class="name-time-message">
                         <h1>Mona Lisa</h1>
                         <p>09:41</p>
                     </div>
                     <p>Привіт! Як справи ?</p>
                 </div>
             </div>
-            <div>
-                <div>
+            <div class="message1">
+                <div class="avatar-message">
                     <img src="{% static 'images/msg-2.jpg' %}">
                 </div>
-                <div>
-                    <div>
+                <div class="name-message">
+                    <div class="name-time-message">
                         <h1>Ann Ti</h1>
                         <p>25.04.2025</p>
                     </div>
                     <p>Привіт!</p>
                 </div>
             </div>
-            <div>
-                <div>
+            <div class="message1">
+                <div class="avatar-message">
                     <img src="{% static 'images/msg-3.jpg' %}">
                 </div>
-                <div>
-                    <div>
+                <div class="name-message">
+                    <div class="name-time-message">
                         <h1>Ness Ty</h1>
                         <p>25.04.2025</p>
                     </div>
@@ -105,7 +105,7 @@
             {% csrf_token %}
             <textarea type="text" class="post-text" placeholder="Про що ти зараз думаєш?"></textarea>
             <div class="post-other">
-                <button type="button" id="image" class="post-image">
+                <button type="button" id="image" class="post-smile">
                     <img src="{% static 'images/image.svg' %}">
                 </button>
                 <button type="button" id="smile" class="post-smile">
@@ -118,13 +118,13 @@
         </form>
         {% for post in posts_list %}
         <div class="post-random">
-        <div class="random-post-profile">
-            <div class="random-post-profile-pr">
-                <div>
-                    <img src="{% static 'images/ranalda.jpg' %}">
-                    <h1>{{ post.user }}</h1>
-                </div>
-                <img class="podpis" src="{% static 'images/podpis.png' %}">
+            <div class="random-post-profile">
+                <div class="random-post-profile-pr">
+                    <div>
+                        <img class="avatar" src="{% static 'images/ranalda.jpg' %}">
+                        <h1>{{ post.user }}</h1>
+                    </div>
+                    <img class="podpis" src="{% static 'images/podpis.png' %}">
                 </div>
                 <button id="dotsButton" class="dots">
                     <img class="dots-img" src="{% static 'images/Dots.svg' %}">
@@ -157,11 +157,11 @@
                         </a>
                     {% endif %}
                 </div>
-                {% if post.images %}
-                    <div class="random-post-profile-images">
+                <div class="random-post-profile-images">
+                    {% if post.images %}
                         <img src="{{ post.images.url }}" alt="1">
-                    </div>                    
-                {% endif %}
+                    {% endif %}
+                </div>                    
                 <div class="random-post-profile-bottom">
                     <div>
                         <img src="{% static 'images/Like.svg' %}">

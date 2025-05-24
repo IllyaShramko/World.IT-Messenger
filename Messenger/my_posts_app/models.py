@@ -10,9 +10,12 @@ class User_Post(models.Model):
     tags = models.JSONField()
     text = models.TextField()
     links = models.CharField(max_length = 255, null= True, blank=True)
-    images = models.ImageField(upload_to = f"profile/posts/images", null= True, blank=True)
     views = models.IntegerField()
     likes = models.IntegerField()
 
     def get_absolute_url(self):
         return reverse('image_post', kwargs= {'pk': self.pk})
+    
+class Images_Post(models.Model):
+    image = models.ImageField(upload_to= "images/")
+    post = models.ForeignKey(User_Post, on_delete=models.CASCADE)

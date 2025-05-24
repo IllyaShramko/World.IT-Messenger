@@ -35,33 +35,45 @@ header {
     display: flex;
     position: fixed;
     width: 100%;
-    height: fit-content;
+    height: 8vh;
     justify-content: center;
     align-items: center;
-    gap: 440px;
+    gap: 435px;
     padding: 24px 80px;
     background-color: #ffffff;
     z-index: 4;
 }
-
+.logo {
+    position: absolute;
+    left: 12.5vw;
+    height: 1.7vh;
+}
 .selected {
     background: #E9E5EE;
     border-radius: 3px;
 }
 
 nav {
+    position: absolute;
+    right: 12.5vw;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 24px;
+    width: fit-content;
+    gap: 1vw;
 }
 
-nav a {
+a {
     display: flex;
-    align-items: center;
     text-decoration: none;
-    padding: 4px 8px;
-    gap: 8px;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.4vh 0.4vw;
+    gap: 0.3vw;
+}
+
+a img {
+    height: 1.9vh;
 }
 
 nav a:hover {
@@ -73,37 +85,38 @@ nav a p {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: Medium;
     font-weight: 500;
-    font-size: 16px;
-    text-align: center;
+    font-size: 0.85vw;
+    white-space: nowrap;
+    align-items: center;
 
     color: #060A1D;
 }
 .logout button {
     display: flex;
-    width: 95px;
-    height: 40px;
-    border-radius: 45px;
+    width: 5.5vw;
+    height: 4vh;
+    border-radius: 2vh;
     background: none;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     border: 1px solid #583B53;
-    border: 1px solid color(display-p3 0.329 0.235 0.322);
-    gap: 8px;
+    gap: 0.3vw;
     cursor: pointer;
 }
 .logout button:hover {
     background-color: #E9E5EE;
 }
 
+.logout img {
+    height: 1.9vh;
+}
+
 .logout p {
-    width: 35px;
-    height: 20px;
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.8vw;
     color: #583B53;
 }
 
@@ -119,21 +132,20 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    gap: 8px;
-    width: 350.87px;
-    height: 801px;
-    top: 104px;
-    transform: translateX(-515px);
+    gap: 0.5vh;
+    width: 20vw;
+    top: 9.6vh;
+    transform: translateX(-29vw);
 }
 
 .me {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 16px 0px;
-    gap: 16px;
-    width: 350.87px;
+    align-content: center;
+    padding: 0.9vh 0px;
+    gap: 2vh;
+    width: 20vw;
     background: #FFFFFF;
     border: 1px solid #CDCED2;
     border-radius: 10px;
@@ -143,34 +155,33 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 0px;
-    gap: 20px;
+    gap: 1vh;
     width: 100%;
 }
 
 .me-image {
-    position: relative;
-    width: 100px;
-    height: 100px;
     border-radius: 50%;
+    position: relative;
     object-fit: cover;
     object-position: center;
 }
 
 .profile-image {
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 5.7vw;
+    height: 5.7vw;
     object-fit: cover;
     object-position: center;
 }
 
 .profile-status {
     position: absolute;
-    right: 5;
+    right: 1vw;
     bottom: 0;
-    width: 20px;
-    height: 20px;
+    width: 1.1vw;
+    height: 2.1vh;
     background-color: #28a745;
     border: 2px solid white;
     border-radius: 50%;
@@ -180,8 +191,7 @@ body {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: Bold;
     font-weight: 900;
-    font-size: 24px;
-    line-height: 27px;
+    font-size: 2.13vh;
     text-align: center;
     color: #060A1D;
 }
@@ -190,19 +200,16 @@ body {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 1.8vh;
     text-align: center;
     color: #060A1D;
 }
 
 .me-info {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     padding: 0px;
-    width: 350.87px;
-    height: 48px;
 }
 
 .me-info div {
@@ -212,31 +219,30 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0px;
-    gap: 7px;
-    width: 116.96px;
-    height: 48px;
-    border-right: 1px solid #CDCED2;
+    gap: 0.3vw;
+    width: 9.6vw;
+    height: 6.6vh;
 }
 
+.me-info-center {
+    border-left: 1px solid #CDCED2;
+    border-right: 1px solid #CDCED2;
+}
 
 .me-info div p {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 23px;
+    font-size: 2vh;
     text-align: center;
     color: #060A1D;
 }
 
 .me-info div h1 {
-    width: 55px;
-    height: 18px;
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 1.9vh;
     text-align: center;
     color: #81818E;
 }
@@ -247,10 +253,10 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 8px;
-    gap: 24px;
-    width: 350.87px;
+    align-content: flex-start;
+    gap: 1.6vh;
+    width: 20vw;
+    padding: 1vh;
     height: fit-content;
     background: #FFFFFF;
     border: 1px solid #CDCED2;
@@ -263,9 +269,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0px;
-    gap: 28px;
-    width: 318.87px;
-    height: 23px;
+    width: 100%;
 }
 
 .invites-text div {
@@ -273,10 +277,8 @@ body {
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 8px;
+    gap: 0.3vh;
     margin: 0 auto;
-    width: 94px;
-    height: 23px;
 }
 
 .invites-text a {
@@ -286,13 +288,12 @@ body {
     align-items: center;
     text-decoration: none;
     padding: 0px;
-    gap: 10px;
+    gap: 0.8vh;
     margin: 0 auto;
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 1.4vh;
     text-align: center;
     color: #583B53;
 }
@@ -301,22 +302,21 @@ body {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 100%;
+    font-size: 2vh;
     text-align: center;
     color: #81818E;
 }
 .invites-text div img {
-    width: 20px;
-    height: 20px;
+    width: 2.4vh;
+    height: 2.4vh;
 }
 
 .invites {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px;
-    gap: 16px;
+    padding: 0.3vh;
+    gap: 1vh;
 }
 
 .invites div {
@@ -324,23 +324,22 @@ body {
     flex-direction: row;
     align-items: flex-start;
     padding: 0px;
-    gap: 16px;
-    width: 318.87px;
-    height: 46px;
+    gap: 1vh;
+    width: 20vh;
 }
 
 .invites div div {
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 5.7vw;
+    height: 11vh;
     object-fit: cover;
     object-position: center;
 }
 
 .invites div div img {
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 5.5vh;
+    height: 5.5vh;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
@@ -351,19 +350,16 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    gap: 4px;
+    gap: 0.2vh;
     width: max-content;
     height: fit-content;
 }
 
 .invites div div h1 {
-    width: 260.87px;
-    height: 18px;
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 2vh;
     color: #060A1D;
 }
 
@@ -371,8 +367,7 @@ body {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 1.3vh;
     color: #81818E;
 }
 
@@ -383,9 +378,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 8px;
-    gap: 24px;
-    width: 350.87px;
+    padding: 0.8vh;
+    gap: 1vh;
+    width: 20vw;
     height: fit-content;
     background: #FFFFFF;
     border: 1px solid #CDCED2;
@@ -396,11 +391,9 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     padding: 0px;
-    gap: 28px;
-    width: 318.87px;
-    height: 23px;
+    gap: 1vh;
+    width: 100%;
 }
 
 .messages-text div {
@@ -408,10 +401,8 @@ body {
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 8px;
+    gap: 0.5vh;
     margin: 0 auto;
-    width: 94px;
-    height: 23px;
 }
 
 .messages-text a {
@@ -426,8 +417,7 @@ body {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 1.4vh;
     text-align: center;
     color: #583B53;
 }
@@ -436,78 +426,94 @@ body {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 100%;
+    font-size: 2vh;
     text-align: center;
     color: #81818E;
 }
 .messages-text div img {
-    width: 20px;
-    height: 20px;
+    width: 2.4vh;
+    height: 2.4vh;
 }
 
 .messages {
     display: flex;
+    /* position: relative; */
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px;
-    gap: 16px;
+    width: 100%;
+    padding: 0.8vw;
+    gap: 1vh;
+}
+
+.message1 {
+    width: 100%;
 }
 
 .messages div {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 16px;
-    width: 100%;
-    height: 46px;
-}
-
-.messages div div {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    object-position: center;
-}
-
-.messages div div img {
     position: relative;
-    width: 50px;
-    height: 50px;
+    flex-direction: row;
+    padding: 0px;
+    gap: 1vh;
+}
+.name-message {
+    position: relative;
+    width: 100%;
+}
+
+.name-time-message {
+    display: flex;
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+}
+.name-time-message p {
+    position: absolute;
+    right: 0.1;
+}
+.avatar-message {
+    width: 100%;
+}
+.avatar-message {
+    width: 5.5vh;
+    height: 5.5vh;
+}
+.avatar-message img {
+    position: relative;
+    height: 5.5vh;
+    width: 5.5vh;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
 }
+
 
 .messages div div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
     padding: 0px;
-    gap: 4px;
-    width: max-content;
+    gap: 0.2vh;
     height: fit-content;
+    flex-grow: 1;
 }
 
 .messages div div div {
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0px;
-    gap: 4px;
-    width: 260.87px;
-    height: 18px;
+    gap: 0.2vh;
 }
 
 .messages div div div h1 {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 2vh;
+    margin: 0;
     color: #060A1D;
 }
 
@@ -515,25 +521,24 @@ body {
     font-family: 'GT Walsheim Pro';
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 1vh;
     margin: 0;
     color: #81818E;
-    padding-right: 10px;
 }
 
 .messages div div p {
     font-family: 'GT Walsheim Pro', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 1.3vh;
+    margin: 0;
     color: #81818E;
 }
 .scroll-div {
     position: absolute;
-    top: 104px;
-    width: 1000px;
-    transform: translateX(188px);
+    top: 9.6vh;
+    width: 54.6vw;
+    transform: translateX(9.5vw);
+    padding-bottom: 24px;
 }
 

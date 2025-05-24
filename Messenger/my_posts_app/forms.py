@@ -36,8 +36,7 @@ class PostForm(forms.ModelForm):
             'title',
             'topic',
             'text',
-            'links',
-            'images'
+            'links'
         ]
         
         labels = {
@@ -52,11 +51,5 @@ class PostForm(forms.ModelForm):
             }),
             "topic": forms.TextInput(attrs={
                 "placeholder": "Напишіть тему публікаціїї"
-            }),
-            'images': forms.ClearableFileInput(
-                attrs={
-                    'class': 'image-input'
-                }
-            )
-
+            })
         }
