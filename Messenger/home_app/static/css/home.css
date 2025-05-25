@@ -9,8 +9,8 @@
     min-height: 10vh;
     height: fit-content;
     background: #FFFFFF;
-    border: 1px solid #CDCED2;
-    border-radius: 0.6vh;
+    border: 0.1vw solid #CDCED2;
+    border-radius: 0.6vw;
     overflow: hidden;
     appearance: none
 }
@@ -82,8 +82,8 @@
     gap: 10px;
     width: 2vw;
     height: 2vw;
-    border: 1px solid #583B53;
-    border-radius: 190px;
+    border: 0.1vw solid #583B53;
+    border-radius: 1vw;
     background: none;
     cursor: pointer;
 }
@@ -224,8 +224,8 @@
     gap: 1vh;
     width: 100%;
     background: #FFFFFF;
-    border: #CDCED2 1px solid;
-    border-radius: 0.6vh;
+    border: 0.1vw solid #CDCED2;
+    border-radius: 0.6vw;
     overflow: hidden;
 }
 
@@ -238,7 +238,7 @@
     justify-content: center;
     width: 100%;
     background: #FFFFFF;
-    border-bottom: 1px solid #CDCED2;
+    border-bottom: 0.1vw solid #CDCED2;
     padding: 2vw;
 }
 
@@ -314,7 +314,7 @@
     font-family: 'GT Walsheim Pro';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1vw;
     color: #583B53;
 }
 .random-post-profile-images {
@@ -341,7 +341,6 @@
     padding: 0px;
     gap: 1vw;
     width: 100%;
-    height: 20px;
 }
 
 .random-post-profile-bottom div {
@@ -351,7 +350,6 @@
     padding: 0px;
     gap: 0.5vw;
     width: fit-content;
-    height: 20px;
 }
 
 .random-post-profile-bottom div p {

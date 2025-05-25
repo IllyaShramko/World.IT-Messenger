@@ -48,10 +48,6 @@ addTagBtn.addEventListener('click', () => {
     input.id = 'tagInput';
     input.className = "input-tags-input"
     input.placeholder = 'Введіть тег';
-    input.style.margin = '4px';
-    input.style.padding = '6px';
-    input.style.borderRadius = '8px';
-    input.style.border = '1px solid #ccc';
     tagsContainer.appendChild(input);
     input.focus();
     input.addEventListener('keydown', (e) => {
