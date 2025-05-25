@@ -37,3 +37,44 @@ inputImages.addEventListener('change', function(event) {
         reader.readAsDataURL(image);
     }
 });
+const addTagBtn = document.getElementById('addTagBtn');
+const tagsContainer = document.getElementById('tagsContainer');
+const hiddenInput = document.getElementById('tags');
+let tags = [];
+addTagBtn.addEventListener('click', () => {
+    if (document.getElementById('tagInput')) return;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'tagInput';
+    input.className = "input-tags-input"
+    input.placeholder = 'Введіть тег';
+    input.style.margin = '4px';
+    input.style.padding = '6px';
+    input.style.borderRadius = '8px';
+    input.style.border = '1px solid #ccc';
+    tagsContainer.appendChild(input);
+    input.focus();
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const tagValue = input.value.trim();
+            if (tagValue && !tags.includes(tagValue)) {
+                tags.push(tagValue);
+                renderTag(tagValue);
+                updateHiddenInput();
+            }
+            input.remove();
+        } else if (e.key === 'Escape') {
+            input.remove();
+        }
+    });
+});
+function renderTag(tag) {
+    const span = document.createElement('span');
+    span.className = 'tag';
+    span.textContent = `#${tag}`;
+    tagsContainer.appendChild(span);
+}
+function updateHiddenInput() {
+    hiddenInput.value = tags.join(',');
+}

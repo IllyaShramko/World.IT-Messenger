@@ -14,6 +14,17 @@
         <p>{{ form.topic.label }}</p>
         {{ form.topic }}
     </div>
+    <div class="input-tags">
+        <div class="tagsdiv" id="tagsContainer">
+            {% for tag in post_tags %}
+                <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        </div>
+        <button type="button" id="addTagBtn">
+            <img src="{% static 'my_post_app/images/plus.png' %}">
+        </button>
+        <input type="hidden" name="tags" id="tags" value="">
+    </div>
     <div class="inputs-div">
         {{ form.text }}
     </div>

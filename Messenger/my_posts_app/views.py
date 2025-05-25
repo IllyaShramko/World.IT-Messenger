@@ -55,13 +55,10 @@ class MyPostsView(ListView):
                 post.user = request.user
                 post.likes = 0
                 post.views = 0
-                post.tags = []
-                text = form.cleaned_data["text"].split("#")
+                text = form.cleaned_data["text"]
                 post.text = text[0]
-                del text[0]
-                for tag in text:
-                    print(tag)
-                    post.tags.append(tag)
+                print(request.POST.get("tags"))
+                post.tags = request.POST.get("tags").split(",")
                 post.save()
                 for image in images:
                     Images_Post.objects.create(
@@ -87,12 +84,10 @@ class MyPostsView(ListView):
                 post = User_Post.objects.get(pk = form.data["post_pk"])
                 post.title = form.data["title"]
                 post.topic = form.data["topic"]
-                text = form.data["text"].split("#")
-                post.text = text[0]
-                del text[0]
-                for tag in text:
-                    print(tag)
-                    post.tags.append(tag)
+                text = form.data["text"]
+                post.text = text
+                print(request.POST.get("tags"))
+                post.tags = request.POST.get("tags").split(",")
 
                 if request.FILES.getlist("images"):
                     for image in request.FILES.getlist("images"):
@@ -161,6 +156,7 @@ def get_post(request, post_id):
                     "post_modal": "edit",            
                     "post_pk": post_id,
                     "images": images,
+                    "post_tags": post.tags,
                     "my_posts": User_Post.objects.filter(user= request.user)
                     })
         
@@ -173,6 +169,7 @@ def get_post(request, post_id):
                     "popup": True,
                     "post_modal": "edit",            
                     "post_pk": post_id,
+                    "post_tags": post.tags,
                     "my_posts": User_Post.objects.filter(user= request.user)
                     })
                 
