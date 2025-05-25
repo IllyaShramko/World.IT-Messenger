@@ -11,7 +11,6 @@
         <header>
             <img class="logo-image" src="{% static 'images/WIA.svg' %}">
         </header>
-        <div class="form-img">
             <form method="post">
                 {% csrf_token %}
                 
@@ -20,7 +19,7 @@
                 {% endblock %}        
             </form>
             <img src="{% static 'images/laptop_phone.png' %}" class="laptop-phone">
-        </div>
+        
         
         {% block script %}
             
