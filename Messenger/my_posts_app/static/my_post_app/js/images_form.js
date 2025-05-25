@@ -43,34 +43,59 @@ const hiddenInput = document.getElementById('tags');
 let tags = [];
 addTagBtn.addEventListener('click', () => {
     if (document.getElementById('tagInput')) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'tag-input-wrapper';
+
+    const hash = document.createElement('span');
+    hash.textContent = '#';
+
     const input = document.createElement('input');
     input.type = 'text';
     input.id = 'tagInput';
-    input.className = "input-tags-input"
-    input.placeholder = 'Введіть тег';
-    tagsContainer.appendChild(input);
-    input.focus();
-    input.addEventListener('keydown', (e) => {
+
+    const confirmBtn = document.createElement('button');
+    const icon = document.createElement('img');
+    icon.src = '/static/my_post_app/images/checkmark.png'; 
+    confirmBtn.className = "confirm"
+    confirmBtn.appendChild(icon);
+
+    confirmBtn.addEventListener('click', () => {
+        const tagValue = input.value.trim();
+        if (tagValue && !tags.includes(tagValue)) {
+            tags.push(tagValue);
+            renderTag(tagValue);
+            updateHiddenInput();
+        }
+        wrapper.remove();
+        confirmBtn.remove();
+    });
+
+        input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            const tagValue = input.value.trim();
-            if (tagValue && !tags.includes(tagValue)) {
-                tags.push(tagValue);
-                renderTag(tagValue);
-                updateHiddenInput();
-            }
-            input.remove();
+            confirmBtn.click();
         } else if (e.key === 'Escape') {
-            input.remove();
+            wrapper.remove();
+            confirmBtn.remove();
         }
-    });
+        });
+
+
+    wrapper.appendChild(hash);
+    wrapper.appendChild(input);
+    tagsContainer.appendChild(wrapper);
+    tagsContainer.appendChild(confirmBtn);
+    input.focus();
 });
+
 function renderTag(tag) {
     const span = document.createElement('span');
     span.className = 'tag';
     span.textContent = `#${tag}`;
     tagsContainer.appendChild(span);
 }
+
 function updateHiddenInput() {
     hiddenInput.value = tags.join(',');
 }
