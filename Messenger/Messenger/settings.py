@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home_app',
     "user_app",
-    "my_posts_app"
+    "my_posts_app",
+    "settings_app",
+    "friends_app"
 ]
 
 MIDDLEWARE = [
@@ -68,6 +70,11 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / "templates",
+            BASE_DIR / "home_app" / "templates",
+            BASE_DIR / "my_posts_app" / "templates",
+            BASE_DIR / "user_app" / "templates",
+            BASE_DIR / "settings_app" / "templates",
+            BASE_DIR / "firends_app" / "templates"
 
         ],
         'APP_DIRS': True,
@@ -134,7 +141,10 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
     BASE_DIR / 'user_app' / 'static',
-    BASE_DIR / 'home_app' / 'static'
+    BASE_DIR / 'home_app' / 'static',
+    BASE_DIR / 'settings_app' / 'static',
+    BASE_DIR / 'friends_app' / 'static',
+    BASE_DIR / 'my_posts_app' / 'static'
 ]
 
 

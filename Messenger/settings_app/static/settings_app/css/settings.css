@@ -1,0 +1,78 @@
+.profile-edit {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    width: 64.17vw;
+    height: 70.67vw;
+    transform: translateX(-29vw);
+}
+
+.profile-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
+    width: 100%;
+    height: 17.94vh;
+    background: #FFFFFF;
+    border: 1px solid #CDCED2;
+    border-radius: 10px;
+}
+
+.profile-card-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    width: 100%;
+    height: fit-content;
+}
+
+.profile-card-text {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    color: #060A1D;
+}
+
+.profile-card-button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    width: 14.1vw;
+    height: 2.73vw;
+    background: #FFFFFF;
+    border: 1px solid #583B53;
+    border-radius: 190px;
+}
+
+.profile-card-button p {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    color: #583B53;
+}
+
+.profile-card-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.profile-card-me {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 24px;
+    width: 100%;
+    height: fit-content;
+}

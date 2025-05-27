@@ -38,12 +38,12 @@
                 {% endif %}
                 
                 {% if page == "friends" %}
-                    <a href="{% url 'login' %}" class = "selected">
+                    <a href="{% url 'friends' %}" class = "selected">
                         <img src="{% static 'images/friends.svg' %}">
                         <p>Друзі</p>
                     </a>
                 {% else %}
-                    <a href="{% url 'login' %}">
+                    <a href="{% url 'friends' %}">
                         <img src="{% static 'images/friends.svg' %}">
                         <p>Друзі</p>
                     </a>
@@ -62,12 +62,12 @@
                 {% endif %}
                 
                 {% if page == "settings" %}
-                    <a href="{% url 'login' %}" class = "settings">
+                    <a href="{% url 'settings' %}" class = "selected">
                         <img src="{% static 'images/settings.svg' %}">
                         <p>Налаштування</p>
                     </a>
                 {% else %}
-                    <a href="{% url 'login' %}">
+                    <a href="{% url 'settings' %}">
                         <img src="{% static 'images/settings.svg' %}">
                         <p>Налаштування</p>
                     </a>
@@ -82,35 +82,11 @@
                 </form>
             </nav>
         </header>
-                <div class="profile">
-                    <div class="me">
-                        <div class="me-about">
-                            <div class="me-image">
-                                <img src="{% static 'images/profile-avatar.jpg' %}" class="profile-image">
-                                <div class="profile-status"></div>
-                            </div>
-                            <p class="me-name">Lina Li</p>
-                            <p class="me-tag">@thelili</p>
-                        </div>
-                        <div class="me-info">
-                            <div>
-                                <p>566</p>
-                                <h1>Дописи</h1>
-                            </div>
-                            <div class="me-info-center">
-                                <p>12.1K</p>
-                                <h1>Читачі</h1>
-                            </div>
-                            <div>
-                                <p>222</p>
-                                <h1>Друзі</h1>
-                            </div>
-                        </div>
-                    </div>
-                    {% block profile_info %}
-                    
-                    {% endblock %}
-                </div>
+            <div class="profile">
+                {% block profile_info %}
+
+                {% endblock %}
+            </div>
             <div class="scroll-div">
                 {% block content %}
                 

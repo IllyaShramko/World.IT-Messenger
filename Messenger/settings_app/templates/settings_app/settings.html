@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'settings_app/css/settings.css' %}">
+{% endblock %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block content %}
+    <div class="profile-edit">
+        <div class="profile-card">
+            <div class="profile-card-edit">
+                <p class="profile-card-text">Картка профілю</p>
+                <button class="profile-card-button">
+                    <img src="" alt="">
+                    <p>Редагувати інформацію</p>
+                </button>
+            </div>
+            <div class="profile-card-me">
+                <img class="profile-card-img" src="" alt="">
+                <div class="profile-card-info">
+                    <h1>Lina Li</h1>
+                    <p>@thelili</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/settings.js' %}"></script>
+{% endblock %}
