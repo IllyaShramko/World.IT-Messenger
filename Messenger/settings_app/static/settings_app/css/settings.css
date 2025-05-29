@@ -1,3 +1,35 @@
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+.chose-edit-page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    transform: translateX(-20vw);
+}
+
+.settings {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #060A1D;
+    text-decoration: underline;
+}
+
+.albomu {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color: #81818E;
+}
+
 .profile-edit {
     display: flex;
     position: absolute;
@@ -5,9 +37,9 @@
     align-items: flex-start;
     padding: 0px;
     gap: 8px;
-    width: 64.17vw;
-    height: 70.67vw;
-    transform: translateX(-29vw);
+    width: 60.17vw;
+    height: fit-content;
+    transform: translateX(-4.8vw);
 }
 
 .profile-card {
@@ -18,7 +50,7 @@
     padding: 16px;
     gap: 16px;
     width: 100%;
-    height: 17.94vh;
+    height: fit-content;
     background: #FFFFFF;
     border: 1px solid #CDCED2;
     border-radius: 10px;
@@ -26,8 +58,8 @@
 
 .profile-card-edit {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 0px;
     gap: 16px;
     width: 100%;
@@ -48,8 +80,7 @@
     align-items: center;
     padding: 10px;
     gap: 10px;
-    width: 14.1vw;
-    height: 2.73vw;
+    width: 9.1vw;
     background: #FFFFFF;
     border: 1px solid #583B53;
     border-radius: 190px;
@@ -59,6 +90,8 @@
     font-family: 'GT Walsheim Pro';
     font-style: normal;
     font-weight: 500;
+    font-size: 1vh;
+    word-wrap: nowrap;
     color: #583B53;
 }
 
@@ -75,4 +108,193 @@
     gap: 24px;
     width: 100%;
     height: fit-content;
+}
+
+.profile-card-me h1 {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 700;
+    text-align: center;
+    color: #060A1D;
+}
+
+.profile-card-me p {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    text-align: center;
+    color: #060A1D;
+}
+
+.profile-card-me p {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    text-align: center;
+    color: #060A1D;
+}
+
+.profile-card-img {
+    position: relative;
+    width: 5.5vh;
+    height: 5.5vh;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.profile-info {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 14px;
+    gap: 24px;
+    width: 100%;
+    height: fit-content;
+    background: #FFFFFF;
+    border: 1px solid #CDCED2;
+    border-radius: 10px;
+}
+
+.profile-info-edit-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    width: fit-content;
+}
+
+.profile-info-edit-settings div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    width: 23.82%;
+}
+
+.profile-info-edit-settings p {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6vh;
+    white-space: nowrap;
+    color: #CDCED2;
+}
+
+.profile-info-edit-settings div div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+    width: 100%;
+}
+
+.profile-info-edit-settings div div input {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 10px;
+    width: 21.74vw;
+    background: #FFFFFF;
+    border: 1px solid #81818E;
+    border-radius: 10px;
+    color: #81818E;
+    outline: none;
+}
+
+
+.profile-pidpus {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
+    width: 100%;
+    height: fit-content;
+    background: #FFFFFF;
+    border: 1px solid #CDCED2;
+    border-radius: 10px;
+}
+
+.profile-pidpus-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+}
+
+.profile-pidpus-name h1 {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6vh;
+    color: #060A1D;
+}
+
+.profile-pidpus-name-check {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+}
+
+.profile-pidpus-name-check p {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.6vh;
+    text-align: center;
+    color: #583B53;
+    opacity: 0.5;
+}
+
+.profile-pidpus-name-check button img {
+    color: #FFFFFF;
+}
+
+
+.profile-pidpus-pidpus {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+}
+
+.profile-pidpus-pidpus-check {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+}
+
+.profile-pidpus-pidpus-check p {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.6vh;
+    text-align: center;
+    color: #583B53;
+    opacity: 0.5;
+}
+
+.profile-pidpus-pidpus-check button img {
+    color: #FFFFFF;
+}
+
+.profile-pidpus-pidpus-check img {
+    color: #FFFFFF;
 }
