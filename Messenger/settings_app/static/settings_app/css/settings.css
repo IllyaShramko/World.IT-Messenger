@@ -136,8 +136,8 @@
 
 .profile-card-img {
     position: relative;
-    width: 5.5vh;
-    height: 5.5vh;
+    width: 10.5vh;
+    height: 10.5vh;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
@@ -192,6 +192,12 @@
     padding: 0px;
     gap: 10px;
     width: 100%;
+}
+
+.profile-info-edit-settings div div button {
+    background-color: none;
+    border: none;
+    background: none;
 }
 
 .profile-info-edit-settings div div input {

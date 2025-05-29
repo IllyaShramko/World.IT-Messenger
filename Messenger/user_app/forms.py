@@ -1,9 +1,9 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-
+from .models import Profile
 
 class RegistrationForm(UserCreationForm):
     username = forms.CharField(required= False, widget= forms.TextInput(attrs={

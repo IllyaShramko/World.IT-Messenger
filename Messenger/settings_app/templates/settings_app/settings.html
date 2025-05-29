@@ -22,15 +22,15 @@
                         <p class="profile-card-text">Картка профілю</p>
                     </div>
                     <button class="profile-card-button">
-                        <img src="" alt="">
+                        <img src="{% static 'images/edit.svg' %}">
                         <p>Редагувати інформацію</p>
                     </button>
                 </div>
                 <div class="profile-card-me">
-                    <img class="profile-card-img" src="" alt="">
+                    <img class="profile-card-img" src="{% static 'images/ranalda.jpg' %}">
                     <div class="profile-card-info">
-                        <h1>Lina Li</h1>
-                        <p>@thelili</p>
+                        <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
+                        <p>{{ tag_name }}</p>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                         <p class="profile-card-text">Особиста інформація</p>
                     </div>
                     <button class="profile-card-button">
-                        <img src="" alt="">
+                        <img src="{% static 'images/edit.svg' %}">
                         <p>Редагувати інформацію</p>
                     </button>
                 </div>
@@ -48,9 +48,9 @@
                     <div>
                         <p>Ім’я</p>
                         <div>
-                            <input type="text">
+                            <input type="text" value="{{ request.user.first_name }}">
                             <button>
-                                <img src="" alt="">
+                                <img src="{% static 'images/eye (1).svg' %}">
                             </button>
                         </div>
                     </div>
@@ -58,9 +58,9 @@
                     <div>
                         <p>Прізвище</p>
                         <div>
-                            <input type="text">
+                            <input type="text" value="{{ request.user.last_name }}">
                             <button>
-                                <img src="" alt="">
+                               <img src="{% static 'images/eye (1).svg' %}">
                             </button>
                         </div>
                     </div>
@@ -68,9 +68,9 @@
                     <div>
                         <p>Дата народження</p>
                         <div>
-                            <input type="text">
+                            <input type="text" value="{{ request.user.first_name }}">
                             <button>
-                                <img src="" alt="">
+                                <img src="{% static 'images/eye.svg' %}">
                             </button>
                         </div>
                     </div>
@@ -78,9 +78,9 @@
                     <div>
                         <p>Електронна адреса</p>
                         <div>
-                            <input type="text">
+                            <input type="text" value="{{ request.user.first_name }}">
                             <button>
-                                <img src="" alt="">
+                                <img src="{% static 'images/eye (1).svg' %}">
                             </button>
                         </div>
                     </div>
@@ -88,9 +88,9 @@
                     <div>
                         <p>Пароль</p>
                         <div>
-                            <input type="password">
+                            <input type="password" value="{{ request.user.first_name }}">
                             <button>
-                                <img src="" alt="">
+                                <img src="{% static 'images/eye.svg' %}">
                             </button>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <p class="profile-card-text">Варіанти підпису</p>
                     </div>
                     <button class="profile-card-button">
-                        <img src="" alt="">
+                        <img src="{% static 'images/edit.svg' %}">
                         <p>Редагувати інформацію</p>
                     </button>
                 </div>
@@ -111,21 +111,17 @@
                     <div>
                         <div class="profile-pidpus-name">
                             <div class="profile-pidpus-name-check">
-                                <button>
-                                    <img src="" alt="">
-                                </button>
+                                <button type="checkbox"></button>
                                 <p>Ім’я та прізвище</p>
                             </div>
                             <h1>Lina Li</h1>
                         </div>
                         <div class="profile-pidpus-pidpus">
                             <div class="profile-pidpus-pidpus-check">
-                                <button>
-                                    <img src="" alt="">
-                                </button>
+                                <button type="checkbox"></button>
                                 <p>Мій електронний підпис</p>
                             </div>
-                            <img src="" alt="">
+                            <img src="{% static 'images/podpis.svg' %}">
                         </div>
                     </div>
                 </div>
