@@ -60,6 +60,7 @@ class MyPostsView(ListView):
                 print(request.POST.get("tags"))
                 post.tags = request.POST.get("tags").split(",")
                 post.save()
+                print("картинки:", images)
                 for image in images:
                     Images_Post.objects.create(
                         image = image,

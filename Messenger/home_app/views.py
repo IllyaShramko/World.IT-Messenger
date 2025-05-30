@@ -9,13 +9,6 @@ from my_posts_app.models import User_Post, Images_Post
 class MainPageView(LoginRequiredMixin, View):
     template_name = "home_app/home.html"
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['is_auth'] = User.is_authenticated
-        context['images'] = Images_Post.objects.all()
-        context["posts_list"] = User_Post.objects.all()
-        context['page'] = "home"
-        return context
     def dispatch(self, request, *args, **kwargs):
         profile = Profile.objects.get(user_id = request.user.id)
         if request.method == "POST":
@@ -33,7 +26,10 @@ class MainPageView(LoginRequiredMixin, View):
                 request,
                 "home_app/home.html",
                 {
-                    'new_or_not': False  
+                    'new_or_not': False,
+                    "images": Images_Post.objects.all(),
+                    "posts_list": User_Post.objects.all(),
+                    "page": "home"
                 }
             )
         elif request.method == "GET":
@@ -44,7 +40,10 @@ class MainPageView(LoginRequiredMixin, View):
                     request,
                     "home_app/home.html",
                     {
-                        'new_or_not': True  
+                        'new_or_not': True,
+                        "images": Images_Post.objects.all(),
+                        "posts_list": User_Post.objects.all(),
+                        "page": "home"
                     }
                 )
             else:
@@ -54,7 +53,10 @@ class MainPageView(LoginRequiredMixin, View):
                     'home_app/home.html',
                     {
                         "new_or_not": False,
-                        "tag_name": profile.tag_name
+                        "tag_name": profile.tag_name,
+                        "images": Images_Post.objects.all(),
+                        "posts_list": User_Post.objects.all(),
+                        "page": "home"
                     }
                 )
         

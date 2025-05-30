@@ -1,0 +1,176 @@
+.request{
+    display: flex;
+    position: absolute;
+    right: 0;
+    transform: translateX(0.5vw);
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.69vw;
+    gap: 0.69vw;
+    width: 62.5vw;
+    height: fit-content;
+    background: #FFFFFF;
+    border: 1px solid #CDCED2;
+    border-radius: 0.69vw;
+}
+
+.textes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 1.11vw;
+    width: 100%;
+}
+
+.text-request {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.11vw;
+    color: #060A1D;
+}
+
+.text-watch {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.11vw;
+
+    text-align: center;
+    color: #583B53;
+}
+
+.friends-requests {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 0.56vw;
+}
+
+.friend-request {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.11vw 0px;
+    gap: 1.11vw;
+    width: 20.07vw;
+    background: #FFFFFF;
+    border: 1px solid #CDCED2;
+    border-radius: 10px;
+}
+
+.friend-request-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.694vw 1.11vw 0.694vw 1.11vw;
+    gap: 1.67vw;
+    width: 100%;
+    height: fit-content;
+}
+
+.friend-request-profile img {
+    position: relative;
+    width: 10.5vh;
+    height: 10.5vh;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.friend-request-profile h1 {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.67vw;
+    text-align: center;
+    color: #060A1D;
+}
+
+.friend-request-profile h3 {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.11vw;
+    text-align: center;
+    color: #060A1D;
+}
+
+.accept-cancel-btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.11vw;
+    width: 100%;
+    height: fit-content;
+}
+
+.accept {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.694vw 1.11vw 0.694vw 1.11vw;
+    gap: 0.56vw;
+    width: 7.71vw;
+    height: 2.73vh;
+    background: #583B53;
+    border-radius: 85.69vw;
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    color: #FFFFFF;
+    font-size: 1.11vw;
+}
+
+.cancel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.694vw 1.11vw 0.694vw 1.11vw;
+    gap: 0.56vw;
+    width: 6.53vw;
+    height: 2.73vh;
+    border: 1px solid #583B53;
+    border-radius: 85.69vw;
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    color: #583B53;
+    font-size: 1.11vw;
+}
+
+.On {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.11vw;
+    color: #060A1D;
+    text-decoration: underline;
+}
+
+.Not {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.11vw;
+    text-align: center;
+    color: #81818E;
+}
+
+.choose {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 1.11vw;
+    left: 0;
+    transform: translateX(-19.5vw);
+}
