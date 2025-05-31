@@ -1,8 +1,6 @@
 .request{
     display: flex;
-    position: absolute;
     right: 0;
-    transform: translateX(0.5vw);
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
@@ -109,6 +107,9 @@
     width: 100%;
     height: fit-content;
 }
+.accept-cancel-btns button {
+    cursor: pointer;
+}
 
 .accept {
     display: flex;
@@ -125,7 +126,7 @@
     font-style: normal;
     font-weight: 500;
     color: #FFFFFF;
-    font-size: 1.11vw;
+    font-size: 0.9vw;
 }
 
 .cancel {
@@ -143,7 +144,7 @@
     font-style: normal;
     font-weight: 500;
     color: #583B53;
-    font-size: 1.11vw;
+    font-size: 0.9vw;
 }
 
 .On {

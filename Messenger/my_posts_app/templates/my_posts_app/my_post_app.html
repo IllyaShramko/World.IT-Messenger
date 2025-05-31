@@ -16,8 +16,8 @@
                 <img src="{% static 'images/profile-avatar.jpg' %}" class="profile-image">
                 <div class="profile-status"></div>
             </div>
-            <p class="me-name">Lina Li</p>
-            <p class="me-tag">@thelili</p>
+            <p class="me-name">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+            <p class="me-tag">{{ profile.tag_name}}</p>
         </div>
         <div class="me-info">
             <div>

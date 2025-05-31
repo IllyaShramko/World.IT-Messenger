@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_friends_settings.html' %}
 {% load static %}
 
 {% block links %}
@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block title %}
-    
+    Settings
+{% endblock %}
+
+{% block navlinks %}
+    <a href="" class="selected-a">Особиста інформація</a>
+    <a href="" class="not-a">Альбоми</a>
 {% endblock %}
 
 {% block content %}
-    <div class="content">
-        <div class="chose-edit-page">
-            <a href="" class="settings">Особиста інформація</a>
-            <a href="" class="albomu">Альбоми</a>
-        </div>
         <div class="profile-edit">
             <div class="profile-card">
                 <div class="profile-card-edit">
@@ -128,7 +128,6 @@
                 </div>
             </div>
         </div>
-    </div>
 {% endblock %}
 
 {% block scripts %}

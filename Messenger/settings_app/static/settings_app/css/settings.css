@@ -1,45 +1,12 @@
-.content {
-    display: flex;
-    flex-direction: row;
-}
-
-.chose-edit-page {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 16px;
-    transform: translateX(-20vw);
-}
-
-.settings {
-    font-family: 'GT Walsheim Pro';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    color: #060A1D;
-    text-decoration: underline;
-}
-
-.albomu {
-    font-family: 'GT Walsheim Pro';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    color: #81818E;
-}
 
 .profile-edit {
     display: flex;
-    position: absolute;
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
     gap: 8px;
     width: 60.17vw;
     height: fit-content;
-    transform: translateX(-4.8vw);
 }
 
 .profile-card {

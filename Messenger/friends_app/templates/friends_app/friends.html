@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base_friends_settings.html' %} 
 {% load static %}
 
 {% block title %}
@@ -9,12 +9,55 @@
     <link rel="stylesheet" href="{% static 'friends_app/css/friends.css' %}">
 {% endblock %}
 
+{% block navlinks %}
+    <a href="" class="selected-a">Головна</a>
+    <a href="" class="not-a">Запити</a>
+    <a href="" class="not-a">Рекомендації</a>
+    <a href="" class="not-a">Всі друзі</a>
+{% endblock %}
+
 {% block content %}
-    <div class="choose">
-        <p class="On">Головна</p>
-        <p class="Not">Запити</p>
-        <p class="Not">Рекомендації</p>
-        <p class="Not">Всі друзі</p>
+    <div class="request">
+        <div class="textes">
+            <p class="text-request">Запити</p>
+            <p class="text-watch">Дивитись всі</p>
+        </div>
+        
+        <div class="friends-requests">
+            <div class="friend-request">
+                <div class="friend-request-profile">
+                    <img src="{% static 'friends_app/images/ranalda.png' %}">
+                    <h1>Yehor Aung</h1>
+                    <h3>@theilli</h3>
+                </div>
+                <div class="accept-cancel-btns">
+                    <button class="accept">Пітвердити</button>
+                    <button class="cancel">Видалити</button>
+                </div>
+            </div>
+            <div class="friend-request">
+                <div class="friend-request-profile">
+                    <img src="{% static 'friends_app/images/ranalda.png' %}">
+                    <h1>Yehor Aung</h1>
+                    <h3>@theilli</h3>
+                </div>
+                <div class="accept-cancel-btns">
+                    <button class="accept">Пітвердити</button>
+                    <button class="cancel">Видалити</button>
+                </div>
+            </div>
+            <div class="friend-request">
+                <div class="friend-request-profile">
+                    <img src="{% static 'friends_app/images/ranalda.png' %}">
+                    <h1>Yehor Aung</h1>
+                    <h3>@theilli</h3>
+                </div>
+                <div class="accept-cancel-btns">
+                    <button class="accept">Пітвердити</button>
+                    <button class="cancel">Видалити</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="request">
         <div class="textes">
@@ -57,8 +100,6 @@
                 </div>
             </div>
         </div>
-        <!--<h2 class="watch-all">Дивитись всі</h2>-->
-        
     </div>
 {% endblock %}
 

@@ -1,0 +1,98 @@
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        {% block links %}
+            
+        {% endblock %}
+        <link rel="stylesheet" href="{% static 'css/base_friends_settings.css' %}">
+        
+    </head>
+    <body>
+        <header>
+            <img class="logo" src="{% static 'images/WIA.svg' %}">
+            <nav>
+                {% if page == "home" %}
+                    <a href="/" class="selected">
+                        <img src="{% static 'images/home.svg' %}">
+                        <p>Головна</p>
+                    </a>
+                {% else %}
+                    <a href="/">
+                        <img src="{% static 'images/home.svg' %}">
+                        <p>Головна</p>
+                    </a>
+                {% endif %}
+
+                {% if page == "my_posts" %}
+                    <a href="{% url 'my_posts' %}" class="selected">
+                        <img src="{% static 'images/published.svg' %}">
+                        <p>Мої публікації</p>
+                    </a>
+                {% else %}    
+                    <a href="{% url 'my_posts' %}">
+                        <img src="{% static 'images/published.svg' %}">
+                        <p>Мої публікації</p>
+                    </a>
+                {% endif %}
+                
+                {% if page == "friends" %}
+                    <a href="{% url 'friends' %}" class = "selected">
+                        <img src="{% static 'images/friends.svg' %}">
+                        <p>Друзі</p>
+                    </a>
+                {% else %}
+                    <a href="{% url 'friends' %}">
+                        <img src="{% static 'images/friends.svg' %}">
+                        <p>Друзі</p>
+                    </a>
+                {% endif %}
+
+                {% if page == "chats" %}
+                    <a href="{% url 'login' %}" class = "selected">
+                        <img src="{% static 'images/chats.svg' %}">
+                        <p>Чати</p>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <img src="{% static 'images/chats.svg' %}">
+                        <p>Чати</p>
+                    </a>
+                {% endif %}
+                
+                {% if page == "settings" %}
+                    <a href="{% url 'settings' %}" class = "selected">
+                        <img src="{% static 'images/settings.svg' %}">
+                        <p>Налаштування</p>
+                    </a>
+                {% else %}
+                    <a href="{% url 'settings' %}">
+                        <img src="{% static 'images/settings.svg' %}">
+                        <p>Налаштування</p>
+                    </a>
+                {% endif %}
+                
+                <form method="post" action="{% url 'logout' %}" class="logout">
+                    {% csrf_token %}
+                    <button type="submit">
+                        <img src="{% static 'images/exit.svg' %}">
+                        <p>Вихід</p>
+                    </button>
+                </form>
+            </nav>
+        </header>
+        <div class="navigation">
+            {% block navlinks %}
+                
+            {% endblock %}
+        </div>
+        <main>
+            {% block content %}
+                
+            {% endblock %}
+        </main>
+    </body>
+</html>

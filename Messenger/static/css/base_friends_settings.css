@@ -1,0 +1,165 @@
+@font-face {
+    font-family: GT Walsheim Pro;
+    src: url(../fonts/GTWalsheimPro-Regular.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal
+}
+@font-face {
+    font-family: GT Walsheim Pro;
+    src: url(../fonts/GTWalsheimPro-Bold.ttf) format("truetype");
+    font-weight: 700;
+    font-style: normal
+}
+@font-face {
+    font-family: GT Walsheim Pro;
+    src: url(../fonts/GTWalsheimPro-Medium.ttf) format("truetype");
+    font-weight: 500;
+    font-style: normal
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: GT Walsheim Pro;
+    font-weight: 400;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+body {
+    overflow-y: none;
+    overflow-x: none;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 8vh;
+    justify-content: center;
+    align-items: center;
+    gap: 435px;
+    background-color: #ffffff;
+    z-index: 4;
+}
+.logo {
+    position: absolute;
+    left: 12.5vw;
+    height: 1.7vh;
+}
+.selected {
+    background: #E9E5EE;
+    border-radius: 0.4vw;
+}
+
+nav {
+    position: absolute;
+    right: 12.5vw;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    gap: 1vw;
+}
+
+a {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.4vh 0.4vw;
+    border-radius: 0.4vw;
+    gap: 0.3vw;
+}
+
+a img {
+    height: 1.9vh;
+}
+
+nav a:hover {
+    background-color: #E9E5EE;
+    border-radius: 3px;
+}
+
+nav a p {
+    font-family: 'GT Walsheim Pro', sans-serif;
+    font-style: Medium;
+    font-weight: 500;
+    font-size: 0.85vw;
+    white-space: nowrap;
+    align-items: center;
+
+    color: #060A1D;
+}
+.logout button {
+    display: flex;
+    width: 5.5vw;
+    height: 4vh;
+    border-radius: 2vh;
+    background: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border: 0.1vw solid #583B53;
+    gap: 0.3vw;
+    cursor: pointer;
+}
+.logout button:hover {
+    background-color: #E9E5EE;
+}
+
+.logout img {
+    height: 1.9vh;
+}
+
+.logout p {
+    font-family: 'GT Walsheim Pro', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.8vw;
+    color: #583B53;
+}
+
+body {
+    background-color: #FAF8FF;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation{
+    position: fixed;
+    z-index: 5;
+    top: 9.6vh;
+    left: 12vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.selected-a {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.9vw;
+    color: #060A1D;
+    text-decoration: underline;
+}
+
+.not-a {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.9vw;
+    text-align: center;
+    color: #81818E;
+}
+
+main{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    top: 9.6vh;
+    right: 12.5vw;
+    
+}

@@ -6,6 +6,7 @@ from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from .forms import PostForm
 from .models import User_Post, Images_Post
+from user_app.models import Profile
 import os
 # Create your views here.
 class MyPostsView(ListView):
@@ -22,6 +23,9 @@ class MyPostsView(ListView):
         context["popup"] = False
         context['page'] = "my_posts"
         context['images'] = Images_Post.objects.all()
+        print(self.request.user)
+        context['profile'] = Profile.objects.filter(user_id = self.request.user.id)[0]
+        print(Profile.objects.filter(user_id = self.request.user.id)[0])
         return context
     
     def post(self, request: HttpRequest):
@@ -64,7 +68,8 @@ class MyPostsView(ListView):
                 for image in images:
                     Images_Post.objects.create(
                         image = image,
-                        post = post
+                        post = post,
+                        author = request.user
                     )
 
                 
