@@ -99,3 +99,60 @@ function renderTag(tag) {
 function updateHiddenInput() {
     hiddenInput.value = tags.join(',');
 }
+
+const linksContainer = document.getElementById("linksdiv")
+const linksInput = document.getElementById("links")
+const addLinkBtn = document.getElementById("addLinkBtn")
+let links = []
+
+function renderLinks(link) {
+    const span = document.createElement('span');
+    span.className = 'link';
+    span.textContent = link;
+    linksContainer.appendChild(span);
+}
+
+
+addLinkBtn.addEventListener('click', () => {
+    if (document.getElementById('LinkInput')) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'link-input-wrapper';
+
+
+    const input = document.createElement('input');
+    input.type = 'url';
+    input.id = 'LinkInput';
+
+    const confirmBtn = document.createElement('button');
+    const icon = document.createElement('img');
+    icon.src = '/static/my_post_app/images/checkmark.png'; 
+    confirmBtn.className = "confirm"
+    confirmBtn.appendChild(icon);
+
+    confirmBtn.addEventListener('click', () => {
+        const linkValue = input.value.trim();
+        if (linkValue && !links.includes(linkValue)) {
+            links.push(linkValue);
+            renderLinks(linkValue);
+            linksInput.value = links.join(",")
+        }
+        wrapper.remove();
+        confirmBtn.remove();
+    });
+
+        input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            confirmBtn.click();
+        } else if (e.key === 'Escape') {
+            wrapper.remove();
+            confirmBtn.remove();
+        }
+        });
+
+    wrapper.appendChild(input);
+    linksContainer.appendChild(wrapper);
+    linksContainer.appendChild(confirmBtn);
+    input.focus();
+});

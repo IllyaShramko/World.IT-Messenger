@@ -84,11 +84,11 @@
                         #{{ tag }} 
                         {% endfor %}
                     </p>
-                    {% if post.links != None %}
-                        <a href="{{post.links}}" class="link">
-                            {{ post.links }}
+                    {% for link in post.links %}
+                        <a href="{{ link }}" class="link">
+                            {{ link }}
                         </a>
-                    {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="random-post-profile-images">
                     {% for image in images %}
@@ -144,8 +144,14 @@
         {{ form.text }}
     </div>
     <div class="inputs-div">
-        <p>{{ form.links.label }}</p>
-        {{ form.links }}
+        <p>Посилання:</p>
+        <div id="linksdiv" class="linksdiv">
+
+        </div>
+        <button class="add-link" type="button" id="addLinkBtn">
+            <img src="{% static 'my_post_app/images/plus.png' %}">
+        </button>
+        <input type="hidden" name="links" id="links" value="">
     </div>
     <div class="modal-images">
         

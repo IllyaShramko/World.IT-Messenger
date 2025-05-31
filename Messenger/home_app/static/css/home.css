@@ -29,7 +29,7 @@
     border-style: none;
     white-space: normal;
     overflow-wrap: break-word;
-    resize: vertical;
+    resize: none;
     outline: none;
     font-family: 'GT Walsheim Pro', sans-serif;
     font-weight: 400;

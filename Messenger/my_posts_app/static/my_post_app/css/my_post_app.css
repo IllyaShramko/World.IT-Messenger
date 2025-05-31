@@ -542,8 +542,27 @@
     font-size: 0.85vw;
     flex-grow: 1;
 }
+.linksdiv {
+    display: flex;
+    flex-direction: column;
+}
+.add-link {
+    width: 1.3vw;
+    height: 1.3vw;
+    border: 0.1vw solid #543C52;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2vw;
+    border-radius: 10vw;
+}
 .confirm {
-    background: none;
-    border: none;
-    cursor: pointer;
+    width: 1.3vw;
+    height: 1.3vw;
+    border: 0.1vw solid #543C52;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2vw;
+    border-radius: 10vw;
 }

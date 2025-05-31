@@ -57,8 +57,8 @@ class MyPostsView(ListView):
                 post.views = 0
                 text = form.cleaned_data["text"]
                 post.text = text[0]
-                print(request.POST.get("tags"))
                 post.tags = request.POST.get("tags").split(",")
+                post.links = request.POST.get("links").split(",")
                 post.save()
                 print("картинки:", images)
                 for image in images:

@@ -9,7 +9,7 @@ class User_Post(models.Model):
     topic = models.CharField(max_length = 150)
     tags = models.JSONField()
     text = models.TextField()
-    links = models.CharField(max_length = 255, null= True, blank=True)
+    links = models.JSONField()
     views = models.IntegerField()
     likes = models.IntegerField()
 

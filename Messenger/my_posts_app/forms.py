@@ -36,7 +36,6 @@ class PostForm(forms.ModelForm):
             'title',
             'topic',
             'text',
-            'links'
         ]
         
         labels = {
