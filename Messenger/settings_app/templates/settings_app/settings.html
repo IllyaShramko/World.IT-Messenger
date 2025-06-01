@@ -10,8 +10,8 @@
 {% endblock %}
 
 {% block navlinks %}
-    <a href="" class="selected-a">Особиста інформація</a>
-    <a href="" class="not-a">Альбоми</a>
+    <a href="{% url 'settings' %}" class="selected-a">Особиста інформація</a>
+    <a href="{% url 'albums' %}" class="not-a">Альбоми</a>
 {% endblock %}
 
 {% block content %}

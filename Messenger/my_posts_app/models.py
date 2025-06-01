@@ -19,4 +19,4 @@ class User_Post(models.Model):
 class Images_Post(models.Model):
     image = models.ImageField(upload_to= "images/")
     post = models.ForeignKey(User_Post, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null = True)

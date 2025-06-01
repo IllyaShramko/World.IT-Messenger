@@ -1,0 +1,105 @@
+
+{% extends 'base_friends_settings.html' %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'settings_app/css/albums.css' %}">
+{% endblock %}
+
+{% block title %}
+    Albums
+{% endblock %}
+
+{% block navlinks %}
+    <a href="{% url 'settings' %}" class="not-a">Особиста інформація</a>
+    <a href="" class="selected-a">Альбоми</a>
+{% endblock %}
+
+{% block content %}
+    <div class="my-photos">
+        <div class="text-add-photo">
+            <h2>Мої фото</h2>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="button" value="photo_create_1">
+                    <img src="{% static 'settings_app/images/img.png' %}">
+                    <p>Додати фото</p>
+                </button>
+            </form>
+        </div>
+        <div class="photos">
+            <div class="photo">
+                <img src="{% static 'settings_app/images/ranalda.jpg' %}">
+                <button type="button">
+                    <img src="{% static 'settings_app/images/eye.svg' %}">
+                </button>
+                <button id="delete" type="button">
+                    <img src="{% static 'settings_app/images/eye.svg' %}">
+                </button>
+            </div>
+            <!-- {% for photo in photos %} -->
+            <!-- {% endfor %} -->
+        </div>
+    </div>
+    <div class="my-albums">
+        {% if album %}
+            <h2 class="title">{{ album.title }}</h2>
+            <div class="subtitle-date">
+                <h3>{{ album.subtitle }}</h3>
+                <h4>{{ album.date }}</h4>
+            </div>
+            <p class="photos-p">Фотографії</p>
+            <div class="photos-album">
+                <div class="photo">
+                    <img src="{% static 'settings_app/images/img1.jpg' %}">
+                </div>
+            </div>
+        {% else %}
+            <div class="text-add-album">
+                <h2>Немає жодного альбому</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <button name="button" value="album_create_1">
+                        <img src="">
+                        <p>Створити альбом</p>
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {% if popup %}
+        <div class="bg-form"></div>
+        <form class="form-create-album" method="post">
+            {% csrf_token %}
+            <a class="x" href="">
+                <img src="{% static 'settings_app/images/cancel.png' %}">
+            </a>
+            <h1>Створити альбом</h1>
+            <div class="inputs">
+                <div class="label-input">
+                    <label for="title">Назва альбому</label>
+                    <input type="text" name="title">
+                </div>
+                <div class="label-input">
+                    <label for="subtitle">Тема альбому</label>
+                    <input type="text" name="subtitle">
+                </div>
+                <div class="label-input">
+                    <label for="date">Рік альбому</label>
+                    <input type="date" name="date">
+                </div>
+            </div>
+            <div class="btns">
+                <a class="cancel" href="">
+                    Скасувати
+                </a>
+                <button type="submit" name="button" value="submitAlbum">
+                    Зберегти
+                </button>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
