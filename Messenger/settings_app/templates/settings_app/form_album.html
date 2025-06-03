@@ -1,0 +1,32 @@
+{% load static %}
+<div class="bg-form"></div>
+<form class="form-create-album" method="post">
+    {% csrf_token %}
+    <a class="x" href="">
+        <img src="{% static 'settings_app/images/cancel.png' %}">
+    </a>
+    <h1>Створити альбом</h1>
+    <div class="inputs">
+        <div class="label-input">
+            <label for="title">Назва альбому</label>
+            <input type="text" name="title" value = "{{ title }}">
+        </div>
+        <div class="label-input">
+            <label for="subtitle">Тема альбому</label>
+            <input type="text" name="subtitle" value = "{{ subtitle }}" >
+        </div>
+        <div class="label-input">
+            <label for="date">Рік альбому</label>
+            <input type="date" name="date" value="{{ date }}">
+        </div>
+        <input type="hidden" name="albumpk" value = "{{ album_pk }}">
+    </div>
+    <div class="btns">
+        <a class="cancel" href="">
+            Скасувати
+        </a>
+        <button type="submit" name="button" value="editAlbum">
+            Зберегти
+        </button>
+    </div>
+</form>

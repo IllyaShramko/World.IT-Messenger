@@ -8,3 +8,7 @@ class Album(models.Model):
     subtitle =  models.CharField(max_length = 100)
     date = models.DateField(auto_now_add = True)
     author = models.ForeignKey(User, on_delete = models.CASCADE)
+
+class AlbumImage(models.Model):
+    image = models.ImageField(upload_to="images/")
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)

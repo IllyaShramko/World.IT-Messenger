@@ -3,6 +3,10 @@ from django.views import View
 from user_app.models import Profile
 from my_posts_app.models import Images_Post
 from .models import Album
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse, HttpResponseRedirect
+from django.urls import reverse_lazy
+from .models import AlbumImage
 # Create your views here.
 
 class SettingsView(View):
@@ -80,10 +84,12 @@ class AlbumsSettingsView(View):
                 title = request.POST.get("title")
                 subtitle = request.POST.get("subtitle")
                 date = request.POST.get("date")
+                print(date)
                 album= Album.objects.create(
                     title = title,
                     subtitle = subtitle,
-                    author = request.user
+                    author = request.user,
+                    date = date
                 )
                 return render(
                     request,
@@ -95,10 +101,35 @@ class AlbumsSettingsView(View):
                         "page": "settings"
                     }
                 )
+            elif button == "editAlbum":
+                title = request.POST.get("title")
+                subtitle = request.POST.get("subtitle")
+                date = request.POST.get("date")
+                album_pk = request.POST.get("albumpk")
+                album = Album.objects.get(pk = album_pk) 
+                album.title = title
+                album.subtitle = subtitle
+                album.date = date
+                album.save()
+                album_images = AlbumImage.objects.filter(album_id = album.id)
+                return render(
+                    request,
+                    "settings_app/album.html",
+                    context = {
+                        "images": images,
+                        "popup": False,
+                        'album': album,
+                        "album_images": album_images,
+                        "page": "settings"
+                    }
+                )
+                
         else:
             album = None
+            album_images = None
             try:
                 album = Album.objects.get(author_id = request.user.id)
+                album_images = AlbumImage.objects.filter(album_id = album.id)
             except:
                 print(Exception)
             return render(
@@ -107,6 +138,39 @@ class AlbumsSettingsView(View):
                 context = {
                     "images": images,
                     'album': album,
-                    "page": "settings"
+                    "page": "settings",
+                    "album_images": album_images,
                 }
             )
+
+
+@csrf_exempt
+def upload_images(request):
+    if request.method == 'POST':
+        album = Album.objects.get(pk = request.POST.get("album_id"))
+        images = request.FILES.getlist('images')
+        for img in images:
+            AlbumImage.objects.create(album=album, image=img)
+        return JsonResponse({'status': 'ok', 'album_id': album.id})
+
+def delete_image(request, img_pk):
+    image = AlbumImage.objects.get(pk = img_pk)
+    image.delete()
+    return HttpResponseRedirect(reverse_lazy("albums"))
+
+def delete_album(request, album_pk):
+    album = Album.objects.get(pk= album_pk)
+    if request.user == album.author:
+        album.delete()
+    return HttpResponseRedirect(reverse_lazy("albums"))
+
+def edit_album(request, album_pk):
+    album = Album.objects.get(pk= album_pk)
+    title = album.title
+    subtitle = album.subtitle
+    return render(request, template_name="settings_app/form_album.html", context={
+        "title": title,
+        "subtitle": subtitle,
+        "album_pk": album_pk,
+        "date": f"{album.date}"
+    })

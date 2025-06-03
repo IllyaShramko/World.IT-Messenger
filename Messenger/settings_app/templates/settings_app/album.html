@@ -43,6 +43,24 @@
     </div>
     <div class="my-albums">
         {% if album %}
+            <button id="dotsButton" class="dots">
+                <img class="dots-img" src="{% static 'images/Dots.svg' %}">
+            </button>
+            <div class="modal-del-edit" id="modal-del-edit">
+                <button value="">
+                    <img src="{% static 'settings_app/images/eye black.png' %}" alt="delete">
+                    <p>Цей альбом бачите тільки ви</p>
+                </button>
+                <button value="{% url 'edit_album' album.pk %}" class="editButton" id="editButton">
+                    <img src="{% static 'settings_app/images/edit.png' %}" alt="delete">
+                    <p>Редагувати альбом</p>
+                </button>
+                <div class="line-beetwen-buttons"></div>
+                <a href="{% url 'delete_album' album.pk %}" class="deleteButton" id="deleteButton">
+                    <img src="{% static 'settings_app/images/delete.png' %}" alt="edit">
+                    <p>Видалити Альбом</p>  
+                </a>
+            </div>
             <h2 class="title">{{ album.title }}</h2>
             <div class="subtitle-date">
                 <h3>{{ album.subtitle }}</h3>
@@ -50,8 +68,20 @@
             </div>
             <p class="photos-p">Фотографії</p>
             <div class="photos-album">
-                <div class="photo">
-                    <img src="{% static 'settings_app/images/img1.jpg' %}">
+                <input type="hidden" id="album-id" value="{{ album.id }}">
+                <div class="image-grid" id="image-preview-grid">
+                    {% for img in album_images %}
+                        <div class="image-card">
+                            <img src="{{ img.image.url }}">
+                            <a href="{% url 'delete_image' img.pk %}">
+                                <img src="{% static 'settings_app/images/delete.png' %}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                    <label class="upload-placeholder">
+                        +
+                        <input type="file" id="image-input" multiple accept="image/*">
+                    </label>
                 </div>
             </div>
         {% else %}
@@ -102,4 +132,11 @@
             </div>
         </form>
     {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'settings_app/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'settings_app/js/album.js' %}"></script>
+    <script src="{% static 'settings_app/js/edit_album.js' %}"></script>
+    <script src="{% static 'settings_app/js/modal_window_open_close.js' %}"></script>
 {% endblock %}
