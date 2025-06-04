@@ -87,6 +87,12 @@ class MyPostsView(ListView):
         elif button =="submitFormEdit":
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
+                deleted_images = request.POST.get("deleted_images")
+                if deleted_images:
+                    deleted_images = deleted_images.split(",")
+                    for imgdel in deleted_images:
+                        img = Images_Post.objects.get(pk = imgdel)
+                        img.delete()
                 post = User_Post.objects.get(pk = form.data["post_pk"])
                 post.title = form.data["title"]
                 post.topic = form.data["topic"]

@@ -35,9 +35,9 @@
     <div class="modal-images">
         {% if images %}
             {% for image in images %}
-                <div class="images-div">
+                <div class="images-div" data-image-id="{{ image.id }}">
                     <img src="{{ image.image.url }}" class="preview-img">
-                    <button style="z-index: 10;" class="preview-delete-img" type="button" id="deleteImage">
+                    <button type="button" class="preview-delete-img">
                         <img src="{% static 'my_post_app/images/delete.png' %}" alt="">
                     </button>
                 </div>
@@ -49,6 +49,7 @@
             <label for="images">
                 <img src="{% static 'my_post_app/images/image.svg' %}">
             </label>
+            <input type="hidden" name="deleted_images" id="deletedImagesInput" value="">
             <input type="file" name="images" id="images" class="images" multiple>
         </div>
         {% if post_modal == "create" %}

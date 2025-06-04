@@ -1,14 +1,21 @@
 const blockImages = document.querySelector('.modal-images');
 const inputImages = document.getElementsByName("images")[0];
 
-inputImages.addEventListener('change', function(event) {
-    const files = event.target.files;
+let selectedFiles = [];
 
-    for (let i = 0; i < files.length; i++) {
-        const image = files[i];
+inputImages.addEventListener('change', function (event) {
+    const files = Array.from(event.target.files);
+
+    files.forEach((file) => {
+        if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+            return; 
+        }
+
+        selectedFiles.push(file);
+
         const reader = new FileReader();
 
-        reader.addEventListener('load', function(e) {
+        reader.onload = function (e) {
             const imageElement = document.createElement("img");
             const imageDelete = document.createElement("img");
             const divImageDelete = document.createElement("button");
@@ -19,10 +26,10 @@ inputImages.addEventListener('change', function(event) {
 
             imageDelete.src = "/static/my_post_app/images/delete.png";
             divImageDelete.className = "preview-delete-img";
-            divImageDelete.id = "deleteImage";
             divImageDelete.type = "button";
 
             imageDiv.className = "images-div";
+            imageDiv.dataset.filename = file.name;
 
             blockImages.appendChild(imageDiv);
             imageDiv.appendChild(imageElement);
@@ -31,12 +38,20 @@ inputImages.addEventListener('change', function(event) {
 
             divImageDelete.addEventListener("click", function () {
                 imageDiv.remove();
-            });
-        });
 
-        reader.readAsDataURL(image);
-    }
+                selectedFiles = selectedFiles.filter(f => !(f.name === file.name && f.size === file.size));
+
+                const dataTransfer = new DataTransfer();
+                selectedFiles.forEach(f => dataTransfer.items.add(f));
+                inputImages.files = dataTransfer.files;
+            });
+        };
+
+        reader.readAsDataURL(file);
+    });
+
 });
+
 const addTagBtn = document.getElementById('addTagBtn');
 const tagsContainer = document.getElementById('tagsContainer');
 const hiddenInput = document.getElementById('tags');

@@ -6,56 +6,74 @@ $(document).ready(function(){
                 url: $(this).val(),
                 type: "get",
                 success: function(response){
-                    console.log(response)
-                    $(".popups").html(response)
+                    $(".popups").html(response);
+
                     const blockImages = document.querySelector('.modal-images');
-                    const inputImages = document.getElementsByName("images")[0];
+                    const inputImages = document.getElementById("images");
+                    let selectedFiles = [];
 
-                    inputImages.addEventListener('change', function(event) {
-                        const files = event.target.files;
+                    inputImages.addEventListener('change', function (event) {
+                        const files = Array.from(event.target.files);
 
-                        for (let i = 0; i < files.length; i++) {
-                            const image = files[i];
+                        files.forEach(file => {
+                            if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) return;
+
+                            selectedFiles.push(file);
+
                             const reader = new FileReader();
-
-                            reader.addEventListener('load', function(e) {
-                                const imageElement = document.createElement("img");
-                                const imageDelete = document.createElement("img");
-                                const divImageDelete = document.createElement("button");
-                                const imageDiv = document.createElement('div');
-
-                                imageElement.src = e.target.result;
-                                imageElement.className = "preview-img";
-
-                                imageDelete.src = "/static/my_post_app/images/delete.png";
-                                divImageDelete.className = "preview-delete-img";
-                                divImageDelete.id = "deleteImage";
-                                divImageDelete.type = "button";
-
+                            reader.onload = function (e) {
+                                const imageDiv = document.createElement("div");
                                 imageDiv.className = "images-div";
 
-                                blockImages.appendChild(imageDiv);
-                                imageDiv.appendChild(imageElement);
-                                imageDiv.appendChild(divImageDelete);
-                                divImageDelete.appendChild(imageDelete);
+                                const imageElement = document.createElement("img");
+                                imageElement.className = "preview-img";
+                                imageElement.src = e.target.result;
 
-                                divImageDelete.addEventListener("click", function () {
+                                const deleteButton = document.createElement("button");
+                                deleteButton.type = "button";
+                                deleteButton.className = "preview-delete-img";
+
+                                const deleteIcon = document.createElement("img");
+                                deleteIcon.src = "/static/my_post_app/images/delete.png";
+                                deleteButton.appendChild(deleteIcon);
+
+                                deleteButton.addEventListener("click", function () {
                                     imageDiv.remove();
-                                });
-                            });
+                                    selectedFiles = selectedFiles.filter(f => !(f.name === file.name && f.size === file.size));
 
-                            reader.readAsDataURL(image);
-                        }
-                    })
-                    document.getElementById("deleteImage").addEventListener(
-                        "click",
-                        function () {
-                            console.log("dslfdkfasdf")
-                            inputImages.value = ""
-                            document.getElementsByClassName("preview-img")[0].remove()
-                            document.getElementById("deleteImage").remove()
-                        }
-                    );
+                                    const dt = new DataTransfer();
+                                    selectedFiles.forEach(f => dt.items.add(f));
+                                    inputImages.files = dt.files;
+                                });
+
+                                imageDiv.appendChild(imageElement);
+                                imageDiv.appendChild(deleteButton);
+                                blockImages.appendChild(imageDiv);
+                            };
+                            reader.readAsDataURL(file);
+                        });
+
+                    });
+                    document.querySelectorAll(".modal-images .preview-delete-img").forEach(button => {
+                        button.addEventListener("click", function () {
+                            const imageDiv = this.closest(".images-div");
+                            const imageId = imageDiv.dataset.imageId; 
+                            imageDiv.remove();
+
+                            let deleted = document.getElementById("deletedImagesInput");
+                            if (!deleted) {
+                                deleted = document.createElement("input");
+                                deleted.type = "hidden";
+                                deleted.name = "deleted_images";
+                                deleted.id = "deletedImagesInput";
+                                document.querySelector("form").appendChild(deleted);
+                            }
+
+                            const deletedIds = deleted.value ? deleted.value.split(",") : [];
+                            deletedIds.push(imageId);
+                            deleted.value = deletedIds.join(",");
+                        });
+                    });
                     const addTagBtn = document.getElementById('addTagBtn');
                     const tagsContainer = document.getElementById('tagsContainer');
                     const hiddenInput = document.getElementById('tags');

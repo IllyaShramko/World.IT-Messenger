@@ -15,7 +15,7 @@ class MainPageView(LoginRequiredMixin, View):
             first_name = request.POST.get("name")
             last_name = request.POST.get("lastname")
             tag_name = request.POST.get("tagname")
-            user = User.objects.get(pk = request.user.id)
+            user = request.user
             user.first_name = first_name
             user.last_name = last_name
             user.save()
@@ -27,6 +27,7 @@ class MainPageView(LoginRequiredMixin, View):
                 "home_app/home.html",
                 {
                     'new_or_not': False,
+                    "tag_name": profile.tag_name,
                     "images": Images_Post.objects.all(),
                     "posts_list": User_Post.objects.all(),
                     "page": "home"

@@ -168,3 +168,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'test.python.1488@gmail.com'
 EMAIL_HOST_PASSWORD = 'yrja yboa noeo fmlz'
+# CustomAbstractUser
+
+# AUTH_USER_MODEL = 'user_app.CustomAbstractUser'
