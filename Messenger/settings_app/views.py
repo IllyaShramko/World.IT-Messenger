@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from user_app.models import Profile
+from user_app.models import CustomAbstractUser
 from my_posts_app.models import Images_Post
 from .models import Album
 from django.views.decorators.csrf import csrf_exempt

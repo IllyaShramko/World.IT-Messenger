@@ -6,7 +6,7 @@ from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from .forms import PostForm
 from .models import User_Post, Images_Post
-from user_app.models import Profile
+from user_app.models import CustomAbstractUser
 import os
 # Create your views here.
 class MyPostsView(ListView):

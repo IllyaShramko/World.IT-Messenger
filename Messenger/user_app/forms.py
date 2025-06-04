@@ -1,15 +1,16 @@
 from django import forms
-from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .models import Profile
+from django.contrib.auth import get_user_model
+from django import forms
+from .models import CustomAbstractUser
+
 
 class RegistrationForm(UserCreationForm):
     username = forms.CharField(required= False, widget= forms.TextInput(attrs={
         "type": "hidden"
     }))
-
     email = forms.EmailField(widget= forms.TextInput(attrs={
         "placeholder": "you@example.com",
         "class": "email-input"
@@ -26,6 +27,9 @@ class RegistrationForm(UserCreationForm):
         "type": "password",
         "id": "password-confirm-input"
     }))
+    class Meta:
+        model = get_user_model()
+        fields = ("username", "email", "password1", "password2")
         
 
 class EmailLoginForm(AuthenticationForm):

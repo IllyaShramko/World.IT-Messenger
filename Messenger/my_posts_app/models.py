@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from user_app.models import CustomAbstractUser
 from django.urls import reverse
 
 # Create your models here.
 class User_Post(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(CustomAbstractUser, on_delete = models.CASCADE)
     title = models.CharField(max_length = 205)
     topic = models.CharField(max_length = 150)
     tags = models.JSONField()
@@ -19,4 +19,4 @@ class User_Post(models.Model):
 class Images_Post(models.Model):
     image = models.ImageField(upload_to= "images/")
     post = models.ForeignKey(User_Post, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null = True)
+    author = models.ForeignKey(CustomAbstractUser, on_delete=models.CASCADE, null = True)

@@ -1,10 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
+class CustomAbstractUser(AbstractUser):
     tag_name = models.CharField(max_length = 50, null = True, blank = True)
     birthday = models.DateField(auto_now_add= True, null = True, blank = True)
     request_friends = models.JSONField(null= True, blank= True)
