@@ -15,121 +15,135 @@
 {% endblock %}
 
 {% block content %}
-        <div class="profile-edit">
-            <div class="profile-card">
-                <div class="profile-card-edit">
-                    <div>
-                        <p class="profile-card-text">Картка профілю</p>
-                    </div>
-                    <button class="profile-card-button">
+    <div class="profile-edit">
+        <form method="post" enctype="multipart/form-data" class="profile-card">
+            {% csrf_token %}
+            <div class="profile-card-edit">
+                <div>
+                    <p class="profile-card-text">Картка профілю</p>
+                </div>
+                <div>
+                    <button type="button" class="profile-card-button" name="button" value="change-avatar-edit" id="edit-avatar-btn" class="profile-card-button">
                         <img src="{% static 'settings_app/images/edit.svg' %}">
-                        <p>Редагувати інформацію</p>
+                        <p id="edit-save-avatar-p">Редагувати інформацію</p>
                     </button>
                 </div>
-                <div class="profile-card-me">
-                    <img class="profile-card-img" src="{% static 'images/ranalda.jpg' %}">
-                    <div class="profile-card-info">
-                        <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
-                        <p>{{ tag_name }}</p>
+            </div>
+            <div class="profile-card-me">
+                <div class="avatar-profile">
+                    <p id="change-avatar" class="notediting">Оберіть або завантажте фото профілю</p>
+                    <img class="profile-card-img" src="{{ request.user.avatar.url }}">
+                    <label id="label-avatar" class="notediting" for="avatar">
+                        <div>
+                            <img src="{% static 'settings_app/images/plus_purple.png' %}">
+                            <p>Додайте фото</p>
+                        </div>
+                        <div>
+                            <img src="{% static 'settings_app/images/img.png' %}">
+                            <p>оберіть фото</p>
+                        </div>
+                    </label>
+                    <input type="file" name="avatar" id="avatar" class="avatar">
+                </div>
+                <div class="profile-card-info">
+                    <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
+                    <p>{{ tag_name }}</p>
+                </div>
+            </div>
+        </form>
+        <form method="post" class="profile-info">
+            {% csrf_token %}
+            <div class="profile-card-edit">
+                <div>
+                    <p class="profile-card-text">Особиста інформація</p>
+                </div>
+                <button type="button" id="edit-save-btn" value="edit" class="profile-card-button">
+                    <img src="{% static 'settings_app/images/edit.svg' %}">
+                    <p id="edit-save-p">Редагувати інформацію</p>
+                </button>
+            </div>
+            <div class="profile-info-edit-settings">
+                <div class="notedit"></div>
+                <div class="profile-name-edit input-edit">
+                    <p>Ім’я</p>
+                    <div>
+                        <input type="text" name="name" value="{{ request.user.first_name }}">
+                        <button type="button">
+                            <img src="{% static 'settings_app/images/eye (1).svg' %}">
+                        </button>
+                    </div>
+                </div>
+                <div class="profile-surname-edit input-edit">
+                    <p>Прізвище</p>
+                    <div>
+                        <input type="text" name="surname" value="{{ request.user.last_name }}">
+                        <button type="button">
+                           <img src="{% static 'settings_app/images/eye (1).svg' %}">
+                        </button>
+                    </div>
+                </div>
+                <div class="profile-birthday-edit input-edit">
+                    <p>Дата народження</p>
+                    <div>
+                        <input type="date" name="birthday" min="2018-01-01" value="{{ birthday }}">
+                        <button type="button">
+                            <img src="{% static 'settings_app/images/eye.svg' %}">
+                        </button>
+                    </div>
+                </div>
+                <div class="profile-email-edit input-edit">
+                    <p>Електронна адреса</p>
+                    <div>
+                        <input type="email" name="email" value="{{ request.user.email }}">
+                        <button type="button">
+                            <img src="{% static 'settings_app/images/eye (1).svg' %}">
+                        </button>
+                    </div>
+                </div>
+                <div class="profile-password-edit input-edit">
+                    <p>Пароль</p>
+                    <div>
+                        <input type="password"  value="{{ request.user.password }}">
+                        <button type="button">
+                            <img src="{% static 'settings_app/images/eye.svg' %}">
+                        </button>
                     </div>
                 </div>
             </div>
-            <form method="post" class="profile-info">
-                {% csrf_token %}
-                <div class="profile-card-edit">
-                    <div>
-                        <p class="profile-card-text">Особиста інформація</p>
-                    </div>
-                    <button type="button" id="edit-save-btn" value="edit" class="profile-card-button">
-                        <img src="{% static 'settings_app/images/edit.svg' %}">
-                        <p id="edit-save-p">Редагувати інформацію</p>
-                    </button>
+        </form>
+        <div class="profile-pidpus">
+            <div class="profile-card-edit">
+                <div>
+                    <p class="profile-card-text">Варіанти підпису</p>
                 </div>
-                <div class="profile-info-edit-settings">
-                    <div class="notedit"></div>
-                    <div class="profile-name-edit input-edit">
-                        <p>Ім’я</p>
-                        <div>
-                            <input type="text" name="name" value="{{ request.user.first_name }}">
-                            <button type="button">
-                                <img src="{% static 'settings_app/images/eye (1).svg' %}">
-                            </button>
+                <button class="profile-card-button">
+                    <img src="{% static 'settings_app/images/edit.svg' %}">
+                    <p>Редагувати інформацію</p>
+                </button>
+            </div>
+            <div class="profile-pidpus-edit-settings">
+                <div>
+                    <div class="profile-pidpus-name">
+                        <div class="profile-pidpus-name-check">
+                            <button type="checkbox"></button>
+                            <p>Ім’я та прізвище</p>
                         </div>
+                        <h1>Lina Li</h1>
                     </div>
-
-                    <div class="profile-surname-edit input-edit">
-                        <p>Прізвище</p>
-                        <div>
-                            <input type="text" name="surname" value="{{ request.user.last_name }}">
-                            <button type="button">
-                               <img src="{% static 'settings_app/images/eye (1).svg' %}">
-                            </button>
+                    <div class="profile-pidpus-pidpus">
+                        <div class="profile-pidpus-pidpus-check">
+                            <button type="checkbox"></button>
+                            <p>Мій електронний підпис</p>
                         </div>
-                    </div>
-
-                    <div class="profile-birthday-edit input-edit">
-                        <p>Дата народження</p>
-                        <div>
-                            <input type="date" name="birthday" min="2018-01-01" value="{{ birthday }}">
-                            <button type="button">
-                                <img src="{% static 'settings_app/images/eye.svg' %}">
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="profile-email-edit input-edit">
-                        <p>Електронна адреса</p>
-                        <div>
-                            <input type="email" name="email" value="{{ request.user.email }}">
-                            <button type="button">
-                                <img src="{% static 'settings_app/images/eye (1).svg' %}">
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="profile-password-edit input-edit">
-                        <p>Пароль</p>
-                        <div>
-                            <input type="password"  value="{{ request.user.password }}">
-                            <button type="button">
-                                <img src="{% static 'settings_app/images/eye.svg' %}">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="profile-pidpus">
-                <div class="profile-card-edit">
-                    <div>
-                        <p class="profile-card-text">Варіанти підпису</p>
-                    </div>
-                    <button class="profile-card-button">
-                        <img src="{% static 'settings_app/images/edit.svg' %}">
-                        <p>Редагувати інформацію</p>
-                    </button>
-                </div>
-                <div class="profile-pidpus-edit-settings">
-                    <div>
-                        <div class="profile-pidpus-name">
-                            <div class="profile-pidpus-name-check">
-                                <button type="checkbox"></button>
-                                <p>Ім’я та прізвище</p>
-                            </div>
-                            <h1>Lina Li</h1>
-                        </div>
-                        <div class="profile-pidpus-pidpus">
-                            <div class="profile-pidpus-pidpus-check">
-                                <button type="checkbox"></button>
-                                <p>Мій електронний підпис</p>
-                            </div>
-                            <img src="{% static 'settings_app/images/podpis.svg' %}">
-                        </div>
+                        <img src="{% static 'settings_app/images/podpis.svg' %}">
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 {% endblock %}
 
 {% block scripts %}
+    <script src="{% static 'settings_app/js/changeBlurAvatar.js' %}"></script>
     <script src="{% static 'settings_app/js/settings.js' %}"></script>
 {% endblock %}

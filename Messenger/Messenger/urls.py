@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from home_app.views import MainPageView
+from my_posts_app.views import UsersPostsView
 from . import settings
 
 urlpatterns = [
@@ -26,7 +27,8 @@ urlpatterns = [
     path('user/', include('user_app.urls')),
     path('posts/', include('my_posts_app.urls')),
     path('settings/', include('settings_app.urls')),
-    path('friends/', include('friends_app.urls'))
+    path('friends/', include('friends_app.urls')),
+    path('view_user/<int:user_pk>', UsersPostsView.as_view(), name = "view_user")
 ]
 
 if settings.DEBUG:

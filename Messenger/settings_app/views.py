@@ -12,8 +12,6 @@ from .models import AlbumImage
 class SettingsView(View):
 
     def dispatch(self, request, *args, **kwargs):
-        profile = Profile.objects.get(user_id = request.user.id)
-        print(profile.birthday)
         if request.method == "GET":
             if request.user.last_name == "":
                 print(1)
@@ -21,8 +19,8 @@ class SettingsView(View):
                     request,
                     "settings_app/settings.html",
                     {
-                        "profile": profile,
-                        "birthday": profile.birthday,
+                        "profile": request.user,
+                        "birthday": request.user.birthday,
                         "page":"settings"
                     }
                 )
@@ -32,35 +30,42 @@ class SettingsView(View):
                     request, 
                     "settings_app/settings.html",
                     {
-                        "profile": profile,
-                        "birthday": f"{profile.birthday}",
-                        "tag_name": profile.tag_name,
+                        "profile": request.user,
+                        "birthday": f"{request.user.birthday}",
+                        "tag_name": request.user.tag_name,
                         "page":"settings"
                     }
                 )
         else:
-            name = request.POST.get("name")
-            last_name = request.POST.get("surname")
-            birthday = request.POST.get("birthday")
-            email = request.POST.get("email")
-            try:
-                user = request.user
-                user.first_name = name
-                user.last_name = last_name
-                user.username = email
-                user.email = email
-                user.save()
-                profile.birthday = birthday
-                profile.save()
-            except:
-                print(Exception)
+            button = request.POST.get("button")
+            if button == "change-avatar-save":
+                avatar = request.FILES.get("avatar")
+                print(avatar)
+                if avatar:
+                    request.user.avatar = avatar
+                    request.user.save()
+            else:
+                name = request.POST.get("name")
+                last_name = request.POST.get("surname")
+                birthday = request.POST.get("birthday")
+                email = request.POST.get("email")
+                try:
+                    user = request.user
+                    user.first_name = name
+                    user.last_name = last_name
+                    user.username = email
+                    user.email = email
+                    user.birthday = birthday
+                    user.save()
+                except:
+                    print(Exception)
             return render(
                 request, 
                 "settings_app/settings.html",
                 {
-                    "profile": profile,
-                    "birthday": f"{profile.birthday}",
-                    "tag_name": profile.tag_name,
+                    "profile": request.user,
+                    "birthday": f"{request.user.birthday}",
+                    "tag_name": request.user.tag_name,
                     "page":"settings"
                 }
             )
@@ -128,7 +133,7 @@ class AlbumsSettingsView(View):
             album = None
             album_images = None
             try:
-                album = Album.objects.get(author_id = request.user.id)
+                album = Album.objects.filter(author_id = request.user.id).first()
                 album_images = AlbumImage.objects.filter(album_id = album.id)
             except:
                 print(Exception)

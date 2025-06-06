@@ -1,3 +1,6 @@
+.avatar {
+    opacity: 1;
+}
 
 .profile-edit {
     display: flex;
@@ -50,6 +53,7 @@
     background: #FFFFFF;
     border: 1px solid #583B53;
     border-radius: 190px;
+    cursor: pointer;
 }
 
 .profile-card-button p {
@@ -126,6 +130,7 @@
 
 .profile-info-edit-settings {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
@@ -279,5 +284,39 @@
     background-color: #FFFFFF;
 }
 .edit {
+    display: none;
+}
+.avatar-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw;
+    
+}
+.change-avatar {
+    font-size: 1vw;
+    font-weight: 400;
+    color: #543C52;
+}
+.avatar-profile label div p {
+    color: #543C52;
+}
+.avatar-profile label div{
+    display: flex;
+    gap: 0.5vw;
+}
+.avatar-profile label div img {
+    width: 1vw;
+    height: 1vw;
+}
+.avatar-profile input {
+    display: none;
+}
+.label-avatar{
+    display: flex;
+    gap: 1vw;
+    cursor: pointer;
+}
+.notediting {
     display: none;
 }

@@ -20,44 +20,23 @@
     <div class="request">
         <div class="textes">
             <p class="text-request">Всі друзі</p>
-            <p class="text-watch">Дивитись всі</p>
         </div>
         
         <div class="friends-requests">
-            <div class="friend-request">
-                <div class="friend-request-profile">
-                    <img src="{% static 'friends_app/images/ranalda.png' %}">
-                    <h1>Yehor Aung</h1>
-                    <h3>@theilli</h3>
+            {% for user in friends %}
+                <div class="friend-request">
+                    <div class="friend-request-profile">
+                        <img src="{{ user.avatar.url }}">
+                        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                        <h3>{{ user.tag_name }}</h3>
+                    </div>
+                    <form method="post" class="accept-cancel-btns">
+                        {% csrf_token %}
+                        <button class="accept" name="button" value="send-{{ user.pk }}">Повідомлення</button>
+                        <button class="cancel" name="button" value="delete-{{ user.pk }}">Видалити</button>
+                    </form>
                 </div>
-                <div class="accept-cancel-btns">
-                    <button class="accept">Повідомлення</button>
-                    <button class="cancel">Видалити</button>
-                </div>
-            </div>
-            <div class="friend-request">
-                <div class="friend-request-profile">
-                    <img src="{% static 'friends_app/images/ranalda.png' %}">
-                    <h1>Yehor Aung</h1>
-                    <h3>@theilli</h3>
-                </div>
-                <div class="accept-cancel-btns">
-                    <button class="accept">Повідомлення</button>
-                    <button class="cancel">Видалити</button>
-                </div>
-            </div>
-            <div class="friend-request">
-                <div class="friend-request-profile">
-                    <img src="{% static 'friends_app/images/ranalda.png' %}">
-                    <h1>Ann Ann</h1>
-                    <h3>@theilli</h3>
-                </div>
-                <div class="accept-cancel-btns">
-                    <button class="accept">Повідомлення</button>
-                    <button class="cancel">Видалити</button>
-                </div>
-            </div>
-        </div>
+            {% endfor %}
     </div>
 {% endblock %}
 

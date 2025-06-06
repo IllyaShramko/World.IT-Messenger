@@ -13,7 +13,7 @@
     <div class="me">
         <div class="me-about">
             <div class="me-image">
-                <img src="{% static 'images/profile-avatar.jpg' %}" class="profile-image">
+                <img src="{{ request.user.avatar.url }}" class="profile-image">
                 <div class="profile-status"></div>
             </div>
             <p class="me-name">{{ request.user.first_name }} {{ request.user.last_name }}</p>
@@ -55,7 +55,7 @@
             <div class="random-post-profile">
                 <div class="random-post-profile-pr">
                     <div>
-                        <img class="avatar" src="{% static 'images/ranalda.jpg' %}">
+                        <img class="avatar" src="{{ post.user.avatar.url }}">
                         <h1>{{ post.user }}</h1>
                     </div>
                     <img class="podpis" src="{% static 'images/podpis.png' %}">

@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from .forms import PostForm
 from .models import User_Post, Images_Post
 from user_app.models import CustomAbstractUser
+from django.contrib.auth import get_user_model
 import os
 # Create your views here.
 class MyPostsView(ListView):
@@ -23,9 +24,6 @@ class MyPostsView(ListView):
         context["popup"] = False
         context['page'] = "my_posts"
         context['images'] = Images_Post.objects.all()
-        print(self.request.user)
-        context['profile'] = Profile.objects.filter(user_id = self.request.user.id)[0]
-        print(Profile.objects.filter(user_id = self.request.user.id)[0])
         return context
     
     def post(self, request: HttpRequest):
@@ -105,7 +103,8 @@ class MyPostsView(ListView):
                     for image in request.FILES.getlist("images"):
                         Images_Post.objects.create(
                             image = image,
-                            post = post
+                            post = post,
+                            author = request.user,
                         )
                 post.save()
 
@@ -185,4 +184,59 @@ def get_post(request, post_id):
                     "my_posts": User_Post.objects.filter(user= request.user)
                     })
                 
-            
+
+class UsersPostsView(ListView):
+    model = User_Post
+    template_name = 'my_posts_app/user_posts.html'
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        queryset = User_Post.objects.filter(user_id = self.kwargs["user_pk"])    
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page"] = 'friends'
+        user = get_user_model().objects.get(pk = self.kwargs["user_pk"])
+        context["user"] = user
+        if user in self.request.user.friends.all():
+            context["is_friend"] = True
+        else:
+            context["is_friend"] = False
+        context['images'] = Images_Post.objects.all()
+        return context
+    
+    # def get(self, request: HttpRequest):
+    #     users = []
+    #     for user in get_user_model().objects.exclude(pk = self.request.user.pk).exclude(pk__in = self.request.user.friends.all()):
+    #         if len(users) < 3:
+    #             users.append(user)
+    #         else:
+    #             break
+    #     friends = self.request.user.friends.all()[:3]
+    #     return render(request, "friends_app/friends.html", {
+    #         'page' : "friends",
+    #         'recommendations' : users,
+    #         'friends': friends,
+    #     })
+    def post(self, request: HttpRequest, user_pk):
+        button = request.POST.get("button").split("-")
+        if button[0] == "add":
+            user = get_user_model().objects.get(pk = request.POST.get("button").split('-')[1])
+            request.user.friends.add(user)
+        elif button[0] == "delete":
+            user = get_user_model().objects.get(pk = request.POST.get("button").split('-')[1])
+            request.user.friends.remove(user)
+        
+        user = get_user_model().objects.get(pk = user_pk)
+        if user in self.request.user.friends.all():
+            friend = True
+        else:
+            friend = False
+
+        return render(request, 'my_posts_app/user_posts.html', {
+            'page' : "friends",
+            'user' : user,
+            'is_friend': friend,
+            "images": Images_Post.objects.all(),
+            "posts": User_Post.objects.filter(user_id = user_pk) 
+        })

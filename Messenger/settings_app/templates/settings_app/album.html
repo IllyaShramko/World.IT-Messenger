@@ -28,17 +28,17 @@
             </form>
         </div>
         <div class="photos">
-            <div class="photo">
-                <img src="{% static 'settings_app/images/ranalda.jpg' %}">
-                <button type="button">
-                    <img src="{% static 'settings_app/images/eye.svg' %}">
-                </button>
-                <button id="delete" type="button">
-                    <img src="{% static 'settings_app/images/eye.svg' %}">
-                </button>
-            </div>
-            <!-- {% for photo in photos %} -->
-            <!-- {% endfor %} -->
+            {% for image in images %}
+                <div class="photo">
+                    <img src="{{ image.image.url }}">
+                    <button type="button">
+                        <img src="{% static 'settings_app/images/eye.svg' %}">
+                    </button>
+                    <button id="delete" type="button">
+                        <img src="{% static 'settings_app/images/eye.svg' %}">
+                    </button>
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div class="my-albums">
@@ -63,8 +63,8 @@
             </div>
             <h2 class="title">{{ album.title }}</h2>
             <div class="subtitle-date">
-                <h3>{{ album.subtitle }}</h3>
-                <h4>{{ album.date }}</h4>
+                <h3 class="subtitle">{{ album.subtitle }}</h3>
+                <h4 class="date">{{ album.date }}</h4>
             </div>
             <p class="photos-p">Фотографії</p>
             <div class="photos-album">
@@ -79,7 +79,7 @@
                         </div>
                     {% endfor %}
                     <label class="upload-placeholder">
-                        +
+                        <img src="{% static 'settings_app/images/plus.png' %}">
                         <input type="file" id="image-input" multiple accept="image/*">
                     </label>
                 </div>
@@ -89,8 +89,8 @@
                 <h2>Немає жодного альбому</h2>
                 <form method="post">
                     {% csrf_token %}
-                    <button name="button" value="album_create_1">
-                        <img src="">
+                    <button name="button" value="album_create_1" class="create-album-button">
+                        <img src="{% static 'settings_app/images/plus.png' %}">
                         <p>Створити альбом</p>
                     </button>
                 </form>

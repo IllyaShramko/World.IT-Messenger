@@ -135,7 +135,7 @@ body {
     gap: 0.5vh;
     width: 20vw;
     top: 9.6vh;
-    transform: translateX(-29vw);
+    transform: translateX(-27.5vw);
 }
 
 .me {
@@ -538,7 +538,7 @@ body {
     position: absolute;
     top: 9.6vh;
     width: 54.6vw;
-    transform: translateX(9.5vw);
+    transform: translateX(10.3vw);
     padding-bottom: 24px;
 }
 
