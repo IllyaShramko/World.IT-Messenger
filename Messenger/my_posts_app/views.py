@@ -8,6 +8,7 @@ from .forms import PostForm
 from .models import User_Post, Images_Post
 from user_app.models import CustomAbstractUser
 from django.contrib.auth import get_user_model
+from settings_app.models import Album, AlbumImage
 import os
 # Create your views here.
 class MyPostsView(ListView):
@@ -203,6 +204,12 @@ class UsersPostsView(ListView):
         else:
             context["is_friend"] = False
         context['images'] = Images_Post.objects.all()
+        
+        album = Album.objects.filter(author_id = user.id).first()
+        print(album)
+        context['album'] = album
+        if album:
+            context["album_images"] = AlbumImage.objects.filter(album_id = album.pk)
         return context
     def post(self, request: HttpRequest, user_pk):
         button = request.POST.get("button").split("-")

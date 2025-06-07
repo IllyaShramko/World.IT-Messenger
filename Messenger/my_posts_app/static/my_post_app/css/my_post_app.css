@@ -127,6 +127,7 @@
     transform: translate(-50%, -50%);
     width: 41vw;
     height: 32.5vw;
+    max-height: 45vw;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
@@ -283,12 +284,15 @@
     flex-direction: row;
     align-items: center;
     padding: 0px;
+    height: 100%;
     gap: 0.5vw;
 }
 
 .random-post-profile-pr div img {
     position: relative;
     border-radius: 50%;
+    width: 3vw;
+    height: 3vw;
     object-fit: cover;
     object-position: center;
 
@@ -651,4 +655,45 @@
     display: flex;
     align-items: center;
     gap: 0.8vw;
+}
+.albums {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border: #CDCED2 0.1vw solid;
+    border-radius: 0.7vw;
+    padding: 0.8vw;
+}
+.album {
+    display: flex;
+    flex-direction: column;
+}
+.upper-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.information {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sub-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.album h1 {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
+.album img {
+    max-width: 100%;
+    position: relative;
 }
