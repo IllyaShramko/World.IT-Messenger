@@ -17,7 +17,7 @@
                 <div class="profile-status"></div>
             </div>
             <p class="me-name">{{ request.user.first_name }} {{ request.user.last_name }}</p>
-            <p class="me-tag">{{ profile.tag_name}}</p>
+            <p class="me-tag">{{ request.user.tag_name }}</p>
         </div>
         <div class="me-info">
             <div>
@@ -51,7 +51,7 @@
         </div>
         </form>
         {% for post in my_posts %}
-        <div class="post-random">
+        <div class="post-random" style="margin-top: 1vh;">
             <div class="random-post-profile">
                 <div class="random-post-profile-pr">
                     <div>
@@ -85,7 +85,7 @@
                         {% endfor %}
                     </p>
                     {% for link in post.links %}
-                        <a href="{{ link }}" class="link">
+                        <a href="{{ link }}" class="linka">
                             {{ link }}
                         </a>
                     {% endfor %}

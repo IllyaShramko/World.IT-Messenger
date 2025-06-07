@@ -21,8 +21,8 @@
     position: relative;
     flex-direction: column;
     display: flex;
-    gap: 10px;
-    padding-bottom: 11px;
+    gap: 0.7vw;
+    padding-bottom: 0.8vw;
     width: 100%;
     min-height: 10vh;
     height: fit-content;
@@ -38,7 +38,6 @@
     flex-direction: row;
     position: relative;
     align-items: center;
-    
     left: 0;
     top: 0;
     padding: 0.7vw;
@@ -126,61 +125,64 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 775px;
+    width: 41vw;
+    height: 32.5vw;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 44px;
+    gap: 0.9vw;
+    padding: 2.29vw;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 1vw;
     z-index: 6;
 }
 
 .form-popup h1 {
     font-family: GT Walsheim Pro, sans-serif;
     font-weight: 500;
-    font-size: 34px;
+    font-size: 1.8vw;
     line-height: 100%;
     letter-spacing: -1%;
 }
 
 .form-popup a {
     position: absolute;
-    right: 35px;
-    top: 20px;
+    right: 2vw;
+    top: 1vw;
 }
 
 .inputs-div {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 0.3vw;
 }
-
+.inputs-div p {
+    font-size: 0.9vw;
+}
 .inputs-div input {
-    width: 345px;
-    height: 42px;
-    padding: 16px 10px 16px 10px;
+    width: 18vw;
+    height: 2.3vw;
+    padding: 0.8vw 0.7vw;
     font-family: GT Walsheim Pro, sans-serif;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 0.95vw;
     letter-spacing: -0.7%;
-    border: #81818D 1px solid;
-    border-radius: 10px;
+    border: #81818D 0.1vw solid;
+    border-radius: 0.7vw;
 }
 
 .inputs-div textarea{
     resize: none;
     width: 100%;
-    height: 125px;
-    padding: 16px;
+    height: 7vw;
+    padding: 0.9vw;
     font-family: GT Walsheim Pro;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 0.9vw;
     line-height: 100%;
     letter-spacing: 0%;
-    border: #81818D 1px solid;
-    border-radius: 10px;
+    border: #81818D 0.1vw solid;
+    border-radius: 0.7vw;
 }
 
 .submit-div {
@@ -190,7 +192,7 @@
     position: relative;
     justify-content: flex-end;
     align-items: center;
-    gap: 10px;
+    gap: 0.9vw;
     cursor: pointer;
 }
 .submit-div div {
@@ -198,11 +200,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    border: #543C52 1px solid ;
-    border-radius: 190px;
+    width: 2.1vw;
+    height: 2.1vw;
+    border: #543C52 0.1vw solid ;
+    border-radius: 15vw;
     cursor: pointer;
+}
+.submit-div div label img {
+    width: 1.1vw;
 }
 
 .submit-div div input {
@@ -220,11 +225,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 16px 10px 16px;
-    gap: 8px;
+    padding: 0.6vw 0.9vw;
+    gap: 0.55vw;
     font-family: GT Walsheim Pro;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.8vw;
     letter-spacing: -0.6%;
     background-color: #543C52;
     cursor: pointer;
@@ -232,8 +237,13 @@
     border-radius: 2vh;
     border: none;
 }
-
+.submit-div button img {
+    width: 1.1vw;
+}
 /*  */
+.post {
+    margin-top: 1vh;
+}
 .post-random {
     box-sizing: border-box;
     display: flex;
@@ -337,7 +347,7 @@
 .random-post-profile-images {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     position: relative;
     width: 100%;
     gap: 1vh; 
@@ -475,13 +485,31 @@
 }
 
 .link {
+    display: flex;
+    align-items: center;
     font-family: 'GT Walsheim Pro';
     font-style: normal;
     font-weight: 400;
     font-size: 0.87vw;
-    text-decoration: none;
     color: #583B53;
-    padding: 0px;
+    width: 345px;
+    height: 42px;
+    padding: 16px 10px 16px 10px;
+    font-family: GT Walsheim Pro, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.7%;
+    border: #81818D 1px solid;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.linka {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.87vw;
+    color: #583B53;
 }
 
 .avatar{
@@ -526,12 +554,13 @@
     align-items: center;
     border: 0.1vw solid #000000;
     border-radius: 0.1vw;
-    padding: 4px 8px;
-    margin: 4px;
+    padding: 0.3vw 0.6vw;
+    margin: 0.3vw;
 }
 .tag-input-wrapper span {
     color: #353535;
     margin-right: 0.4vw;
+    font-size: 1vw;
     font-weight: bold;
 }
 .tag-input-wrapper input {
@@ -554,6 +583,9 @@
     padding: 0.2vw;
     border-radius: 10vw;
 }
+.add-link img {
+    width: 0.7vw;
+}
 .confirm {
     width: 1.3vw;
     height: 1.3vw;
@@ -563,6 +595,10 @@
     align-items: center;
     padding: 0.2vw;
     border-radius: 10vw;
+}
+.confirm img {
+    
+    width: 0.7vw;
 }
 .user-management{
     display: flex;
@@ -610,4 +646,9 @@
     color: #583B53;
     font-size: 0.9vw;
     cursor: pointer;
+}
+.link-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
 }

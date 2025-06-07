@@ -61,7 +61,7 @@
 #delete {
     right: 0.5vw;
 }
-.photo button {
+.photo a {
     position: absolute;
     display: flex;
     justify-content: center;

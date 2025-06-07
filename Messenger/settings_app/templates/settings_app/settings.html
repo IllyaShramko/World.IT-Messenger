@@ -103,7 +103,7 @@
                 <div class="profile-password-edit input-edit">
                     <p>Пароль</p>
                     <div>
-                        <input type="password"  value="{{ request.user.password }}">
+                        <input type="password" name="password">
                         <button type="button">
                             <img src="{% static 'settings_app/images/eye.svg' %}">
                         </button>
@@ -125,14 +125,14 @@
                 <div>
                     <div class="profile-pidpus-name">
                         <div class="profile-pidpus-name-check">
-                            <button type="checkbox"></button>
+                            <img src="{% static 'settings_app/images/checkbox.png' %}">
                             <p>Ім’я та прізвище</p>
                         </div>
-                        <h1>Lina Li</h1>
+                        <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
                     </div>
                     <div class="profile-pidpus-pidpus">
                         <div class="profile-pidpus-pidpus-check">
-                            <button type="checkbox"></button>
+                            <img src="{% static 'settings_app/images/checkbox.png' %}">
                             <p>Мій електронний підпис</p>
                         </div>
                         <img src="{% static 'settings_app/images/podpis.svg' %}">

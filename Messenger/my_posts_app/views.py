@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views import View
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from .forms import PostForm
 from .models import User_Post, Images_Post
@@ -204,20 +204,6 @@ class UsersPostsView(ListView):
             context["is_friend"] = False
         context['images'] = Images_Post.objects.all()
         return context
-    
-    # def get(self, request: HttpRequest):
-    #     users = []
-    #     for user in get_user_model().objects.exclude(pk = self.request.user.pk).exclude(pk__in = self.request.user.friends.all()):
-    #         if len(users) < 3:
-    #             users.append(user)
-    #         else:
-    #             break
-    #     friends = self.request.user.friends.all()[:3]
-    #     return render(request, "friends_app/friends.html", {
-    #         'page' : "friends",
-    #         'recommendations' : users,
-    #         'friends': friends,
-    #     })
     def post(self, request: HttpRequest, user_pk):
         button = request.POST.get("button").split("-")
         if button[0] == "add":
@@ -240,3 +226,9 @@ class UsersPostsView(ListView):
             "images": Images_Post.objects.all(),
             "posts": User_Post.objects.filter(user_id = user_pk) 
         })
+    
+def delete_img(request, image_pk):
+    img = Images_Post.objects.get(pk = image_pk)
+    img.delete()
+
+    return HttpResponseRedirect(reverse_lazy("albums"))

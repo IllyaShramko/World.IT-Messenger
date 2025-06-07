@@ -10,7 +10,7 @@ class CustomAbstractUser(AbstractUser):
     birthday = models.DateField(auto_now_add= True, null = True, blank = True)
     request_friends = models.JSONField(null= True, blank= True)
     signature = models.ImageField(upload_to = "images/", null = True, blank = True)
-    friends = models.ManyToManyField('self', related_name= "friends", symmetrical=True, blank=True)
+    friends = models.ManyToManyField('self', symmetrical=True, blank=True)
 
 class RegistrationCodes(models.Model):
     email = models.EmailField(unique=True)

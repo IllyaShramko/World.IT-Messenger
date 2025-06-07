@@ -320,7 +320,7 @@
 .random-post-profile-images {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     position: relative;
     width: 100%;
     gap: 1vh; 

@@ -167,7 +167,7 @@ addLinkBtn.addEventListener('click', () => {
         });
 
     wrapper.appendChild(input);
+    wrapper.appendChild(confirmBtn);
     linksContainer.appendChild(wrapper);
-    linksContainer.appendChild(confirmBtn);
     input.focus();
 });

@@ -31,12 +31,9 @@
             {% for image in images %}
                 <div class="photo">
                     <img src="{{ image.image.url }}">
-                    <button type="button">
-                        <img src="{% static 'settings_app/images/eye.svg' %}">
-                    </button>
-                    <button id="delete" type="button">
-                        <img src="{% static 'settings_app/images/eye.svg' %}">
-                    </button>
+                    <a href="{% url 'delete_image_post' image.pk %}" id="delete" type="button">
+                        <img src="{% static 'settings_app/images/delete.png' %}">
+                    </a>
                 </div>
             {% endfor %}
         </div>
