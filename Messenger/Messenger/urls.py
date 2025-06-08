@@ -28,7 +28,8 @@ urlpatterns = [
     path('posts/', include('my_posts_app.urls')),
     path('settings/', include('settings_app.urls')),
     path('friends/', include('friends_app.urls')),
-    path('view_user/<int:user_pk>', UsersPostsView.as_view(), name = "view_user")
+    path('view_user/<int:user_pk>', UsersPostsView.as_view(), name = "view_user"),
+    path('chats/', include('chat_app.urls')),
 ]
 
 if settings.DEBUG:

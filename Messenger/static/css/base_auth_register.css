@@ -42,8 +42,9 @@ header img {
 }
 .laptop-phone {
     position: absolute;
-    top: 24vh;
-    right: 20vw;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 18.3vw;
     width: 38vw;
     z-index: 0;
 }
@@ -58,8 +59,9 @@ form{
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 20vh;
-    left: 20vw;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 21.8vw;
     gap: 1.4vw;
     z-index: 1;
 }

@@ -2,14 +2,16 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect, HttpResponse, HttpRequest
 from user_app.models import CustomAbstractUser
-from django.contrib.auth.mixins import LoginRequiredMixin
 from my_posts_app.models import User_Post, Images_Post
+from django.urls import reverse_lazy
 # Create your views here.
 
-class MainPageView(LoginRequiredMixin, View):
+class MainPageView(View):
     template_name = "home_app/home.html"
     
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('login'))
         if request.method == "POST":
             first_name = request.POST.get("name")
             last_name = request.POST.get("lastname")

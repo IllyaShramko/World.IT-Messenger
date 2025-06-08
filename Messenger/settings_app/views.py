@@ -56,7 +56,6 @@ class SettingsView(View):
                     user.username = email
                     user.email = email
                     user.birthday = birthday
-                    user.password = request.POST.get('password')
                     user.save()
                 except:
                     print(Exception)

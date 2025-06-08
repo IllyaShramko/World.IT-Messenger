@@ -13,5 +13,5 @@ class CustomAbstractUser(AbstractUser):
     friends = models.ManyToManyField('self', symmetrical=True, blank=True)
 
 class RegistrationCodes(models.Model):
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=False)
     code = models.CharField(max_length=6)

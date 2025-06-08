@@ -6,9 +6,10 @@
     outline: none;
     border: none;
     cursor: pointer;
-    top: 0.6vh;
-    right: -0.3vw;
+    top: 1.15vh;
+    right: -0.28vw;
 }
+
 .form-inputs {
     position: relative;
     display: flex;
@@ -16,21 +17,21 @@
     justify-content: center;
     align-items: start;
     gap: 0.1vw;
-    
 }
 
 .reg-inputs {
     display: flex;
     flex-direction: column;
-    gap: 1.2vw;
-    
+    gap: 1.1vw;
 }
-.password-confirm-eye, .password-eye {
+
+.password-confirm-eye,
+.password-eye {
     background: none;
     width: 1vw;
     position: absolute;
     right: 1vw;
-    top: 2vh;
+    top: 2.3vh;
 }
 
 .inputs-of-code-numbers {
@@ -41,28 +42,26 @@
     align-items: start;
 }
 
-span{
-    font-size: 30px;
+span {
+    font-size: 1.56vh;
     font-weight: 600;
 }
 
-.two-inputs-of-numbers{
-    height: 50px;
+.two-inputs-of-numbers {
+    height: 2.6vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    gap: 16px;
-
+    gap: 1.5vw; 
 }
 
-.two-inputs-of-numbers input{
-    width: 50px;
-    height: 50px;
+.two-inputs-of-numbers input {
+    width: 4.6vw;  
+    height: 2.6vh; 
     text-align: center;
-    font-size: 16px;
+    font-size: 0.83vh; 
 }
 
-.inputs{
+.inputs {
     width: 100%;
     text-align: center;
     flex-direction: row;
@@ -71,6 +70,6 @@ span{
     align-items: center;
 }
 
-.reg{
+.reg {
     text-decoration: none;
 }

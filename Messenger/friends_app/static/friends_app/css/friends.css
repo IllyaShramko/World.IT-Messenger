@@ -44,6 +44,7 @@
 .friends-requests {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: start;
     width: 100%;
@@ -57,7 +58,7 @@
     align-items: center;
     padding: 1.11vw 0px;
     gap: 1.11vw;
-    width: 20.07vw;
+    width: 19.95vw;
     background: #FFFFFF;
     border: 0.1vw solid #CDCED2;
     border-radius: 0.7vw;

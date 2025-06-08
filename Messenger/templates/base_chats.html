@@ -1,13 +1,13 @@
 {% load static %}
-
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %} {% endblock %}</title>
-        {% block links %}{% endblock %}
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/base_chats.css' %}">
+        {% block links %}
+            
+        {% endblock %}
     </head>
     <body>
         <header>
@@ -82,24 +82,9 @@
                 </form>
             </nav>
         </header>
-            <div class="profile">
-                {% block profile_info %}
-
-                {% endblock %}
-            </div>
-            <div class="scroll-div">
-                {% block content %}
-                
-                {% endblock %}
-            </div>
-        <div class="popups">
-            {% block popups %}
-                
-            {% endblock %}
-        </div>
         
         {% block scripts %}
-        
+            
         {% endblock %}
     </body>
-    </html>
+</html>

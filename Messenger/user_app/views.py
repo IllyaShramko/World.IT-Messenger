@@ -74,18 +74,18 @@ class RegistrationPageView(View):
             if form.is_valid():
                 email = request.COOKIES.get('email')
                 print(email, RegistrationCodes.objects.filter(email=email).exists())
-                if CustomAbstractUser.objects.filter(username=email).exists() == False:
-                    auth_code = RegistrationCodes.objects.get(email=email).code
-                    entered_code = f"{form.cleaned_data['number_of_code1']}{form.cleaned_data['number_of_code2']}{form.cleaned_data['number_of_code3']}{form.cleaned_data['number_of_code4']}{form.cleaned_data['number_of_code5']}{form.cleaned_data['number_of_code6']}"
-                    print(auth_code, entered_code)
-                    if entered_code == auth_code:
-                        password = request.COOKIES.get('password')
-                        print('User Created')
-                        CustomAbstractUser.objects.create_user(username=email, email=email, password=password)
-                        response = HttpResponseRedirect(reverse_lazy("login"))
-                        response.delete_cookie('email')
-                        response.delete_cookie('password')
-                        return response
+                # if CustomAbstractUser.objects.filter(username=email).exists() == :
+                auth_code = RegistrationCodes.objects.filter(email=email).last().code
+                entered_code = f"{form.cleaned_data['number_of_code1']}{form.cleaned_data['number_of_code2']}{form.cleaned_data['number_of_code3']}{form.cleaned_data['number_of_code4']}{form.cleaned_data['number_of_code5']}{form.cleaned_data['number_of_code6']}"
+                print(auth_code, entered_code)
+                if entered_code == auth_code:
+                    password = request.COOKIES.get('password')
+                    print('User Created')
+                    CustomAbstractUser.objects.create_user(username=email, email=email, password=password)
+                    response = HttpResponseRedirect(reverse_lazy("login"))
+                    response.delete_cookie('email')
+                    response.delete_cookie('password')
+                    return response
 class AuthPageView(LoginView):
     template_name = "user_app/login.html"           
     authentication_form = EmailLoginForm
