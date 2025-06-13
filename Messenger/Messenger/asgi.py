@@ -11,7 +11,9 @@ import os
 
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
-# from chat_app.routing import ws_urlpatterns
+from chat_app.routing import ws_urlpatterns
+from channels.auth import AuthMiddlewareStack
+
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Messenger.settings')
@@ -20,7 +22,9 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Messenger.settings')
 application = ProtocolTypeRouter({
     # Налаштування запиту http (якщо тип запиту http, то перенаправити на urls.py)
     "http": get_asgi_application(),
-    # Налаштування запиту websocket (якщо тип запиту по websocket, то перенаправити на routing.py)
-    # "websocket": URLRouter(ws_urlpatterns)
+    
+    "websocket": AuthMiddlewareStack( 
+        URLRouter(ws_urlpatterns)
+    )
 })
 

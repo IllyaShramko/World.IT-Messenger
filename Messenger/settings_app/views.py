@@ -179,3 +179,25 @@ def edit_album(request, album_pk):
         "album_pk": album_pk,
         "date": f"{album.date}"
     })
+
+def edit_private_album(request, album_pk):
+    album = Album.objects.get(pk= album_pk)
+    text= ""
+    print(1)
+    if request.user == album.author:
+        print(1)
+        if album.publish:
+            print(1)
+            text = "Цей альбом бачите тільки ви"
+        else:
+            print(1)
+            text = "Зробити приватним"
+        album.publish = not album.publish
+        album.save()
+
+    
+    print(1)
+    return JsonResponse({
+        "text": text,
+        "publish": album.publish
+    })

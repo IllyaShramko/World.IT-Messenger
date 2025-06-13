@@ -52,12 +52,12 @@
                 {% endif %}
 
                 {% if page == "chats" %}
-                    <a href="{% url 'login' %}" class = "selected">
+                    <a href="{% url 'all_chats' %}" class = "selected">
                         <img src="{% static 'images/chats.svg' %}">
                         <p>Чати</p>
                     </a>
                 {% else %}
-                    <a href="{% url 'login' %}">
+                    <a href="{% url 'all_chats' %}">
                         <img src="{% static 'images/chats.svg' %}">
                         <p>Чати</p>
                     </a>

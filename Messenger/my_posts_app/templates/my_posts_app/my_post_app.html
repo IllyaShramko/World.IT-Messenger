@@ -133,11 +133,20 @@
     </div>
     <div class="input-tags">
         <div class="tagsdiv" id="tagsContainer">
-
+            <span class="tag">#відпочинок</span>
+            <span class="tag">#натхнення</span>
+            <span class="tag">#життя</span>
+            <span class="tag">#природа</span>
+            <span class="tag">#читання</span>
+            <span class="tag">#спокій</span>
+            <span class="tag">#гармонія</span>
+            <span class="tag">#музика</span>
+            <span class="tag">#фільми</span>
+            <span class="tag">#подорожі</span>
+            <button type="button" id="addTagBtn">
+                <img src="{% static 'my_post_app/images/plus.png' %}">
+            </button>
         </div>
-        <button type="button" id="addTagBtn">
-            <img src="{% static 'my_post_app/images/plus.png' %}">
-        </button>
         <input type="hidden" name="tags" id="tags" value="">
     </div>
     <div class="inputs-div">
@@ -146,7 +155,6 @@
     <div class="inputs-div">
         <p>Посилання:</p>
         <div id="linksdiv" class="linksdiv">
-
         </div>
         <button class="add-link" type="button" id="addLinkBtn">
             <img src="{% static 'my_post_app/images/plus.png' %}">

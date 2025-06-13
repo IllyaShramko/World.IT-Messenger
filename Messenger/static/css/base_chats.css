@@ -23,10 +23,9 @@
     font-family: GT Walsheim Pro;
     font-weight: 400;
 }
-::-webkit-scrollbar {
-    display: none;
-}
 body {
+    display: flex;
+    flex-direction: row;
     overflow-y: none;
     overflow-x: none;
 }
@@ -124,4 +123,227 @@ body {
     background-color: #FAF8FF;
     display: flex;
     justify-content: center;
+}
+
+.chat-app{
+    position: absolute;
+    right: 12.52vw;
+    width: 75vw;
+    height: 80vh;
+    top: 9.6vh;
+    left: 12.52vw;
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+}
+
+.all-contacts-create-group-chat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20vw;
+    gap: 1.5vw;
+    height: 100%;
+}
+
+.create-group-chat {
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-group-chat button{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #543C52;
+    border-radius: 5vw;
+    cursor: pointer;
+    border: none;
+    padding: 0.5vw; 
+    gap: 0.5vw;
+    
+}
+
+.create-group-chat button img{
+    width: 1.39vw;    
+
+}   
+
+.create-group-chat button p{
+    color: white;
+    font-weight: 500;
+    font-size: 0.85vw;
+    letter-spacing: -0.6%;    
+}
+
+.all-contacts{
+    position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: #CDCED2 0.1vw solid;
+    border-radius: 0.5vw;
+    padding: 16px;
+    gap: 24px;
+}
+
+.header-contacts{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+}
+
+.header-contacts h2{
+    font-family: 'GT Walsheim Pro', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2vw;
+    color: #81818D;
+}
+.header-contacts img{
+    width: 1.15vw;
+    height: 1.15vw;
+}
+
+.contacts-list{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    gap: 16px;
+    overflow-y: auto;
+
+}   
+
+.contacts-list::-webkit-scrollbar {
+    background-color: #E9E5EE;
+    width: 0.5vw;
+    border-radius: 0.5vw;
+}
+.contacts-list::-webkit-scrollbar-thumb {
+    background-color: #543C52;
+    border-radius: 0.5vw;
+}
+
+.contact{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    background-color: #FFFFFF;
+    border: none;
+}
+
+.contact img{
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+}
+
+.contact p{
+    font-family: 'GT Walsheim Pro', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.9vw;
+    color: #060A1D;
+}
+.search {
+    width: 100%;
+    height: fit-content;
+    padding: 10px 16px;
+    gap: 0.65vw;
+    border: #CDCED2 0.1vw solid;
+    border-radius: 0.5vw;
+    display: flex;
+    align-items: center;
+}
+.search button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 1.2vw;
+    height: 1.2vw;
+}
+.search button img{
+    width: 100%;
+    height: 100%;
+}
+.search input {
+    width: 90%;
+    height: 100%;
+    border: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.7%;
+    outline: none;
+}
+
+.chat-with-users {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 33vw;
+    height: 100%;
+    background-color: #ffffff;
+    background: #FFFFFF;
+    border: 0.069vw solid #CDCED2;
+    border-radius: 0.96vw;
+}
+
+.no-chat {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.67vw;
+    text-align: center;
+    color: #060A1D;
+}
+
+.no-chat-buttom {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.16vw;
+    text-align: center;
+    color: #060A1D;
+}
+/* 24 */
+.messages-and-groups {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 0.7vw;
+}
+
+.messages-and-groups div {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.16vw 0px;
+    gap: 1.67vw;
+    height: 45vh;
+    width: 20vw;
+    background: #FFFFFF;
+    border: 0.069vw solid #CDCED2;
+    border-radius: 0.96vw;
 }

@@ -90,13 +90,15 @@ addTagBtn.addEventListener('click', () => {
         if (e.key === 'Enter') {
             e.preventDefault();
             confirmBtn.click();
+            tagsContainer.appendChild(addTagBtn);
         } else if (e.key === 'Escape') {
             wrapper.remove();
             confirmBtn.remove();
+            tagsContainer.appendChild(addTagBtn);
         }
         });
 
-
+    addTagBtn.remove();
     wrapper.appendChild(hash);
     wrapper.appendChild(input);
     tagsContainer.appendChild(wrapper);

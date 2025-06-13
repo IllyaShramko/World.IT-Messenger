@@ -44,9 +44,13 @@
                 <img class="dots-img" src="{% static 'images/Dots.svg' %}">
             </button>
             <div class="modal-del-edit" id="modal-del-edit">
-                <button value="">
+                <button value="{% url 'album_private' album.pk %}" class="privateButton" id="privateButton">
                     <img src="{% static 'settings_app/images/eye black.png' %}" alt="delete">
-                    <p>Цей альбом бачите тільки ви</p>
+                    {% if album.publish %}
+                        <p id="private">Цей альбом бачите тільки ви</p>
+                    {% else %}
+                        <p id="private">Зробити публічним</p>
+                    {% endif %}
                 </button>
                 <button value="{% url 'edit_album' album.pk %}" class="editButton" id="editButton">
                     <img src="{% static 'settings_app/images/edit.png' %}" alt="delete">
@@ -134,6 +138,7 @@
 {% block scripts %}
     <script src="{% static 'settings_app/js/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'settings_app/js/album.js' %}"></script>
+    <script src="{% static 'settings_app/js/changePrivate.js' %}"></script>
     <script src="{% static 'settings_app/js/edit_album.js' %}"></script>
     <script src="{% static 'settings_app/js/modal_window_open_close.js' %}"></script>
 {% endblock %}

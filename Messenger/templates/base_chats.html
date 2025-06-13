@@ -82,6 +82,57 @@
                 </form>
             </nav>
         </header>
+        <div class="chat-app">
+            <div class="all-contacts-create-group-chat">
+                <form class="create-group-chat" method="post">
+                    {% csrf_token %}
+                    <button>
+                        <img src="{% static 'images/plus.png' %}">
+                        <p>Створити груповий чат</p>
+                    </button>
+                </form>
+                <div class="all-contacts">
+                    <div class="header-contacts">
+                        <img src="{% static 'images/people.png' %}">
+                        <h2>
+                            Контакти
+                        </h2>
+                    </div>
+                    <div class="search">
+                        <button type="submit">
+                            <img src="{% static 'images/search.png' %}">
+                        </button>
+                        <input type="text" placeholder="Пошук контактів">
+                    </div>
+                    <div class="contacts-list">
+                        {% for contact in contacts %}
+                            <button class="contact" value="contactOpen" type="submit" name="button">
+                                <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
+                                <p>{{ contact.first_name }} {{ contact.last_name }}</p>
+                            </button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="chat-with-users">
+                {% if chat %}
+                    {% block content %}
+
+                    {% endblock %}
+                {% else %}
+                    <p class="no-chat">Почніть нове спілкування</p>
+                    <p class="no-chat-buttom">Оберіть контакт зі списку ліворуч<br> або створіть групу, щоб почати спілкування</p>
+                {% endif %}
+            </div>
+            <div class="messages-and-groups">
+                <div>
+
+                </div>
+                <div>
+                    
+                </div>
+            </div>
+        </div>
         
         {% block scripts %}
             

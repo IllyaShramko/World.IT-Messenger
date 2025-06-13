@@ -60,7 +60,18 @@ class MyPostsView(ListView):
                 post.views = 0
                 text = form.cleaned_data["text"]
                 post.text = text[0]
+
                 post.tags = request.POST.get("tags").split(",")
+                post.tags.append("відпочинок")
+                post.tags.append("натхнення")
+                post.tags.append("життя")
+                post.tags.append("природа")
+                post.tags.append("читання")
+                post.tags.append("спокій")
+                post.tags.append("гармонія")
+                post.tags.append("музика")
+                post.tags.append("фільми")
+                post.tags.append("подорожі")
                 post.links = request.POST.get("links").split(",")
                 post.save()
                 print("картинки:", images)

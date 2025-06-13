@@ -10,7 +10,21 @@
 {% endblock %}
 <!--  -->
 {% block content %}
-    
+    <input type="hidden" id="groupPk" value="1">
+    <div id="messages">
+        {% for message in messages_history %}
+            <div>
+                <p><b>{{ message.author }}: </b>{{ message.content }} (<span class="iso-date-time">{{ message.date_time.isoformat }}</span>)</p>
+                <i>Переглядів: {{ message.view_by_users.all|length }}</i>
+            </div>
+        {% endfor %}
+    </div>
+    <form action="" id="message">
+        {% csrf_token %}
+        <input type="text" id="messageInput" name="message">
+        <button>Send</button>
+    </form>
+
 {% endblock %}
 <!--  -->
 {% block scripts %}

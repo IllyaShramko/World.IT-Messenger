@@ -44,29 +44,31 @@
         </form>
     </div>
     {% if album %}
-        <div class="albums">
-            <div class="upper-div">
-                <h2>
-                    <img src="{% static 'my_post_app/images/image.svg' %}">
-                    Альбоми
-                </h2>
-                <p>Дивитись всі</p>
-            </div>
-            <div class="album">
-                <div class="information">
-                    <h1>{{ album.title }}</h1>
-                    <div class="sub-date">
-                        <h3>{{ album.subtitle }}</h3>
-                        <h4>{{ album.date }}</h4>
-                    </div> 
-                    <div class="images">
-                        {% for img in album_images %}
-                            <img src="{{ img.image.url }}" style="z-index: 10;">
-                        {% endfor %}
+        {% if album.publish %}
+            <div class="albums">
+                <div class="upper-div">
+                    <h2>
+                        <img src="{% static 'my_post_app/images/image.svg' %}">
+                        Альбоми
+                    </h2>
+                    <p>Дивитись всі</p>
+                </div>
+                <div class="album">
+                    <div class="information">
+                        <h1>{{ album.title }}</h1>
+                        <div class="sub-date">
+                            <h3>{{ album.subtitle }}</h3>
+                            <h4>{{ album.date }}</h4>
+                        </div> 
+                        <div class="images">
+                            {% for img in album_images %}
+                                <img src="{{ img.image.url }}" style="z-index: 10;">
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
