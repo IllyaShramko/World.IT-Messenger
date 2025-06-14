@@ -308,6 +308,20 @@ body {
     border-radius: 0.96vw;
 }
 
+.chat-with-users-chat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    width: 33vw;
+    height: 100%;
+    background-color: #ffffff;
+    background: #FFFFFF;
+    border: 0.069vw solid #CDCED2;
+    padding: 1vw;
+    border-radius: 0.96vw;
+}
+
 .no-chat {
     font-family: 'GT Walsheim Pro';
     font-style: normal;
@@ -334,7 +348,7 @@ body {
     gap: 0.7vw;
 }
 
-.messages-and-groups div {
+.messages-and-groups-inside {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -346,4 +360,44 @@ body {
     background: #FFFFFF;
     border: 0.069vw solid #CDCED2;
     border-radius: 0.96vw;
+}
+
+.messages-groups-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 1vw;
+    gap: 1.56vw;
+    width: 100%;
+}
+
+.messages-groups-header div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.messages-and-groups-link {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.96vw;
+    text-align: center;
+    color: #583B53;
+}
+
+.messages-groups-header div p {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.1vw;
+    text-align: center;
+    color: #81818E;
+    text-wrap: none;
+}
+
+.messages-groups-header div img {
+    width: 1.1vw;
+    height: 1.1vw;
 }

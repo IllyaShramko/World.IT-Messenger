@@ -18,19 +18,19 @@
                 <div class="profile-status"></div>
             </div>
             <p class="me-name">{{ request.user.first_name }} {{ request.user.last_name }}</p>
-            <p class="me-tag">{{ tag_name }}</p>
+            <p class="me-tag">{{ request.user.tag_name }}</p>
         </div>
         <div class="me-info">
             <div>
-                <p>566</p>
+                <p>{{ posts_count }}</p>
                 <h1>Дописи</h1>
             </div>
             <div class="me-info-center">
-                <p>12.1K</p>
+                <p>{{ viewers }}</p>
                 <h1>Читачі</h1>
             </div>
             <div>
-                <p>222</p>
+                <p>{{ friends_count }}</p>
                 <h1>Друзі</h1>
             </div>
         </div>
@@ -135,9 +135,9 @@
                 <button type="button" id="smile" class="post-smile">
                     <img src="{% static 'images/emodji.svg' %}">
                 </button>
-                <a href="{% url 'my_posts' %}" type="button" class="post-send">
+                <button name="button" value="startform" class="post-send">
                     Перейти до оформлення
-                </a>
+                </button>
             </div>
         </form>
         {% for post in posts_list %}
@@ -165,7 +165,7 @@
                     
                     {% if post.links  %}
                         {% for link in post.links %}
-                            <a href="{{ link }}" class="link">
+                            <a href="{{ link }}" class="linka">
                                 {{ link }}
                             </a>
                         {% endfor %}
@@ -215,5 +215,83 @@
             </div>
             <button class="continue">Продовжити</button>
         </form>
+    {% elif popup %}
+        <div class="bg-popup"></div>
+        <form method="post" class="form-popup" enctype="multipart/form-data" action="{% url 'my_posts' %}">
+            {% csrf_token %}
+            <a href="">
+                <img src="{% static 'my_post_app/images/cancel.png' %}">
+            </a>
+            <h1>Створення публікації</h1>
+            <div class="inputs-div">
+                <p>{{ form.title.label }}</p>
+                {{ form.title }}
+            </div>
+            <div class="inputs-div">
+                <p>{{ form.topic.label }}</p>
+                {{ form.topic }}
+            </div>
+            <div class="input-tags">
+                <div class="tagsdiv" id="tagsContainer">
+                    <span class="tag">#відпочинок</span>
+                    <span class="tag">#натхнення</span>
+                    <span class="tag">#життя</span>
+                    <span class="tag">#природа</span>
+                    <span class="tag">#читання</span>
+                    <span class="tag">#спокій</span>
+                    <span class="tag">#гармонія</span>
+                    <span class="tag">#музика</span>
+                    <span class="tag">#фільми</span>
+                    <span class="tag">#подорожі</span>
+                    <button type="button" id="addTagBtn">
+                        <img src="{% static 'my_post_app/images/plus.png' %}">
+                    </button>
+                </div>
+                <input type="hidden" name="tags" id="tags" value="">
+            </div>
+            <div class="inputs-div">
+                <textarea name="text" id="text">
+
+                   
+                </textarea>
+            </div>
+            <div class="inputs-div">
+                <p>Посилання:</p>
+                <div id="linksdiv" class="linksdiv">
+                </div>
+                <button class="add-link" type="button" id="addLinkBtn">
+                    <img src="{% static 'my_post_app/images/plus.png' %}">
+                </button>
+                <input type="hidden" name="links" id="links" value="">
+            </div>
+            <div class="modal-images">
+                
+            </div>
+            <div class="submit-div">
+                <div class="images-div">
+                    <label for="images">
+                        <img src="{% static 'my_post_app/images/image.svg' %}">
+                    </label>
+                    <input type="file" name="images" id="images" class="images" multiple>
+                </div>
+                {% if post_modal == "create" %}
+                    <button class="create-post" type="submit" name="button" value="submitFormCreate">
+                        Публікація
+                        <img src="{% static 'my_post_app/images/create-post.png' %}">
+                    </button>
+                {% else %}
+                    <input type="hidden" name="post_pk" value="{{ post_pk }}">
+                    <button class="edit-post" type="submit" name="button" value="submitFormEdit">
+                        Публікація
+                        <img src="{% static 'my_post_app/images/create-post.png' %}">
+                    </button>
+                {% endif %}
+            </div>
+            </form>
     {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'my_post_app/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'my_post_app/js/images_form.js' %}"></script>
 {% endblock %}

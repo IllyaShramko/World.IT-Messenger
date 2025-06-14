@@ -26,6 +26,27 @@
     </form>
 
 {% endblock %}
+
+{% block messages %}
+    <div class="right-side-menu-content">
+        {% for contact in request.user.friends.all %}
+            <a class="contact" value="contactOpen" type="submit" name="button" href="">
+                <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
+                <div class="message-content">
+                    <div>
+                        <p>{{ contact.first_name }} {{ contact.last_name }}</p>
+                        <h2 class="message-time">1939</h2>
+                    </div>
+                    <h2 class="message-text">Привіт пупсик</h2>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block groups %}
+
+{% endblock %}
 <!--  -->
 {% block scripts %}
     <script src="{% static 'chat_app/js/chats.js' %}"></script>

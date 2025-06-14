@@ -1,7 +1,11 @@
 const blockImages = document.querySelector('.modal-images');
 const inputImages = document.getElementsByName("images")[0];
 
+
 let selectedFiles = [];
+
+
+
 
 inputImages.addEventListener('change', function (event) {
     const files = Array.from(event.target.files);
@@ -55,6 +59,8 @@ inputImages.addEventListener('change', function (event) {
 const addTagBtn = document.getElementById('addTagBtn');
 const tagsContainer = document.getElementById('tagsContainer');
 const hiddenInput = document.getElementById('tags');
+const inputText = document.getElementById('text')
+
 let tags = [];
 addTagBtn.addEventListener('click', () => {
     if (document.getElementById('tagInput')) return;
@@ -84,19 +90,21 @@ addTagBtn.addEventListener('click', () => {
         }
         wrapper.remove();
         confirmBtn.remove();
+        tagsContainer.appendChild(addTagBtn);
     });
 
-        input.addEventListener('keydown', (e) => {
+    input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
             confirmBtn.click();
             tagsContainer.appendChild(addTagBtn);
+            
         } else if (e.key === 'Escape') {
             wrapper.remove();
             confirmBtn.remove();
             tagsContainer.appendChild(addTagBtn);
         }
-        });
+    });
 
     addTagBtn.remove();
     wrapper.appendChild(hash);
@@ -110,6 +118,13 @@ function renderTag(tag) {
     const span = document.createElement('span');
     span.className = 'tag';
     span.textContent = `#${tag}`;
+    span.addEventListener('click', () => {
+        
+        let text = inputText.value
+        let splitedText = text.split('#')[0];
+        console.log(splitedText)
+        inputText.value = `${splitedText}\n#${tag}`
+    });
     tagsContainer.appendChild(span);
 }
 

@@ -25,6 +25,10 @@ class MyPostsView(ListView):
         context["popup"] = False
         context['page'] = "my_posts"
         context['images'] = Images_Post.objects.all()
+        context["viewers"] = self.request.user.viewers
+        print(self.request.user.viewers)
+        context["friends_count"] = self.request.user.friends.count()
+        context["posts_count"] = User_Post.objects.filter(user=self.request.user).count()
         return context
     
     def post(self, request: HttpRequest):
@@ -47,7 +51,10 @@ class MyPostsView(ListView):
                     "post_modal": "create",
                     "page": "my_posts",
                     "images": Images_Post.objects.all(),
-                    "my_posts": User_Post.objects.filter(user= request.user)
+                    "my_posts": User_Post.objects.filter(user= request.user),
+                    "viewers": request.user.viewers,
+                    "friends_count": request.user.friends.count(),
+                    "posts_count": User_Post.objects.filter(user = request.user).count(),
                 }
             )
         elif button=="submitFormCreate":
@@ -91,7 +98,10 @@ class MyPostsView(ListView):
                     "popup": False,
                     "page": "my_posts",
                     "images": Images_Post.objects.all(),
-                    "my_posts": User_Post.objects.filter(user= request.user)
+                    "my_posts": User_Post.objects.filter(user= request.user),
+                    "viewers": request.user.viewers,
+                    "friends_count": request.user.friends.count(),
+                    "posts_count": User_Post.objects.filter(user = request.user).count(),
                     }
             )
         elif button =="submitFormEdit":
@@ -128,7 +138,10 @@ class MyPostsView(ListView):
                     "popup": False,
                     "page": "my_posts",
                     "images": Images_Post.objects.all(),
-                    "my_posts": User_Post.objects.filter(user= request.user)
+                    "my_posts": User_Post.objects.filter(user= request.user),
+                    "viewers": request.user.viewers,
+                    "friends_count": request.user.friends.count(),
+                    "posts_count": User_Post.objects.filter(user = request.user).count(),
                     }
             )    
                 

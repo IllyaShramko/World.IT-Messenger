@@ -50,5 +50,8 @@ class PostForm(forms.ModelForm):
             }),
             "topic": forms.TextInput(attrs={
                 "placeholder": "Напишіть тему публікаціїї"
-            })
+            }),
+            "text": forms.Textarea(attrs={
+                "id": "text"
+            }),
         }

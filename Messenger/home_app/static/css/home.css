@@ -91,6 +91,7 @@
     width: 60%;
     height: 60%;
 }
+
 /*  */
 .bg-popup {
     position: fixed;
@@ -136,20 +137,6 @@
     flex-direction: column;
     gap: 6px;
 }
-
-.form-popup div input {
-    width: 345px;
-    height: 42px;
-    padding: 16px 10px 16px 10px;
-    font-family: GT Walsheim Pro, sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: -0.7%;
-    border: #81818D 1px solid;
-    border-radius: 10px;
-}
-
 .form-popup div textarea{
     resize: none;
     width: 100%;
@@ -529,3 +516,284 @@
 
 
 
+
+.tagsdiv {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2vw;
+}
+
+.link-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+}
+.preview-delete-img {
+    position: absolute;
+    display: flex;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: #543C52 1px solid;
+    border-radius: 45px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.87vw;
+    color: #583B53;
+    width: 345px;
+    height: 42px;
+    padding: 16px 10px 16px 10px;
+    font-family: GT Walsheim Pro, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.7%;
+    border: #81818D 1px solid;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.linka {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.87vw;
+    color: #583B53;
+}
+
+.avatar{
+    width: 3vw;
+}
+
+.input-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6vw;
+}
+.input-tags button{
+    width: 1.3vw;
+    height: 1.3vw;
+    border: 0.1vw solid #543C52;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2vw;
+    border-radius: 10vw;
+}
+.input-tags button img {
+    width: 100%;
+    height: 100%;
+}
+.tagsdiv {
+    display: flex;
+    align-items: center;
+}
+.tag {
+    display: inline-block;
+    background-color: #ede9f3;
+    color: #4b4b4b;
+    padding: 6px 12px;
+    border-radius: 0.3vw;
+    margin: 4px;
+    font-size: 0.9vw;
+    cursor: pointer;
+}
+.tag-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 0.1vw solid #000000;
+    border-radius: 0.1vw;
+    padding: 0.3vw 0.6vw;
+    margin: 0.3vw;
+}
+.tag-input-wrapper span {
+    color: #353535;
+    margin-right: 0.4vw;
+    font-size: 1vw;
+    font-weight: bold;
+}
+.tag-input-wrapper input {
+    border: none;
+    outline: none;
+    font-size: 0.85vw;
+    flex-grow: 1;
+}
+.linksdiv {
+    display: flex;
+    flex-direction: column;
+}
+.add-link {
+    width: 1.3vw;
+    height: 1.3vw;
+    border: 0.1vw solid #543C52;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2vw;
+    border-radius: 10vw;
+}
+.add-link img {
+    width: 0.7vw;
+}
+.confirm {
+    width: 1.3vw;
+    height: 1.3vw;
+    border: 0.1vw solid #543C52;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2vw;
+    border-radius: 10vw;
+}
+.confirm img {
+    
+    width: 0.7vw;
+}
+/*  */
+.bg-popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.5;
+    z-index: 5;
+}
+.form-popup{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 41vw;
+    min-height: 32.5vw;
+    max-height: 45vw;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9vw;
+    padding: 2.29vw;
+    background-color: white;
+    border-radius: 1vw;
+    z-index: 6;
+}
+
+.form-popup h1 {
+    font-family: GT Walsheim Pro, sans-serif;
+    font-weight: 500;
+    font-size: 1.8vw;
+    line-height: 100%;
+    letter-spacing: -1%;
+}
+
+.form-popup a {
+    position: absolute;
+    right: 2vw;
+    top: 1vw;
+}
+
+.inputs-div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+}
+.inputs-div p {
+    font-size: 0.9vw;
+}
+.inputs-div input {
+    width: 18vw;
+    height: 2.3vw;
+    padding: 0.8vw 0.7vw;
+    font-family: GT Walsheim Pro, sans-serif;
+    font-weight: 400;
+    font-size: 0.95vw;
+    letter-spacing: -0.7%;
+    border: #81818D 0.1vw solid;
+    border-radius: 0.7vw;
+}
+
+.inputs-div textarea{
+    resize: none;
+    width: 100%;
+    height: 7vw;
+    padding: 0.9vw;
+    font-family: GT Walsheim Pro;
+    font-weight: 400;
+    font-size: 0.9vw;
+    line-height: 100%;
+    letter-spacing: 0%;
+    border: #81818D 0.1vw solid;
+    border-radius: 0.7vw;
+}
+
+.submit-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.9vw;
+    cursor: pointer;
+}
+.submit-div div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.1vw;
+    height: 2.1vw;
+    border: #543C52 0.1vw solid ;
+    border-radius: 15vw;
+    cursor: pointer;
+}
+.submit-div div label img {
+    width: 1.1vw;
+}
+
+.submit-div div input {
+    width: 100%;
+    height: 100%;
+    border-radius: 190px;
+    border: none;
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+
+.submit-div button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.6vw 0.9vw;
+    gap: 0.55vw;
+    font-family: GT Walsheim Pro;
+    font-weight: 500;
+    font-size: 0.8vw;
+    letter-spacing: -0.6%;
+    background-color: #543C52;
+    cursor: pointer;
+    color: #FFFFFF;
+    border-radius: 2vh;
+    border: none;
+}
+.submit-div button img {
+    width: 1.1vw;
+}
+.tag-input-wrapper input {
+    border: none;
+    outline: none;
+    font-size: 0.85vw;
+    flex-grow: 1;
+}

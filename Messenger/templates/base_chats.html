@@ -105,31 +105,51 @@
                         <input type="text" placeholder="Пошук контактів">
                     </div>
                     <div class="contacts-list">
-                        {% for contact in contacts %}
-                            <button class="contact" value="contactOpen" type="submit" name="button">
+                        {% for contact in request.user.friends.all %}
+                            <a class="contact" value="contactOpen" type="submit" name="button" href="">
                                 <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
                                 <p>{{ contact.first_name }} {{ contact.last_name }}</p>
-                            </button>
+                            </a>
                         {% endfor %}
                     </div>
                 </div>
             </div>
-            <div class="chat-with-users">
-                {% if chat %}
+            {% if chat %}
+                <div class="chat-with-users-chat">
                     {% block content %}
-
+                    
                     {% endblock %}
-                {% else %}
+                </div>
+            {% else %}
+                <div class="chat-with-users">
                     <p class="no-chat">Почніть нове спілкування</p>
                     <p class="no-chat-buttom">Оберіть контакт зі списку ліворуч<br> або створіть групу, щоб почати спілкування</p>
-                {% endif %}
-            </div>
-            <div class="messages-and-groups">
-                <div>
-
                 </div>
-                <div>
-                    
+            {% endif %}
+            <div class="messages-and-groups">
+                <div class="messages-and-groups-inside">
+                    <div class="messages-groups-header">
+                        <div>
+                            <img src="{% static 'images/chats.svg' %}">
+                            <p>Повідомлення</p>
+                        </div>
+                        <a class="messages-and-groups-link" href="">Дивитись всі</a>
+                    </div>
+                    {% block messages %}
+
+                    {% endblock %}
+                </div>
+                <div class="messages-and-groups-inside">
+                    <div class="messages-groups-header">
+                        <div>
+                            <img src="{% static 'images/chats.svg' %}">
+                            <p>Групові чати</p>
+                        </div>
+                        <a class="messages-and-groups-link" href="">Дивитись всі</a>
+                    </div>
+                    {% block groups %}
+
+                    {% endblock %}
                 </div>
             </div>
         </div>
