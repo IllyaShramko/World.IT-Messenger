@@ -41,7 +41,7 @@
 {% block messages %}
     <div class="right-side-menu-content">
         {% for contact in request.user.friends.all %}
-            <a class="contact" value="contactOpen" type="submit" name="button" href="">
+            <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'contacts' %}">
                 <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
                 <div class="message-content">
                     <div>
