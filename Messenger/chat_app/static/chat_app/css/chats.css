@@ -40,3 +40,55 @@
     font-size: 0.86vw;
     color: #060A1D;
 }
+
+.chat-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: end;
+    align-items: center;
+}
+
+.send-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.send-form-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.52vw;
+    gap: 0.52vw;
+    width: 2.08vw;
+    height: 2.08vw;
+    background: #583B53;
+    border: 0.052vw solid #583B53;
+    border-radius: 9.90vw;
+}
+
+.send-form-button img {
+    width: 1.04vw;
+    height: 1.04vw;
+}
+
+.send-form-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 0.31vw;
+    width: 18.33vw;
+    height: 2.19vw;
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.83vw;
+    color: #81818E;
+}
+
+.chat-header {
+    display: flex;
+    flex-direction: row;
+}
