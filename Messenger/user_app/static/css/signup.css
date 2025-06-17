@@ -44,21 +44,20 @@
 
 span {
     font-size: 1.56vh;
-    font-weight: 600;
+    font-weight: 600;   
 }
 
 .two-inputs-of-numbers {
-    height: 2.6vh;
     display: flex;
     flex-direction: row;
-    gap: 1.5vw; 
+    gap: 1vw; 
 }
 
 .two-inputs-of-numbers input {
-    width: 4.6vw;  
-    height: 2.6vh; 
+    width: 2.8vw;  
+    height: 2.8vw; 
     text-align: center;
-    font-size: 0.83vh; 
+    font-size: 2vh; 
 }
 
 .inputs {

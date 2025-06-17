@@ -1,49 +1,42 @@
 from django.shortcuts import render
 from django.views import View
-from user_app.models import CustomAbstractUser
-from my_posts_app.models import Images_Post
-from .models import Album
+from user_app.models import Profile, Avatar
+from my_posts_app.models import Image, Album
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
-from .models import AlbumImage
 # Create your views here.
 
 class SettingsView(View):
 
     def dispatch(self, request, *args, **kwargs):
+        profile = Profile.objects.get(user = request.user)
         if request.method == "GET":
-            if request.user.last_name == "":
-                print(1)
-                return render(
-                    request,
-                    "settings_app/settings.html",
-                    {
-                        "profile": request.user,
-                        "birthday": request.user.birthday,
-                        "page":"settings"
-                    }
-                )
-            else:
-                print(0)
-                return render(
-                    request, 
-                    "settings_app/settings.html",
-                    {
-                        "profile": request.user,
-                        "birthday": f"{request.user.birthday}",
-                        "tag_name": request.user.tag_name,
-                        "page":"settings"
-                    }
-                )
+        
+            print(Avatar.objects.filter(profile = profile).filter(active = True).first())
+            return render(
+                request, 
+                "settings_app/settings.html",
+                {
+                    "profile": request.user,
+                    "birthday": f"{Profile.objects.get(user = request.user)}",
+                    "tag_name": f"@{profile.tag_name}",
+                    "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                    "page":"settings"
+                }
+            )
         else:
             button = request.POST.get("button")
             if button == "change-avatar-save":
                 avatar = request.FILES.get("avatar")
                 print(avatar)
                 if avatar:
-                    request.user.avatar = avatar
-                    request.user.save()
+                    Avatar.objects.filter(profile = profile).delete()
+                    Avatar.objects.create(
+                        image = avatar,
+                        profile = profile
+                    )
+                    
             else:
                 name = request.POST.get("name")
                 last_name = request.POST.get("surname")
@@ -64,15 +57,15 @@ class SettingsView(View):
                 "settings_app/settings.html",
                 {
                     "profile": request.user,
-                    "birthday": f"{request.user.birthday}",
-                    "tag_name": request.user.tag_name,
+                    "birthday": f"{Profile.objects.get(user = request.user)}",
+                    "tag_name": "@Krytuoi",
                     "page":"settings"
                 }
             )
 
 class AlbumsSettingsView(View):
     def dispatch(self, request, *args, **kwargs):
-        images = Images_Post.objects.filter(author_id = request.user.id)
+        # images = Image.objects.filter(author_id = request.user.id)
         if request.method == "POST":
             button = request.POST.get("button")
             if button == "album_create_1":
@@ -80,7 +73,7 @@ class AlbumsSettingsView(View):
                     request,
                     "settings_app/album.html",
                     context = {
-                        "images": images,
+                        # "images": images,
                         "popup": True,
                         "page": "settings"
                     }
@@ -91,16 +84,15 @@ class AlbumsSettingsView(View):
                 date = request.POST.get("date")
                 print(date)
                 album= Album.objects.create(
-                    title = title,
-                    subtitle = subtitle,
-                    author = request.user,
-                    date = date
+                    name = title,
+                    # author = Profile.objects.get(user= request.user),
+                    # date = date
                 )
                 return render(
                     request,
                     "settings_app/album.html",
                     context = {
-                        "images": images,
+                        # "images": images,
                         "popup": False,
                         'album': album,
                         "page": "settings"
@@ -116,12 +108,12 @@ class AlbumsSettingsView(View):
                 album.subtitle = subtitle
                 album.date = date
                 album.save()
-                album_images = AlbumImage.objects.filter(album_id = album.id)
+                album_images = Image.objects.filter(album_id = album.id)
                 return render(
                     request,
                     "settings_app/album.html",
                     context = {
-                        "images": images,
+                        # "images": images,
                         "popup": False,
                         'album': album,
                         "album_images": album_images,
@@ -134,14 +126,14 @@ class AlbumsSettingsView(View):
             album_images = None
             try:
                 album = Album.objects.filter(author_id = request.user.id).first()
-                album_images = AlbumImage.objects.filter(album_id = album.id)
+                album_images = Image.objects.filter(album_id = album.id)
             except:
                 print(Exception)
             return render(
                 request,
                 "settings_app/album.html",
                 context = {
-                    "images": images,
+                    # "images": images,
                     'album': album,
                     "page": "settings",
                     "album_images": album_images,
@@ -155,11 +147,11 @@ def upload_images(request):
         album = Album.objects.get(pk = request.POST.get("album_id"))
         images = request.FILES.getlist('images')
         for img in images:
-            AlbumImage.objects.create(album=album, image=img)
+            Image.objects.create(album=album, image=img)
         return JsonResponse({'status': 'ok', 'album_id': album.id})
 
 def delete_image(request, img_pk):
-    image = AlbumImage.objects.get(pk = img_pk)
+    image = Image.objects.get(pk = img_pk)
     image.delete()
     return HttpResponseRedirect(reverse_lazy("albums"))
 

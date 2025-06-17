@@ -4,8 +4,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import get_user_model
 from django import forms
-from .models import CustomAbstractUser
-
 
 class RegistrationForm(UserCreationForm):
     username = forms.CharField(required= False, widget= forms.TextInput(attrs={
@@ -75,4 +73,3 @@ class ConfirmEmailForm(forms.Form):
                 else:
                     return HttpResponse({'error': 'error'})
             
-    

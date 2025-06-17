@@ -145,7 +145,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'home_app' / 'static',
     BASE_DIR / 'settings_app' / 'static',
     BASE_DIR / 'friends_app' / 'static',
-    BASE_DIR / 'my_posts_app' / 'static'
+    BASE_DIR / 'my_posts_app' / 'static',
+    BASE_DIR / "chat_app" / "static"
 ]
 
 
@@ -169,6 +170,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'test.python.1488@gmail.com'
 EMAIL_HOST_PASSWORD = 'yrja yboa noeo fmlz'
-# CustomAbstractUser
-
-AUTH_USER_MODEL = 'user_app.CustomAbstractUser'

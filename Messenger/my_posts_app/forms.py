@@ -1,5 +1,5 @@
 from django import forms
-from .models import User_Post
+from .models import Post
 
 
 
@@ -30,17 +30,23 @@ from .models import User_Post
 #     )
 
 class PostForm(forms.ModelForm):
+    topic = forms.CharField(
+        max_length=150,
+        required=True,
+        label="Тема публікації",
+        widget=forms.TextInput(attrs={
+            "placeholder": "Напишіть тему публікації"
+        })
+    )
     class Meta:
-        model = User_Post
+        model = Post
         fields = [
             'title',
-            'topic',
-            'text',
+            'content',
         ]
         
         labels = {
             'title': "Назва публікації",
-            'topic': "Тема публікації",
             'links': "Посилання",
         }
 
@@ -48,10 +54,7 @@ class PostForm(forms.ModelForm):
             "title": forms.TextInput(attrs={
                 "placeholder": "Напишіть назву публікації"
             }),
-            "topic": forms.TextInput(attrs={
-                "placeholder": "Напишіть тему публікаціїї"
-            }),
-            "text": forms.Textarea(attrs={
+            "content": forms.Textarea(attrs={
                 "id": "text"
             }),
         }

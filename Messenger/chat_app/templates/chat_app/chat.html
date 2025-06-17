@@ -66,10 +66,9 @@
         </a>
     {% endfor %}
 {% endblock %}
-
 {% block messages %}
     <div class="right-side-menu-content">
-        {% for contact in contacts %}
+        {% for contact in request.user.friends.all %}
             <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'personal_chat' user.pk contact.pk %}">
                 <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
                 <div class="message-content">
@@ -84,7 +83,7 @@
     </div>
 {% endblock %}
     <div class="right-side-menu-content">
-        {% for contact in contacts %}
+        {% for contact in request.user.friends.all %}
             <a class="contact" value="contactOpen" type="submit" name="button" href="">
                 <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
                 <div class="message-content">
@@ -98,7 +97,7 @@
         {% endfor %}
     </div>
 {% block groups %}
-    
+
 {% endblock %}
 <!--  -->
 {% block scripts %}

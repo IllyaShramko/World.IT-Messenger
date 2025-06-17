@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect, HttpResponse, HttpRequest
-from user_app.models import CustomAbstractUser
-from my_posts_app.models import User_Post, Images_Post
+from user_app.models import Profile, Friendship, Avatar
+from my_posts_app.models import Post, Image
 from my_posts_app.forms import PostForm
 from django.urls import reverse_lazy
 # Create your views here.
@@ -14,6 +14,7 @@ class MainPageView(View):
         if not request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('login'))
         if request.method == "POST":
+            profile = Profile.objects.get(user = request.user)
             button = request.POST.get('button')
             print(button)
             if button == "startform":
@@ -32,11 +33,13 @@ class MainPageView(View):
                         "popup": True,
                         "post_modal": "create",
                         "page": "my_posts",
-                        "images": Images_Post.objects.all(),
-                        "posts_list": User_Post.objects.all().reverse(),
-                        "viewers": request.user.viewers,
-                        "friends_count": request.user.friends.count(),
-                        "posts_count": User_Post.objects.filter(user = request.user).count(),
+                        "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                        "tag_name": Profile.objects.get(user = request.user).tag_name,
+                        "images": Image.objects.all(),
+                        "posts_list": Post.objects.all().reverse(),
+                        "viewers": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
+                        "friends_count": Friendship.objects.filter(profile2 = Profile.objects.get(user = request.user)).count(),
+                        "posts_count": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
                         "page": "home"
                     }
                 )
@@ -56,7 +59,7 @@ class MainPageView(View):
                     post.save()
                     print("картинки:", images)
                     for image in images:
-                        Images_Post.objects.create(
+                        Image.objects.create(
                             image = image,
                             post = post,
                             author = request.user
@@ -70,11 +73,13 @@ class MainPageView(View):
                         "form": PostForm,
                         "popup": False,
                         "page": "my_posts",
-                        "images": Images_Post.objects.all(),
-                        "posts_list": User_Post.objects.all().reverse(),
-                        "viewers": request.user.viewers,
-                        "friends_count": request.user.friends.count(),
-                        "posts_count": User_Post.objects.filter(user = request.user).count(),
+                        "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                        "tag_name": Profile.objects.get(user = request.user).tag_name,
+                        "images": Image.objects.all(),
+                        "posts_list": Post.objects.all().reverse(),
+                        "viewers": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
+                        "friends_count": Friendship.objects.filter(profile2 = Profile.objects.get(user = request.user)).count(),
+                        "posts_count": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
                         "page": "home"
                         }
                 )
@@ -85,7 +90,9 @@ class MainPageView(View):
             user = request.user
             user.first_name = first_name
             user.last_name = last_name
-            user.tag_name = tag_name
+            profile = Profile.objects.get(user = request.user)
+            profile.tag_name = tag_name
+            profile.save()
             user.save()
             print(first_name, last_name, tag_name)
             return render(
@@ -93,17 +100,18 @@ class MainPageView(View):
                 "home_app/home.html",
                 {
                     'new_or_not': False,
-                    "tag_name": request.user.tag_name,
-                    "images": Images_Post.objects.all(),
-                    "posts_list": User_Post.objects.all().reverse(),
-                    "viewers": request.user.viewers,
-                    "friends_count": request.user.friends.count(),
-                    "posts_count": User_Post.objects.filter(user = request.user).count(),
+                    "tag_name": Profile.objects.get(user = request.user).tag_name,
+                    "images": Image.objects.all(),
+                    "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                    "posts_list": Post.objects.all().reverse(),
+                    "viewers": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
+                    "friends_count": Friendship.objects.filter(profile2 = Profile.objects.get(user = request.user)).count(),
+                    "posts_count": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
                     "page": "home"
                 }
             )
         elif request.method == "GET":
-
+            profile = Profile.objects.get(user = request.user)
             if request.user.last_name == "":
                 print(1)
                 return render(
@@ -111,26 +119,28 @@ class MainPageView(View):
                     "home_app/home.html",
                     {
                         'new_or_not': True,
-                        "images": Images_Post.objects.all(),
-                        "posts_list": User_Post.objects.all().reverse(),
-                        "viewers": request.user.viewers,
-                        "friends_count": request.user.friends.count(),
-                        "posts_count": User_Post.objects.filter(user = request.user).count(),
+                        "images": Image.objects.all(),
+                        "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                        "posts_list": Post.objects.all().reverse(),
+                        "viewers": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
+                        "friends_count": Friendship.objects.filter(profile2 = Profile.objects.get(user = request.user)).count(),
+                        "posts_count": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
                         "page": "home"
                     }
                 )
             else:
-                print(request.user.friends.count(), User_Post.objects.filter(user = request.user).count())
                 return render(
                     request, 
                     'home_app/home.html',
                     {
                         "new_or_not": False,
-                        "images": Images_Post.objects.all(),
-                        "posts_list": User_Post.objects.all().reverse(),
-                        "viewers": request.user.viewers,
-                        "friends_count": request.user.friends.count(),
-                        "posts_count": User_Post.objects.filter(user = request.user).count(),
+                        "tag_name": Profile.objects.get(user = request.user).tag_name,
+                        "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                        "images": Image.objects.all(),
+                        "posts_list": Post.objects.all().reverse(),
+                        "viewers": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
+                        "friends_count": Friendship.objects.filter(profile2 = Profile.objects.get(user = request.user)).count(),
+                        "posts_count": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
                         "page": "home"
                     }
                 )

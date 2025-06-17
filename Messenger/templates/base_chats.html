@@ -105,12 +105,9 @@
                         <input type="text" placeholder="Пошук контактів">
                     </div>
                     <div class="contacts-list">
-                        {% for contact in request.user.friends.all %}
-                            <a class="contact" value="contactOpen" type="submit" name="button" href="">
-                                <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
-                                <p>{{ contact.first_name }} {{ contact.last_name }}</p>
-                            </a>
-                        {% endfor %}
+                        {% block contacts %}
+
+                        {% endblock %}
                     </div>
                 </div>
             </div>

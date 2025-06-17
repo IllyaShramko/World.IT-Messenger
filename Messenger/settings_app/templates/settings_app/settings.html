@@ -32,7 +32,7 @@
             <div class="profile-card-me">
                 <div class="avatar-profile">
                     <p id="change-avatar" class="notediting">Оберіть або завантажте фото профілю</p>
-                    <img class="profile-card-img" src="{{ request.user.avatar.url }}">
+                    <img class="profile-card-img" src="{{ avatar.image.url }}">
                     <label id="label-avatar" class="notediting" for="avatar">
                         <div>
                             <img src="{% static 'settings_app/images/plus_purple.png' %}">

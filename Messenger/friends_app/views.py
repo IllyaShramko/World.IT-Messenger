@@ -1,48 +1,107 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, View
 from django.contrib.auth import get_user_model
+from user_app.models import Profile, Friendship, Avatar
 from django.http import HttpRequest
 # Create your views here.
 
 class FriendsView(View):
 
     def get(self, request: HttpRequest):
-        users = get_user_model().objects.exclude(pk = self.request.user.pk).exclude(pk__in = self.request.user.friends.all()).exclude(pk__in = self.request.user.friend_requests.all())[:3]
-        friends_requests = self.request.user.friend_requests.all()[:3]
-        friends = self.request.user.friends.all()[:3]
+        friends_requests1 = Friendship.objects.filter(profile2 =  Profile.objects.get(user = request.user)).filter(accepted = False)
+        friends_requests2 = Friendship.objects.filter(profile1 = Profile.objects.get(user = request.user)).filter(accepted = False)
+        friends_requests = friends_requests1 | friends_requests2
+        friends = Friendship.objects.filter(profile1 =  Profile.objects.get(user = request.user)).filter(accepted = True) | Friendship.objects.filter(profile2 =  Profile.objects.get(user = request.user)).filter(accepted = True)
+        requested_profiles_ids = friends_requests.values_list('profile1', flat=True).union(
+            friends_requests.values_list('profile2', flat=True)
+        )
+        friends_ids = friends.values_list('profile1', flat=True).union(
+            friends.values_list('profile2', flat=True)
+        )
+        users = Profile.objects.exclude(pk = Profile.objects.get(user = request.user).pk).exclude(pk__in = requested_profiles_ids).exclude(pk__in = friends_ids)
+        print(friends_requests)
+        
+        profiles_with_avatars = list(users)
+
+        for request1 in friends_requests:
+            profiles_with_avatars.append(request1.profile1)
+            profiles_with_avatars.append(request1.profile2)
+
+        for request1 in friends:
+            profiles_with_avatars.append(request1.profile1)
+            profiles_with_avatars.append(request1.profile2)    
+
+            
+        avatars = Avatar.objects.filter(profile__in = users).filter(active = True) | Avatar.objects.filter(profile__in=set(profiles_with_avatars), active=True)
+
         return render(request, "friends_app/friends.html", {
             'page' : "friends",
             'recommendations' : users,
             'friends': friends,
-            'friends_requests': friends_requests
+            'friends_requests': friends_requests,
+            'avatars': avatars,
+            "user": Profile.objects.get(user = request.user)
         })
     def post(self, request: HttpRequest):
         button = request.POST.get("button").split("-")
         if button[0] == "add":
-            user = get_user_model().objects.get(pk = request.POST.get("button").split('-')[1])
-            request.user.friend_requests.add(user)
+            user = Profile.objects.get(pk = button[1])
+            if not Friendship.objects.filter(profile1 = Profile.objects.get(user = request.user)).filter(profile2 = user).exists():
+                if not Friendship.objects.filter(profile1 = user).filter(profile2 = Profile.objects.get(user = request.user)).exists():
+                    Friendship.objects.create(
+                        profile1 = Profile.objects.get(user = request.user),
+                        profile2 = user
+                    )
         elif button[0] == "deletefriend":
-            user = get_user_model().objects.get(pk = request.POST.get("button").split('-')[1])
-            request.user.friends.remove(user)
+            if Friendship.objects.filter(pk = button[1]).exists():
+                request_friend = Friendship.objects.get(pk = button[1])
+                request_friend.delete()
         elif button[0] == "deleterequest":
-            user = get_user_model().objects.get(pk = request.POST.get("button").split('-')[1])
-            request.user.friend_requests.remove(user)
+            if Friendship.objects.filter(pk = button[1]).exists():
+                request_friend = Friendship.objects.get(pk = button[1])
+                request_friend.delete()
+                
         elif button[0] == "accept":
-            user = get_user_model().objects.get(pk = request.POST.get("button").split('-')[1])
-            request.user.friend_requests.remove(user)
-            request.user.friends.add(user)
-        print(user)
+            if Friendship.objects.filter(pk = button[1]).exists():
+                request_friend = Friendship.objects.get(pk = button[1])
+                request_friend.accepted = True
+                request_friend.save()
+                
 
 
-        users = get_user_model().objects.exclude(pk = self.request.user.pk).exclude(pk__in = self.request.user.friends.all()).exclude(pk__in = self.request.user.friend_requests.all())[:3]
-        friends_requests = self.request.user.friend_requests.all()[:3]
+        friends_requests1 = Friendship.objects.filter(profile2 =  Profile.objects.get(user = request.user)).filter(accepted = False)
+        friends_requests2 = Friendship.objects.filter(profile1 = Profile.objects.get(user = request.user)).filter(accepted = False)
+        friends_requests = friends_requests1 | friends_requests2
+        friends = Friendship.objects.filter(profile1 =  Profile.objects.get(user = request.user)).filter(accepted = True) | Friendship.objects.filter(profile2 =  Profile.objects.get(user = request.user)).filter(accepted = True)
+        requested_profiles_ids = friends_requests.values_list('profile1', flat=True).union(
+            friends_requests.values_list('profile2', flat=True)
+        )
+        friends_ids = friends.values_list('profile1', flat=True).union(
+            friends.values_list('profile2', flat=True)
+        )
+        users = Profile.objects.exclude(pk = Profile.objects.get(user = request.user).pk).exclude(pk__in = requested_profiles_ids).exclude(pk__in = friends_ids)
         print(friends_requests)
-        friends = self.request.user.friends.all()[:3]
+        
+        profiles_with_avatars = list(users)
+
+        for request1 in friends_requests:
+            profiles_with_avatars.append(request1.profile1)
+            profiles_with_avatars.append(request1.profile2)
+
+        for request1 in friends:
+            profiles_with_avatars.append(request1.profile1)
+            profiles_with_avatars.append(request1.profile2)    
+
+            
+        avatars = Avatar.objects.filter(profile__in = users).filter(active = True) | Avatar.objects.filter(profile__in=set(profiles_with_avatars), active=True)
+
         return render(request, "friends_app/friends.html", {
             'page' : "friends",
             'recommendations' : users,
             'friends': friends,
-            'friends_requests': friends_requests
+            'friends_requests': friends_requests,
+            'avatars': avatars,
+            "user": Profile.objects.get(user = request.user)
         })
 class InvitesView(TemplateView):
     template_name = "friends_app/invites.html"

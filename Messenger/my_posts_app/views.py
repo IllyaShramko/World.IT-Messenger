@@ -5,33 +5,36 @@ from django.views import View
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from .forms import PostForm
-from .models import User_Post, Images_Post
-from user_app.models import CustomAbstractUser
+from .models import Post, Image
+from user_app.models import Profile, Friendship, Avatar
 from django.contrib.auth import get_user_model
-from settings_app.models import Album, AlbumImage
+from .models import Album, Image
 import os
 # Create your views here.
 class MyPostsView(ListView):
-    model = User_Post
+    model = Post
     template_name = "my_posts_app/my_post_app.html"
     context_object_name = "my_posts"
 
     def get_queryset(self):
-        queryset = User_Post.objects.filter(user= self.request.user)
+        queryset = Post.objects.filter(author= Profile.objects.get(user = self.request.user))
         return queryset
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["popup"] = False
         context['page'] = "my_posts"
-        context['images'] = Images_Post.objects.all()
-        context["viewers"] = self.request.user.viewers
-        print(self.request.user.viewers)
-        context["friends_count"] = self.request.user.friends.count()
-        context["posts_count"] = User_Post.objects.filter(user=self.request.user).count()
+        context['images'] = Image.objects.all()
+        context["viewers"] = Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count()
+        context["posts_count"] = Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count()
+        context["friends_count"] = Friendship.objects.filter(accepted = True).filter(profile1 = Profile.objects.get(user= self.request.user)).count()
+        context["tag_name"] = Profile.objects.get(user = self.request.user).tag_name
+        profile = Profile.objects.get(user = self.request.user)
+        context["avatar"] = Avatar.objects.filter(profile = profile).filter(active = True).first()
         return context
     
     def post(self, request: HttpRequest):
+        profile = Profile.objects.get(user = request.user)
         button = request.POST.get('button')
         print(button)
         if button == "startform":
@@ -50,11 +53,11 @@ class MyPostsView(ListView):
                     "popup": True,
                     "post_modal": "create",
                     "page": "my_posts",
-                    "images": Images_Post.objects.all(),
-                    "my_posts": User_Post.objects.filter(user= request.user),
-                    "viewers": request.user.viewers,
-                    "friends_count": request.user.friends.count(),
-                    "posts_count": User_Post.objects.filter(user = request.user).count(),
+                    "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                    "images": Image.objects.all(),
+                    "tag_name": Profile.objects.get(user = request.user).tag_name,
+                    "my_posts": Post.objects.filter(author= Profile.objects.get(user = self.request.user)),
+                    "posts_count": Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count(),
                 }
             )
         elif button=="submitFormCreate":
@@ -62,32 +65,21 @@ class MyPostsView(ListView):
             if form.is_valid():
                 images = request.FILES.getlist("images")
                 post = form.save(commit=False)
-                post.user = request.user
-                post.likes = 0
-                post.views = 0
-                text = form.cleaned_data["text"]
-                post.text = text[0]
+                post.author = Profile.objects.get(user = self.request.user)
+                post.content = form.cleaned_data["content"]
 
-                post.tags = request.POST.get("tags").split(",")
-                post.tags.append("відпочинок")
-                post.tags.append("натхнення")
-                post.tags.append("життя")
-                post.tags.append("природа")
-                post.tags.append("читання")
-                post.tags.append("спокій")
-                post.tags.append("гармонія")
-                post.tags.append("музика")
-                post.tags.append("фільми")
-                post.tags.append("подорожі")
-                post.links = request.POST.get("links").split(",")
-                post.save()
                 print("картинки:", images)
+                post.save()
                 for image in images:
-                    Images_Post.objects.create(
-                        image = image,
-                        post = post,
-                        author = request.user
+
+                    # post1 = Post.objects.get(pk = 5)
+                    # post1.images.
+                    img_db = Image.objects.create(
+                        filename = image.name,
+                        file = image
                     )
+                    post.images.add(img_db)
+                    post.save()
 
                 
             return render(
@@ -97,11 +89,11 @@ class MyPostsView(ListView):
                     "form": PostForm,
                     "popup": False,
                     "page": "my_posts",
-                    "images": Images_Post.objects.all(),
-                    "my_posts": User_Post.objects.filter(user= request.user),
-                    "viewers": request.user.viewers,
-                    "friends_count": request.user.friends.count(),
-                    "posts_count": User_Post.objects.filter(user = request.user).count(),
+                    "images": Image.objects.all(),
+                    "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                    "tag_name": Profile.objects.get(user = request.user).tag_name,
+                    "my_posts": Post.objects.filter(author= Profile.objects.get(user = self.request.user)),
+                    "posts_count": Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count(),
                     }
             )
         elif button =="submitFormEdit":
@@ -111,9 +103,9 @@ class MyPostsView(ListView):
                 if deleted_images:
                     deleted_images = deleted_images.split(",")
                     for imgdel in deleted_images:
-                        img = Images_Post.objects.get(pk = imgdel)
+                        img = Image.objects.get(pk = imgdel)
                         img.delete()
-                post = User_Post.objects.get(pk = form.data["post_pk"])
+                post = Post.objects.get(pk = form.data["post_pk"])
                 post.title = form.data["title"]
                 post.topic = form.data["topic"]
                 text = form.data["text"]
@@ -123,7 +115,7 @@ class MyPostsView(ListView):
 
                 if request.FILES.getlist("images"):
                     for image in request.FILES.getlist("images"):
-                        Images_Post.objects.create(
+                        Image.objects.create(
                             image = image,
                             post = post,
                             author = request.user,
@@ -137,17 +129,19 @@ class MyPostsView(ListView):
                     "form": PostForm,
                     "popup": False,
                     "page": "my_posts",
-                    "images": Images_Post.objects.all(),
-                    "my_posts": User_Post.objects.filter(user= request.user),
+                    "images": Image.objects.all(),
+                    "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                    "tag_name": Profile.objects.get(user = request.user).tag_name,
+                    "my_posts": Post.objects.filter(user= request.user),
                     "viewers": request.user.viewers,
                     "friends_count": request.user.friends.count(),
-                    "posts_count": User_Post.objects.filter(user = request.user).count(),
+                    "posts_count": Post.objects.filter(user = request.user).count(),
                     }
             )    
                 
 
 def delete_post(request, post_id):
-    post = User_Post.objects.get(user = request.user, id = post_id)
+    post = Post.objects.get(author =Profile.objects.get(user= request.user), id = post_id)
     print(post)
     if post:
         try:
@@ -162,7 +156,7 @@ def delete_post(request, post_id):
     return redirect(reverse_lazy("my_posts"))
 
 def get_post(request, post_id):
-    post = User_Post.objects.get(user = request.user, id = post_id)
+    post = Post.objects.get(user = request.user, id = post_id)
     form = PostForm()
     form.initial.setdefault(
         "title",
@@ -180,7 +174,7 @@ def get_post(request, post_id):
         "links",
         post.links
     )
-    images = Images_Post.objects.filter(post_id = post_id)
+    images = Image.objects.filter(post_id = post_id)
     if post:
         if images:
             return render(
@@ -192,10 +186,10 @@ def get_post(request, post_id):
                     "post_modal": "edit",            
                     "post_pk": post_id,
                     "images": images,
+                    "tag_name": Profile.objects.get(user = request.user).tag_name,
                     "post_tags": post.tags,
-                    "my_posts": User_Post.objects.filter(user= request.user)
+                    "my_posts": Post.objects.filter(user= request.user)
                     })
-        
         else:
             return render(
                 request,
@@ -206,17 +200,17 @@ def get_post(request, post_id):
                     "post_modal": "edit",            
                     "post_pk": post_id,
                     "post_tags": post.tags,
-                    "my_posts": User_Post.objects.filter(user= request.user)
+                    "my_posts": Post.objects.filter(user= request.user)
                     })
                 
 
 class UsersPostsView(ListView):
-    model = User_Post
+    model = Post
     template_name = 'my_posts_app/user_posts.html'
     context_object_name = "posts"
 
     def get_queryset(self):
-        queryset = User_Post.objects.filter(user_id = self.kwargs["user_pk"])    
+        queryset = Post.objects.filter(user_id = self.kwargs["user_pk"])    
         return queryset
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -227,13 +221,13 @@ class UsersPostsView(ListView):
             context["is_friend"] = True
         else:
             context["is_friend"] = False
-        context['images'] = Images_Post.objects.all()
-        
+        context['images'] = Image.objects.all()
+
         album = Album.objects.filter(author_id = user.id).first()
         print(album)
         context['album'] = album
         if album:
-            context["album_images"] = AlbumImage.objects.filter(album_id = album.pk)
+            context["album_images"] = Image.objects.filter(album_id = album.pk)
         return context
     def post(self, request: HttpRequest, user_pk):
         button = request.POST.get("button").split("-")
@@ -254,12 +248,13 @@ class UsersPostsView(ListView):
             'page' : "friends",
             'user' : user,
             'is_friend': friend,
-            "images": Images_Post.objects.all(),
-            "posts": User_Post.objects.filter(user_id = user_pk) 
+            "images": Image.objects.all(),
+            "posts": Post.objects.filter(user_id = user_pk),
+            "tag_name": Profile.objects.get(user = request.user).tag_name,
         })
     
 def delete_img(request, image_pk):
-    img = Images_Post.objects.get(pk = image_pk)
+    img = Image.objects.get(pk = image_pk)
     img.delete()
 
     return HttpResponseRedirect(reverse_lazy("albums"))

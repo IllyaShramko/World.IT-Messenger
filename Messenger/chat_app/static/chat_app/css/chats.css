@@ -1,11 +1,14 @@
 .right-side-menu-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: start;
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
-    overflow-x: none;
+    padding-left: 0.6vw;
+    padding-right: 0.6vw;
+    overflow-y: auto;
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
@@ -13,7 +16,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0.6vw;
 }
 
 .message-content div {
@@ -21,7 +23,6 @@
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    padding-right: 1vw;
     padding-bottom: 0.3vw;
 }
 
@@ -53,14 +54,18 @@
 .send-form {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    gap: 1.25vw;
+    width: 100%;
 }
 
 .send-form-button {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0.52vw;
-    gap: 0.52vw;
+    justify-content: center;
     width: 2.08vw;
     height: 2.08vw;
     background: #583B53;
@@ -69,13 +74,13 @@
 }
 
 .send-form-button img {
-    width: 1.04vw;
-    height: 1.04vw;
+    width: 0.96vw;
+    height: 0.96vw;
 }
 
 .send-form-input {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     padding: 0px;
     gap: 0.31vw;
@@ -85,10 +90,52 @@
     font-style: normal;
     font-weight: 400;
     font-size: 0.83vw;
+    padding: 10px 16px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #CDCED2;
+    border-radius: 0.31vw;
+}
+
+.send-form-input::placeholder {
     color: #81818E;
 }
 
 .chat-header {
     display: flex;
     flex-direction: row;
+}
+
+.send-form-emojes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 2.08vw;
+    height: 2.08vw;
+    background: #FFFFFF;
+    border: 0.052vw solid #583B53;
+    border-radius: 9.90vw;
+}
+
+.send-form-emojes img {
+    width: 0.96vw;
+    height: 0.96vw;
+}
+
+.send-form-images {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 2.08vw;
+    height: 2.08vw;
+    background: #FFFFFF;
+    border: 0.052vw solid #583B53;
+    border-radius: 9.90vw;
+}
+
+.send-form-images img {
+    width: 0.96vw;
+    height: 0.96vw;
 }

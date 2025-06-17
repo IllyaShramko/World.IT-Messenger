@@ -28,9 +28,24 @@
                 <div class="friend-request">
                     <a href="{% url 'view_user' friendrequest.pk %}">
                         <div class="friend-request-profile">
-                            <img src="{{ friendrequest.avatar.url }}">
-                            <h1>{{ friendrequest.first_name }} {{ friendrequest.last_name }}</h1>
-                            <h3>{{ friendrequest.tag_name }}</h3>
+                            {% if friendrequest.profile1 != user %}
+                                {% for avatar in avatars %}
+                                    {% if avatar.profile.id == friendrequest.profile1.id  %}
+                                        <img src="{{ avatar.image.url }}">
+                                        <p>avatar.image.url</p>
+                                    {% endif %}
+                                {% endfor %}
+                                <h1>{{ friendrequest.profile1.user.first_name }} {{ friendrequest.profile1.user.last_name }}</h1>
+                                <h3>{{ friendrequest.profile1.tag_name }}</h3>
+                            {% else %}
+                                {% for avatar in avatars %}
+                                    {% if avatar.profile.id  == friendrequest.profile2.id  %}
+                                        <img src="{{ avatar.image.url }}">
+                                    {% endif %}
+                                {% endfor %}
+                                <h1>{{ friendrequest.profile2.user.first_name }} {{ friendrequest.profile2.user.last_name }}</h1>
+                                <h3>{{ friendrequest.profile1.tag_name }}</h3>
+                            {% endif %}
                         </div>
                     </a>
                     <form method="post" class="accept-cancel-btns">
@@ -53,8 +68,13 @@
                 <div class="friend-request">
                     <a href="{% url 'view_user' user.pk %}" style="display: block; text-decoration: none; color: inherit;">
                         <div class="friend-request-profile">
-                            <img src="{{ user.avatar.url }}">
-                            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                            {% for avatar in avatars %}
+                                {% if avatar.profile == user %}
+                                    <img src="{{ avatar.image.url }}">
+                                {% endif %}
+                            {% endfor %}
+                            
+                            <h1>{{ user.user.first_name }} {{ user.user.last_name }}</h1>
                             <h3>{{ user.tag_name }}</h3>
                         </div>
                     </a>
@@ -76,19 +96,34 @@
         
         <div class="friends-requests">
             
-            {% for user in friends %}
+            {% for friendrequest in friends %}
                 <div class="friend-request">
-                    <a href="{% url 'view_user' user.pk %}" style="display: block; text-decoration: none; color: inherit;"></a>
+                    <a href="{% url 'view_user' friendrequest.pk %}">
                         <div class="friend-request-profile">
-                            <img src="{{ user.avatar.url }}">
-                            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                            <h3>{{ user.tag_name }}</h3>
+                            {% if friendrequest.profile1 != user %}
+                                {% for avatar in avatars %}
+                                    {% if avatar.profile.id == friendrequest.profile1.id  %}
+                                        <img src="{{ avatar.image.url }}">
+                                        <p>avatar.image.url</p>
+                                    {% endif %}
+                                {% endfor %}
+                                <h1>{{ friendrequest.profile1.user.first_name }} {{ friendrequest.profile1.user.last_name }}</h1>
+                                <h3>{{ friendrequest.profile1.tag_name }}</h3>
+                            {% else %}
+                                {% for avatar in avatars %}
+                                    {% if avatar.profile.id  == friendrequest.profile2.id  %}
+                                        <img src="{{ avatar.image.url }}">
+                                    {% endif %}
+                                {% endfor %}
+                                <h1>{{ friendrequest.profile2.user.first_name }} {{ friendrequest.profile2.user.last_name }}</h1>
+                                <h3>{{ friendrequest.profile1.tag_name }}</h3>
+                            {% endif %}
                         </div>
                     </a>
                     <form method="post" class="accept-cancel-btns">
                         {% csrf_token %}
-                        <button class="accept" name="button" value="send-{{ user.pk }}">Повідомлення</button>
-                        <button class="cancel" name="button" value="deletefriend-{{ user.pk }}">Видалити</button>
+                        <button class="accept" name="button" value="send-{{ friendrequest.pk }}">Повідомлення</button>
+                        <button class="cancel" name="button" value="deletefriend-{{ friendrequest.pk }}">Видалити</button>
                     </form>
                 </div>
             {% endfor %}
