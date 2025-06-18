@@ -32,7 +32,7 @@
                                 {% for avatar in avatars %}
                                     {% if avatar.profile.id == friendrequest.profile1.id  %}
                                         <img src="{{ avatar.image.url }}">
-                                        <p>avatar.image.url</p>
+                                        
                                     {% endif %}
                                 {% endfor %}
                                 <h1>{{ friendrequest.profile1.user.first_name }} {{ friendrequest.profile1.user.last_name }}</h1>
@@ -44,7 +44,7 @@
                                     {% endif %}
                                 {% endfor %}
                                 <h1>{{ friendrequest.profile2.user.first_name }} {{ friendrequest.profile2.user.last_name }}</h1>
-                                <h3>{{ friendrequest.profile1.tag_name }}</h3>
+                                <h3>{{ friendrequest.profile2.tag_name }}</h3>
                             {% endif %}
                         </div>
                     </a>
@@ -104,7 +104,7 @@
                                 {% for avatar in avatars %}
                                     {% if avatar.profile.id == friendrequest.profile1.id  %}
                                         <img src="{{ avatar.image.url }}">
-                                        <p>avatar.image.url</p>
+                                        
                                     {% endif %}
                                 {% endfor %}
                                 <h1>{{ friendrequest.profile1.user.first_name }} {{ friendrequest.profile1.user.last_name }}</h1>

@@ -51,7 +51,6 @@
                 {% for avatar in avatars %}
                     {% if avatar.profile.id == contact.profile1.id  %}
                         <img src="{{ avatar.image.url }}">
-                        <p>avatar.image.url</p>
                     {% endif %}
                 {% endfor %}
                 <p>{{ contact.profile1.user.first_name }} {{ contact.profile1.user.last_name }}</p>

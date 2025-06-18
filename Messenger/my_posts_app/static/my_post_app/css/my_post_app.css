@@ -549,6 +549,7 @@
     border-radius: 0.3vw;
     margin: 4px;
     font-size: 0.9vw;
+    cursor: pointer;
 }
 .tag-input-wrapper {
     display: flex;
@@ -702,3 +703,7 @@
     flex-wrap: wrap;
     gap: 0.2vw;
 }
+
+/* .tagsdiv input{
+    display: none;
+}    */

@@ -12,8 +12,15 @@
 {% block content %}
     <div class="chat-header">
         <div>
-            <img src="">
-            <h1 class="chat-header-name"></h1>
+            <a class="chat-header-arrow-button" href = "{% url 'all_chats' %}">
+                <img class="chat-header-arrow" src="{% static 'chat_app/images/arrow.png' %}">
+            </a>
+            {% for avatar in avatars %}
+                {% if avatar.profile.id == companion.user.id  %}
+                    <img class="chat-header-image" src="{{ avatar.image.url }}">
+                {% endif %}
+            {% endfor %}
+            <h1 class="chat-header-name">{{ companion.user.first_name }} {{ companion.user.last_name }}</h1>
         </div>
         <img src="{% static 'chat_app/images/Dots.svg' %}">
     </div>
@@ -51,7 +58,6 @@
                 {% for avatar in avatars %}
                     {% if avatar.profile.id == contact.profile1.id  %}
                         <img src="{{ avatar.image.url }}">
-                        <p>avatar.image.url</p>
                     {% endif %}
                 {% endfor %}
                 <p>{{ contact.profile1.user.first_name }} {{ contact.profile1.user.last_name }}</p>

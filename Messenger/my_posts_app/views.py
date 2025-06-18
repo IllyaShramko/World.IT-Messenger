@@ -5,7 +5,7 @@ from django.views import View
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from .forms import PostForm
-from .models import Post, Image
+from .models import Post, Image, Tag
 from user_app.models import Profile, Friendship, Avatar
 from django.contrib.auth import get_user_model
 from .models import Album, Image
@@ -45,6 +45,7 @@ class MyPostsView(ListView):
                 "text",
                 text
             )
+            tags = Tag.objects.all()
             return render(
                 request,
                 "my_posts_app/my_post_app.html",
@@ -58,6 +59,7 @@ class MyPostsView(ListView):
                     "tag_name": Profile.objects.get(user = request.user).tag_name,
                     "my_posts": Post.objects.filter(author= Profile.objects.get(user = self.request.user)),
                     "posts_count": Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count(),
+                    "tags": tags,
                 }
             )
         elif button=="submitFormCreate":
@@ -67,9 +69,18 @@ class MyPostsView(ListView):
                 post = form.save(commit=False)
                 post.author = Profile.objects.get(user = self.request.user)
                 post.content = form.cleaned_data["content"]
+                post.save()
+                tags_ids = request.POST.getlist("tags")
+                del tags_ids[-1]
+                print(tags_ids)
+                tags = Tag.objects.filter(pk__in = tags_ids)
+                print(tags)
+                for tag in tags:
+                    print(tag)
+                    post.tags.add(tag)
+                    post.save()
 
                 print("картинки:", images)
-                post.save()
                 for image in images:
 
                     # post1 = Post.objects.get(pk = 5)

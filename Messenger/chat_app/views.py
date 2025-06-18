@@ -50,6 +50,12 @@ class ChatView(TemplateView):
         print(Friendship.objects.filter(profile2 = Profile.objects.get(user = self.request.user)).filter(accepted = True) | Friendship.objects.filter(profile1 = Profile.objects.get(user = self.request.user)).filter(accepted = True))
         context['chat'] = True
         context["user"] = Profile.objects.get(user = self.request.user)
+        chat = Friendship.objects.get(pk = self.kwargs.get("chat_pk"))
+        if chat.profile1 != context["user"]:
+            companion = chat.profile1
+        else:
+            companion = chat.profile2
+        context['companion'] = companion
 
         friends = Friendship.objects.filter(profile1 =  Profile.objects.get(user = self.request.user)).filter(accepted = True) | Friendship.objects.filter(profile2 =  Profile.objects.get(user = self.request.user)).filter(accepted = True)
 

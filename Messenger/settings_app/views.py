@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from user_app.models import Profile, Avatar
-from my_posts_app.models import Image, Album
+from my_posts_app.models import Image, Album, Tag
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -85,8 +85,7 @@ class AlbumsSettingsView(View):
                 print(date)
                 album= Album.objects.create(
                     name = title,
-                    # author = Profile.objects.get(user= request.user),
-                    # date = date
+                    topic = Tag.objects.get(pk=1)
                 )
                 return render(
                     request,
@@ -157,8 +156,8 @@ def delete_image(request, img_pk):
 
 def delete_album(request, album_pk):
     album = Album.objects.get(pk= album_pk)
-    if request.user == album.author:
-        album.delete()
+    # if request.user == album.author:
+    album.delete()
     return HttpResponseRedirect(reverse_lazy("albums"))
 
 def edit_album(request, album_pk):

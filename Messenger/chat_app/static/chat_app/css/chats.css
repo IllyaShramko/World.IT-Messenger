@@ -71,6 +71,7 @@
     background: #583B53;
     border: 0.052vw solid #583B53;
     border-radius: 9.90vw;
+    cursor: pointer;
 }
 
 .send-form-button img {
@@ -102,8 +103,16 @@
 }
 
 .chat-header {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 0px 0.52vw;
+    gap: 4.79vw;
+    width: 100%;
+    height: 3.02vw;
+    border-bottom: 0.052vw solid #CDCED2;
 }
 
 .send-form-emojes {
@@ -138,4 +147,44 @@
 .send-form-images img {
     width: 0.96vw;
     height: 0.96vw;
+}
+
+.chat-header-name {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.25vw;
+    height: 100%;
+    text-align: center;
+    justify-content: start;
+    color: #060A1D;
+    text-wrap: none;
+}
+
+.chat-header-image{
+    display: flex;
+    position: relative;
+    width: 2.4vw;
+    height: 2.4vw;
+    overflow: hidden;
+    border-radius: 2.4vw;
+}
+
+.chat-header div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 1.25vw;
+}
+
+.chat-header-arrow {
+    width: 1.04vw;
+    height: 1.04vw;
+}
+
+.chat-header-arrow-button { 
+    border: none;
+    background: none;
+    cursor: pointer;
 }

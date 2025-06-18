@@ -100,14 +100,24 @@
                         </button>
                     </div>
                 </div>
-                <div class="profile-password-edit input-edit">
-                    <p>Пароль</p>
-                    <div>
-                        <input type="password" name="password">
-                        <button type="button">
-                            <img src="{% static 'settings_app/images/eye.svg' %}">
-                        </button>
-                    </div>
+            </div>
+
+            <div class="profile-card-edit">
+                <div>
+                    <p class="profile-card-text">Особиста інформація</p>
+                </div>
+                <button type="button" id="edit-save-btn-pass" value="editpass" class="profile-card-button">
+                    <img src="{% static 'settings_app/images/edit.svg' %}">
+                    <p id="edit-save-pass-p">Редагувати інформацію</p>
+                </button>
+            </div>
+            <div class="profile-password-edit input-edit">
+                <p>Пароль</p>
+                <div>
+                    <input type="password" name="password">
+                    <button type="button">
+                        <img src="{% static 'settings_app/images/eye.svg' %}">
+                    </button>
                 </div>
             </div>
         </form>
