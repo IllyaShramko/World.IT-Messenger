@@ -86,7 +86,7 @@
             <div class="all-contacts-create-group-chat">
                 <form class="create-group-chat" method="post">
                     {% csrf_token %}
-                    <button>
+                    <button type="button" id="create">
                         <img src="{% static 'images/plus.png' %}">
                         <p>Створити груповий чат</p>
                     </button>
@@ -151,8 +151,100 @@
             </div>
         </div>
         
+        <div class="popups">
+            
+    <div class="hideform bgform" id="blurform"></div>
+            <form method="post" enctype="multipart/form-data" name="addmembers" class="hideform createGroupForm" id="createGroupForm">
+                {% csrf_token %}
+                <button type="button" class="closepopup" id="closepopup">x</button>
+                <h1>Нова група</h1>
+                <div class="search">
+                    <img id="searchImg" src="{% static 'images/search.png' %}">
+                    <input type="text" id="nameGroup" name="groupname" placeholder="Пошук" required>
+                </div>
+                <div class="hideform" id="avatar-group">
+                    <img src="{% static 'chat_app/images/Indicator.png' %}" alt="Avatar">
+                    <label id="label-avatar" class="notediting" for="avatar">
+                        <div>
+                            <img src="{% static 'settings_app/images/plus_purple.png' %}">
+                            <p>Додайте фото</p>
+                        </div>
+                        <div>
+                            <img src="{% static 'settings_app/images/img.png' %}">
+                            <p>оберіть фото</p>
+                        </div>
+                    </label>
+                    <input type="file" name="avatar" id="avatar" class="avatar" required>
+                </div>
+                <h3 id="selectedContacts">Вибрано: 0</h3>
+                <div class="hideform" id="contactsSelectedd">
+
+                </div>
+                <div id="contactsadd" class="contactsadd">
+                    {% for contact in contacts %}
+                        {% if contact.profile1 != user %}
+                            <label for="contact-{{ contact.profile1.pk }}" class="contact" value="contactOpen" type="button" name="button">
+                                {% if contact.profile1 != user %}
+                                    {% for avatar in avatars %}
+                                        {% if avatar.profile.id == contact.profile1.id  %}
+                                            <img src="{{ avatar.image.url }}">
+                                        {% endif %}
+                                    {% endfor %}
+                                    <p>{{ contact.profile1.user.first_name }} {{ contact.profile1.user.last_name }}</p>
+                                    <input type="checkbox" name="contactsAdded" id="contact-{{ contact.profile1.pk }}" value="{{ contact.profile1.pk }}">  
+                                {% else %}
+                                    {% for avatar in avatars %}
+                                        {% if avatar.profile.id  == contact.profile2.id  %}
+                                            <img src="{{ avatar.image.url }}">
+                                        {% endif %}
+                                    {% endfor %}
+                                    <p>{{ contact.profile2.user.first_name }} {{ contact.profile2.user.last_name }}</p>
+                                    <input type="checkbox" name="contactsAdded" id="contact-{{ contact.profile2.pk }}" value="{{ contact.profile2.pk }}">    
+                                {% endif %}    
+                            </label>
+                            {% else %}
+                            <label for="contact-{{ contact.profile2.pk }}"  class="contact" value="contactOpen" type="button" name="button">
+                                {% if contact.profile1 != user %}
+                                    {% for avatar in avatars %}
+                                        {% if avatar.profile.id == contact.profile1.id  %}
+                                            <img src="{{ avatar.image.url }}">
+                                        {% endif %}
+                                    {% endfor %}
+                                    <p>{{ contact.profile1.user.first_name }} {{ contact.profile1.user.last_name }}</p>
+                                    <input type="checkbox" name="contactsAdded" id="contact-{{ contact.profile1.pk }}" value="{{ contact.profile1.pk }}">  
+                                {% else %}
+                                    {% for avatar in avatars %}
+                                        {% if avatar.profile.id  == contact.profile2.id  %}
+                                            <img src="{{ avatar.image.url }}">
+                                        {% endif %}
+                                    {% endfor %}
+                                    <p>{{ contact.profile2.user.first_name }} {{ contact.profile2.user.last_name }}</p>
+                                    <input type="checkbox" name="contactsAdded" id="contact-{{ contact.profile2.pk }}" value="{{ contact.profile2.pk }}">  
+                                {% endif %}       
+                            </label>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <div class="btns">
+                    <input type="hidden" name="selected_ids" id="selected_ids">
+                    <button type="button" name="button" class="next">
+                        Далі
+                    </button>
+                    <button type="submit" id="submit" name="button" value="createGroup" class="hideform">Створити</button>
+
+                </div>
+            </form>
+            {% block popups %}
+                
+            {% endblock %}
+        </div>
+
+
         {% block scripts %}
             
         {% endblock %}
+        <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+        <script src="{% static 'js/createGroup.js' %}"></script>
     </body>
 </html>

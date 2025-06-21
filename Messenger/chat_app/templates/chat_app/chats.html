@@ -46,7 +46,8 @@
 
 {% block contacts %}
     {% for contact in contacts %}
-        <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'personal_chat' user.pk contact.pk %}">
+        {% if contact.profile1 != user %}
+        <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'personal_chat' user.pk contact.profile1.pk %}">
             {% if contact.profile1 != user %}
                 {% for avatar in avatars %}
                     {% if avatar.profile.id == contact.profile1.id  %}
@@ -63,41 +64,44 @@
                 <p>{{ contact.profile2.user.first_name }} {{ contact.profile2.user.last_name }}</p>
             {% endif %}        
         </a>
+        {% else %}
+        <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'personal_chat' user.pk contact.profile2.pk %}">
+            {% if contact.profile1 != user %}
+                {% for avatar in avatars %}
+                    {% if avatar.profile.id == contact.profile1.id  %}
+                        <img src="{{ avatar.image.url }}">
+                    {% endif %}
+                {% endfor %}
+                <p>{{ contact.profile1.user.first_name }} {{ contact.profile1.user.last_name }}</p>
+            {% else %}
+                {% for avatar in avatars %}
+                    {% if avatar.profile.id  == contact.profile2.id  %}
+                        <img src="{{ avatar.image.url }}">
+                    {% endif %}
+                {% endfor %}
+                <p>{{ contact.profile2.user.first_name }} {{ contact.profile2.user.last_name }}</p>
+            {% endif %}        
+        </a>
+        {% endif %}
     {% endfor %}
 {% endblock %}
 
 {% block messages %}
-    <div class="right-side-menu-content">
-        {% for contact in contacts %}
-            <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'personal_chat' user.pk contact.pk %}">
-                <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
-                <div class="message-content">
-                    <div>
-                        <p>{{ contact.first_name }} {{ contact.last_name }}</p>
-                        <h2 class="message-time">1939</h2>
-                    </div>
-                    <h2 class="message-text">Привіт пупсик</h2>
-                </div>
-            </a>
-        {% endfor %}
-    </div>
 {% endblock %}
+
+{% block groups %}
     <div class="right-side-menu-content">
-        {% for contact in contacts %}
-            <a class="contact" value="contactOpen" type="submit" name="button" href="">
-                <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
+        {% for group in groups %}
+            <a class="contact" value="contactOpen" href="{% url 'chat' group.pk  %}">
+                <img src="{{ group.avatar.url }}">
                 <div class="message-content">
                     <div>
-                        <p>{{ contact.first_name }} {{ contact.last_name }}</p>
-                        <h2 class="message-time">1939</h2>
+                        <p>{{ group.name }}</p>
                     </div>
-                    <h2 class="message-text">Привіт пупсик</h2>
                 </div>
             </a>
         {% endfor %}
     </div>
-{% block groups %}
-    
 {% endblock %}
 <!--  -->
 {% block scripts %}

@@ -6,7 +6,7 @@ console.log(btnEditSave.value)
 btnEditSave.addEventListener(
     'click',
     function () {
-        if (this.value == "edit") {
+        if (this.value == "editinfo") {
             blurInfo.classList.toggle("edit")
             pEditSave.textContent = "Зберегти"
             btnEditSave.value = "save"

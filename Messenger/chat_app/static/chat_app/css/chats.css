@@ -1,3 +1,4 @@
+
 .right-side-menu-content {
     display: flex;
     flex-direction: column;
@@ -44,6 +45,7 @@
 
 .chat-content {
     display: flex;
+    position: relative;
     flex-direction: column;
     width: 100%;
     height: 100%;
@@ -104,6 +106,7 @@
 
 .chat-header {
     box-sizing: border-box;
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -187,4 +190,346 @@
     border: none;
     background: none;
     cursor: pointer;
+}
+
+.main-content {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 1.25vw;
+}
+.content {
+    height: 65vh;
+    width: 100%;
+    overflow-y: auto;
+}
+.all-messages {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: end;
+    width: 100%;
+}
+
+.all-messages-message { 
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.my-message {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0.52vw;
+    gap: 0.52vw;
+    width: fit-content;
+    height: fit-content;
+    background: #CDCED2;
+    border-radius: 0.3125vw;
+}
+
+.companion-message {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0.65vw;
+    gap: 0.52vw;
+    width: fit-content;
+    height: fit-content;
+    background: #FFFFFF;
+    border-radius: 0.3125vw;
+    border: 0.05208vw solid #EAE5EF;
+}
+
+.companion-message-outside {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 0.21vw;
+}
+
+.companion-message-outside img {
+    display: flex;
+    position: relative;
+    width: 2.4vw;
+    height: 2.4vw;
+    overflow: hidden;
+    border-radius: 2.4vw;
+}
+
+.all-messages-message.div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 0.52vw;
+    width: 100%;
+}
+
+.all-message-message-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 0.26vw;
+}
+
+.all-message-message-info p {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.52vw;
+    text-align: center;
+    color: #81818E;
+}
+
+.all-message-message-info img {
+    width: 0.52vw;
+    height: 0.52vw;
+    transform: rotate(-90deg);
+}
+
+.all-message-message-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 0.21vw;
+}
+
+.all-message-message-content h2 {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.7vw;
+    color: #583B53;
+}
+
+.all-message-message-content p {
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75vw;
+    color: #060A1D;
+}
+
+
+/* DAVID */
+
+.my-message h2{
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.7291vw;
+    color: black;
+}
+
+.check-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 0.21vw;
+}
+
+.check-message p{
+    font-family: 'GT Walsheim Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.52vw;
+    text-align: center;
+    color: #81818E;
+}
+
+.check-message img{
+    width: 0.52vw;
+    height: 0.52vw;
+    transform: rotate(-90deg);
+}
+
+.all-messages-message-my {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* DAVID */
+
+.popups h1 {
+    text-align: center;
+}
+.messa {
+    margin-top: 1vh;
+}
+.bgform {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.35;
+    z-index: 5;
+}
+.createGroupForm {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 490px;
+    display: flex;
+    flex-direction: column;
+    padding: 44px;
+    gap: 24px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    z-index: 6;
+}
+.closepopup {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    font-size: 20px;
+}
+.btns {
+    position: relative;
+    display: flex;
+    justify-content: end;
+}
+.next {
+    /* width: 100%; */
+    height: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #543C52;
+    border-radius: 5vw;
+    cursor: pointer;
+    border: none;
+    padding: 0.5vw 0.8vw;
+    gap: 0.5vw;
+    color: #FFFFFF;
+}
+
+.hideform {
+    display: none;
+}
+.avatar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw;
+    
+}
+.change-avatar {
+    font-size: 1vw;
+    font-weight: 400;
+    color: #543C52;
+}
+.avatar-group label div p {
+    color: #543C52;
+}
+.avatar-group label div{
+    display: flex;
+    gap: 0.5vw;
+}
+.avatar-group label div img {
+    width: 1vw;
+    height: 1vw;
+}
+.avatar-group input {
+    display: none;
+}
+#label-avatar{
+    display: flex;
+    gap: 1vw;
+    cursor: pointer;
+}
+
+.dots {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1.2vw;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.dots img {
+    width: 100%;
+}
+.show-modal-del-edit {
+    display: flex;
+    position: absolute;
+    right: -0.15vw;
+    top: -0.25vw;
+    padding: 16px;
+    gap: 16px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: start;
+    width: 343px;
+    height: 140px;
+    background-color: #E9E5EE;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.line-beetwen-buttons {
+    width: 100%;
+    height: 1px;
+    border: #CDCED2 1px solid;
+}
+
+.show-modal-del-edit button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: GT Walsheim Pro;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.show-modal-del-edit a {
+    display: flex;
+    color: black;
+    text-decoration: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: GT Walsheim Pro;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-del-edit {
+    display: none;
 }

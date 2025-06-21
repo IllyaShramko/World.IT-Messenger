@@ -15,45 +15,94 @@
             <a class="chat-header-arrow-button" href = "{% url 'all_chats' %}">
                 <img class="chat-header-arrow" src="{% static 'chat_app/images/arrow.png' %}">
             </a>
-            {% for avatar in avatars %}
-                {% if avatar.profile.id == companion.user.id  %}
-                    <img class="chat-header-image" src="{{ avatar.image.url }}">
-                {% endif %}
-            {% endfor %}
-            <h1 class="chat-header-name">{{ companion.user.first_name }} {{ companion.user.last_name }}</h1>
+            <img class="chat-header-image" src="{{ groupavatar }}">
+            <h1 class="chat-header-name">{{ groupname }}</h1>
         </div>
-        <img src="{% static 'chat_app/images/Dots.svg' %}">
+        <button id="dotsButton" class="dots">
+            <img class="dots-img" src="{% static 'images/Dots.svg' %}">
+        </button>
+        <data class="modal-del-edit" id="modal-del-edit">
+            <button value="" class="editButton" id="editButton">
+                <img src="{% static 'my_post_app/images/edit.png' %}" alt="delete">
+                <p>Редагувати допис</p>
+            </button>
+            <div class="line-beetwen-buttons"></div>
+            <a href="" class="deleteButton" id="deleteButton">
+                <img src="{% static 'my_post_app/images/delete.png' %}" alt="edit">
+                <p>Видалити публікацію</p>
+            </a>
+        </data>
     </div>
     <div class="chat-content">
-        <input type="hidden" id="groupPk" value="1">
-        <div id="messages">
-            {% for message in messages_history %}
-                <div>
-                    <p><b>{{ message.author }}: </b>{{ message.content }} (<span class="iso-date-time">{{ message.date_time.isoformat }}</span>)</p>
-                    <i>Переглядів: {{ message.view_by_users.all|length }}</i>
+        <input type="hidden" id="groupPk" value="{{ group_pk }}">
+        <input type="hidden" id="user" value="{{ user }}">
+        <div class="main-content" >
+            <div class="content">
+
+                <div class="all-messages" id="messeges">
+                    {% for message in history_messages %}
+                        {% if message.author == user %}
+                            <div class="all-messages-message-my messa">
+                                <div>
+                                    <div class="my-message">
+                                        <h2>{{ message.content }}</h2>
+                                        <div class = "check-message">
+                                            <p>10:01</p>
+                                            <img src="{% static 'chat_app/images/arrow.png' %}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="all-messages-message messa">
+                                <div>
+                                    <div class="companion-message-outside">
+                                        {% for avatar in avatars %}
+                                                {% if avatar.profile == message.author %}
+                                                    <img src="{{ avatar.image.url }}">
+                                                {% endif %}
+                                        {% endfor %}
+                                        <div class="companion-message">
+                                            <div class="all-message-message-content">
+                                                <h2 class="">{{ message.author.user.first_name }} {{ message.author.user.last_name }}</h2>
+                                                <p>{{ message.content }}</p>
+                                            </div>
+                                            <div class="all-message-message-info">
+                                                <p>
+                                                    10:30
+                                                </p>
+                                                <img src="{% static 'chat_app/images/arrow.png' %}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
+            <form class="send-form" action="" id="message">
+                {% csrf_token %}
+                <input class="send-form-input" type="text" id="messageInput" name="message" placeholder="Повідомлення">
+                <button class="send-form-emojes">
+                    <img src="{% static 'chat_app/images/emodji.svg' %}">
+                </button>
+                <button class="send-form-images">
+                    <img src="{% static 'chat_app/images/image.svg' %}">
+                </button>
+                <button class="send-form-button">
+                    <img src="{% static 'chat_app/images/send-message.png' %}">
+                </button>
+            </form>
         </div>
-        <form class="send-form" action="" id="message">
-            {% csrf_token %}
-            <input class="send-form-input" type="text" id="messageInput" name="message" placeholder="Повідомлення">
-            <button class="send-form-emojes">
-                <img src="{% static 'chat_app/images/emodji.svg' %}">
-            </button>
-            <button class="send-form-images">
-                <img src="{% static 'chat_app/images/image.svg' %}">
-            </button>
-            <button class="send-form-button">
-                <img src="{% static 'chat_app/images/send-message.png' %}">
-            </button>
-        </form>
     </div>
 
 {% endblock %}
 
 {% block contacts %}
     {% for contact in contacts %}
-        <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'personal_chat' user.pk contact.pk %}">
+        {% if contact.profile1 != user %}
+        <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'personal_chat' user.pk contact.profile1.pk %}">
             {% if contact.profile1 != user %}
                 {% for avatar in avatars %}
                     {% if avatar.profile.id == contact.profile1.id  %}
@@ -70,6 +119,25 @@
                 <p>{{ contact.profile2.user.first_name }} {{ contact.profile2.user.last_name }}</p>
             {% endif %}        
         </a>
+        {% else %}
+        <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'personal_chat' user.pk contact.profile2.pk %}">
+            {% if contact.profile1 != user %}
+                {% for avatar in avatars %}
+                    {% if avatar.profile.id == contact.profile1.id  %}
+                        <img src="{{ avatar.image.url }}">
+                    {% endif %}
+                {% endfor %}
+                <p>{{ contact.profile1.user.first_name }} {{ contact.profile1.user.last_name }}</p>
+            {% else %}
+                {% for avatar in avatars %}
+                    {% if avatar.profile.id  == contact.profile2.id  %}
+                        <img src="{{ avatar.image.url }}">
+                    {% endif %}
+                {% endfor %}
+                <p>{{ contact.profile2.user.first_name }} {{ contact.profile2.user.last_name }}</p>
+            {% endif %}        
+        </a>
+        {% endif %}
     {% endfor %}
 {% endblock %}
 {% block messages %}
@@ -88,24 +156,28 @@
         {% endfor %}
     </div>
 {% endblock %}
+{% block groups %}
     <div class="right-side-menu-content">
-        {% for contact in request.user.friends.all %}
-            <a class="contact" value="contactOpen" type="submit" name="button" href="">
-                <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
+        {% for group in groups %}
+            <a class="contact" value="contactOpen" href="{% url 'chat' group.pk  %}">
+                <img src="{{ group.avatar.url }}">
                 <div class="message-content">
                     <div>
-                        <p>{{ contact.first_name }} {{ contact.last_name }}</p>
-                        <h2 class="message-time">1939</h2>
+                        <p>{{ group.name }}</p>
                     </div>
-                    <h2 class="message-text">Привіт пупсик</h2>
                 </div>
             </a>
         {% endfor %}
     </div>
-{% block groups %}
-
 {% endblock %}
+
+{% block popups %}
+{% endblock %}
+
+
 <!--  -->
 {% block scripts %}
     <script src="{% static 'chat_app/js/chats.js' %}"></script>
+    <script src="{% static 'chat_app/js/autoScroll.js' %}"></script>
+    <script src="{% static 'chat_app/js/modal_window_open_close.js' %}"></script>
 {% endblock %}

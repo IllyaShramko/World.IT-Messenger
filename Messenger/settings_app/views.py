@@ -20,7 +20,7 @@ class SettingsView(View):
                 {
                     "profile": request.user,
                     "birthday": f"{Profile.objects.get(user = request.user)}",
-                    "tag_name": f"@{profile.tag_name}",
+                    "tag_name": f"{profile.tag_name}",
                     "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
                     "page":"settings"
                 }
@@ -38,28 +38,42 @@ class SettingsView(View):
                     )
                     
             else:
-                name = request.POST.get("name")
-                last_name = request.POST.get("surname")
-                birthday = request.POST.get("birthday")
-                email = request.POST.get("email")
-                try:
-                    user = request.user
-                    user.first_name = name
-                    user.last_name = last_name
-                    user.username = email
-                    user.email = email
-                    user.birthday = birthday
-                    user.save()
-                except:
-                    print(Exception)
+                button = request.POST.get("button")
+                print(button)
+                if button == "save":
+                    name = request.POST.get("name")
+                    last_name = request.POST.get("surname")
+                    birthday = request.POST.get("birthday")
+                    email = request.POST.get("email")
+                    try:
+                        user = request.user
+                        user.first_name = name
+                        user.last_name = last_name
+                        user.username = email
+                        user.email = email
+                        user.save()
+                    except:
+                        print(Exception)
+                elif button == "savepass":
+                    password1 = request.POST.get("password")
+                    password2 = request.POST.get("passwordconfirm")
+                    print(password1, password2)
+                    if password1 == password2:
+                        user = request.user
+                        user.set_password(password1)
+                        user.save()
+                        print("SUCCESS")
+                    else:
+                        pass    
             return render(
                 request, 
                 "settings_app/settings.html",
                 {
                     "profile": request.user,
                     "birthday": f"{Profile.objects.get(user = request.user)}",
-                    "tag_name": "@Krytuoi",
-                    "page":"settings"
+                    "tag_name": f"{profile.tag_name}",
+                    "page":"settings",
+                    "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
                 }
             )
 
