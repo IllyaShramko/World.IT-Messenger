@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
+from django.views.generic.list import ListView
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from user_app.models import Friendship, Profile, Avatar
 from .models import ChatGroup, ChatMessage
@@ -125,8 +126,23 @@ class ChatView(TemplateView):
 
         context["groups"] = ChatGroup.objects.filter(members = context["user"]).exclude(is_personal_chat= True)
 
+        if context["user"] == chat.admin:
+            context["is_me_admin"] = True
+        else:
+            context["is_me_admin"] = False
+
         return context  
     
+    def dispatch(self, request, *args, **kwargs):
+        chat = ChatGroup.objects.filter(pk=  self.kwargs.get("group_pk")).exists()
+        print(chat)
+
+        if not chat:
+            return redirect("all_chats")
+
+        
+        return super().dispatch(request, *args, **kwargs)
+
 
 def redirect_to_personal_chat(request, user1_pk, user2_pk):
     '''
@@ -148,3 +164,47 @@ def redirect_to_personal_chat(request, user1_pk, user2_pk):
         group.save()
     # перенаправляємо користувача на сторінку цього персонального чату
     return redirect('chat', group.pk)
+
+def delete_group(request, group_pk):
+
+    group = ChatGroup.objects.get(pk = group_pk)
+    profile = Profile.objects.get(user = request.user)
+    if group.admin == profile:
+        group.delete()
+    return redirect("all_chats")
+
+def leave_group(request, group_pk):
+    group = ChatGroup.objects.get(pk = group_pk)
+    profile = Profile.objects.get(user = request.user)
+    if profile in group.members.all():
+        group.members.remove(profile)
+        group.save() 
+
+    return redirect("all_chats")
+
+def get_group(request, group_pk):
+    group = ChatGroup.objects.get(pk = group_pk)
+    avatars = Avatar.objects.filter(profile__in = group.members.all()).filter(active = True)
+    print(avatars)
+    return render(request, "chat_app/edit_group.html", context={
+        "group": group,
+        "groupmembers": group.members.exclude(pk = Profile.objects.get(user = request.user).pk),
+        "avatars": avatars
+    })
+
+def edit_chat(request, group_pk):
+
+    group = ChatGroup.objects.get(pk = group_pk)
+    edited_name = request.POST.get("groupname")
+    edited_avatar = request.FILES.get("avatar")
+    edited_members = request.POST.getlist("contacts")
+    edited_members_profiles = Profile.objects.filter(pk__in = edited_members)
+    if edited_name != group.name:
+        group.name = edited_name
+
+    # print(group.members.remove(edited_members_profiles))
+    group.save()
+
+    print(group, edited_name, edited_avatar, edited_members)
+
+    return redirect("chat", group_pk)

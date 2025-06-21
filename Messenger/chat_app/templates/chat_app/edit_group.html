@@ -1,0 +1,42 @@
+{% load static %}
+<div class="bgform" id="blurform"></div>
+<form action="{% url 'edit_chat' group.pk %}" method="post" enctype="multipart/form-data" name="addmembers" class="createGroupForm" id="createGroupForm">
+    {% csrf_token %}
+    <button type="button" class="closepopup" id="closepopup">x</button>
+    <h1>Редогування группи</h1>
+    <div class="search">
+        <input type="text" id="nameGroup" name="groupname" placeholder="Назва групи" value="{{ group.name }}" required>
+    </div>
+    <div class="avatar-group" id="avatar-group">
+        <img src="{{ group.avatar.url }}" alt="Avatar" class="group-avatar">
+        <label id="label-avatar" class="notediting" for="avatar">
+            <div>
+                <img src="{% static 'settings_app/images/plus_purple.png' %}">
+                <p>Додайте фото</p>
+            </div>
+            <div>
+                <img src="{% static 'settings_app/images/img.png' %}">
+                <p>оберіть фото</p>
+            </div>
+        </label>
+        <input type="file" name="avatar" id="avatar" class="avatar" value="{{ group.avatar.url }}">
+    </div>
+    <h3>Учасники:</h3>
+    <div class="contactsadd" id="contactsSelectedd">
+        {% for member in groupmembers %}
+            <label for="member-{{ member.pk }}" class="contact" value="contactOpen" type="button" name="button">
+                {% for avatar in avatars %}
+                    {% if avatar.profile.id == member.id %}
+                        <img src="{{ avatar.image.url }}">
+                    {% endif %}
+                {% endfor %}
+                <p>{{ member.user.first_name }} {{ member.user.last_name }}</p>
+                <input type="checkbox" checked name="contacts" id="contact--{{ member.pk }}" value="{{ member.pk }}">
+            </label>
+        {% endfor %}
+    </div>
+    
+    <div class="btns">
+        <button type="submit" id="submit" name="button" value="editGroup" class="next">Зберегти зміни</button>
+    </div>
+</form>

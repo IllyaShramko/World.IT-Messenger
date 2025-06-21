@@ -153,7 +153,7 @@
         
         <div class="popups">
             
-    <div class="hideform bgform" id="blurform"></div>
+            <div class="hideform bgform" id="blurform"></div>
             <form method="post" enctype="multipart/form-data" name="addmembers" class="hideform createGroupForm" id="createGroupForm">
                 {% csrf_token %}
                 <button type="button" class="closepopup" id="closepopup">x</button>
@@ -163,7 +163,7 @@
                     <input type="text" id="nameGroup" name="groupname" placeholder="Пошук" required>
                 </div>
                 <div class="hideform" id="avatar-group">
-                    <img src="{% static 'chat_app/images/Indicator.png' %}" alt="Avatar">
+                    <img src="{% static 'chat_app/images/Indicator.png' %}" alt="Avatar"  class="group-avatar">
                     <label id="label-avatar" class="notediting" for="avatar">
                         <div>
                             <img src="{% static 'settings_app/images/plus_purple.png' %}">

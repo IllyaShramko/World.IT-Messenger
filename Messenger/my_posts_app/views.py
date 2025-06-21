@@ -181,10 +181,6 @@ def get_post(request, post_id):
         "text",
         post.text
     )
-    form.initial.setdefault(
-        "links",
-        post.links
-    )
     images = Image.objects.filter(post_id = post_id)
     if post:
         if images:

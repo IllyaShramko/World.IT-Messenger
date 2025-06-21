@@ -22,15 +22,27 @@
             <img class="dots-img" src="{% static 'images/Dots.svg' %}">
         </button>
         <data class="modal-del-edit" id="modal-del-edit">
-            <button value="" class="editButton" id="editButton">
-                <img src="{% static 'my_post_app/images/edit.png' %}" alt="delete">
-                <p>Редагувати допис</p>
+            <button value="" class="editButton">
+                <img src="{% static 'chat_app/images/img.png' %}">
+                <p>Медіа</p>
             </button>
-            <div class="line-beetwen-buttons"></div>
-            <a href="" class="deleteButton" id="deleteButton">
-                <img src="{% static 'my_post_app/images/delete.png' %}" alt="edit">
-                <p>Видалити публікацію</p>
-            </a>
+            {% if is_me_admin %}
+                <button value="{% url 'get_group' group_pk %}" class="editButton" id="editButton">
+                    <img src="{% static 'my_post_app/images/edit.png' %}" alt="delete">
+                    <p>Редагувати групу</p>
+                </button>
+                <div class="line-beetwen-buttons"></div>
+                <a href="{% url 'delete_group' group_pk %}" class="deleteButton" id="deleteButton">
+                    <img src="{% static 'my_post_app/images/delete.png' %}" alt="edit">
+                    <p>Видалити чат</p>
+                </a>
+            {% else %}
+                <div class="line-beetwen-buttons"></div>
+                <a href="{% url 'leave_group' group_pk %}" class="deleteButton" id="deleteButton">
+                    <img src="{% static 'chat_app/images/leftgroup.png' %}" alt="edit">
+                    <p>Покинути чат</p>
+                </a>
+            {% endif %}
         </data>
     </div>
     <div class="chat-content">
@@ -180,4 +192,6 @@
     <script src="{% static 'chat_app/js/chats.js' %}"></script>
     <script src="{% static 'chat_app/js/autoScroll.js' %}"></script>
     <script src="{% static 'chat_app/js/modal_window_open_close.js' %}"></script>
+    <script src="{% static 'chat_app/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'chat_app/js/edit_group.js' %}"></script>
 {% endblock %}
