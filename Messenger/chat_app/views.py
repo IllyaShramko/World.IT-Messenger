@@ -193,18 +193,21 @@ def get_group(request, group_pk):
     })
 
 def edit_chat(request, group_pk):
+    group = ChatGroup.objects.get(pk=group_pk)
 
-    group = ChatGroup.objects.get(pk = group_pk)
     edited_name = request.POST.get("groupname")
     edited_avatar = request.FILES.get("avatar")
     edited_members = request.POST.getlist("contacts")
-    edited_members_profiles = Profile.objects.filter(pk__in = edited_members)
-    if edited_name != group.name:
+    
+    edited_members_profiles = Profile.objects.filter(pk__in=edited_members) | Profile.objects.filter(user=request.user)
+
+    if edited_name and edited_name != group.name:
         group.name = edited_name
 
-    # print(group.members.remove(edited_members_profiles))
-    group.save()
+    if edited_avatar:
+        group.avatar = edited_avatar
 
-    print(group, edited_name, edited_avatar, edited_members)
+    group.members.set(edited_members_profiles)
+    group.save()
 
     return redirect("chat", group_pk)
