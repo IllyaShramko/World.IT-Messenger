@@ -551,6 +551,13 @@
     font-size: 0.9vw;
     cursor: pointer;
 }
+input[type="checkbox"]:checked + .tag {
+    background-color: #7e3be3;
+    color: #ffffff;
+}
+input[type="checkbox"] {
+    display: none;
+}
 .tag-input-wrapper {
     display: flex;
     align-items: center;
