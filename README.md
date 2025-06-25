@@ -3,13 +3,23 @@
 > [!TIP]
 > - []()
 
-# Main information of project | Основна інформація про проект: 
+## Team Members | Delevopers | Склад команді:
+- [__Shramko Ilia__](https://github.com/IllyaShramko/World.IT-Messenger) - __Teamlead__
+- [__Halkin Yehor__](https://github.com/EgorGalkinORG/Worldit-Messager)
+- [__Petrenko Davyd__](https://github.com/Davidptn/WorldIt_Messenger)
+- [__Koshel' Timur__](https://github.com/kosheltimur)
+____
+- [__Шрамко Іл'я__](https://github.com/IllyaShramko/World.IT-Messenger) - __Teamlead__
+- [__Галкін Єгор__](https://github.com/EgorGalkinORG/Worldit-Messager)
+- [__Петренко Давид__](https://github.com/Davidptn/WorldIt_Messenger)
+- [__Кошель Тимур__](https://github.com/kosheltimur)
+
 ## Purpose of creating the project | Мета створення проекту:
 ### EN:
 The purpose of creating this project is to practice & improve the newly learned skills of Django Framework: Django Forms, Django Class Views, Django channels (for working with WebSocket), ajax (jquery) for sending data to the backend in real time with an instant response from the server, as well as working with the iso date format to format it in local time.
 ____
 ### UA:
-Мета створення цього проекту - вдосконалення навичок, які ми щонедавно почали вивчати: Django Forms, Django Class Views, Django channels (Для праці з WebSocket), ajax (jquery) для відправки даних на бек-енд у реальному часі з мгновеною відповіддю від серверу, а також робота з iso-форматом дат для форматування його у локальний час
+Мета створення цього проекту - вдосконалення навичок, які ми щонедавно почали вивчати у фреймворці Django: Django Forms, Django Class Views, Django channels (Для праці з WebSocket), ajax (jquery) для відправки даних на бек-енд у реальному часі з мгновеною відповіддю від серверу, а також робота з iso-форматом дат для форматування його у локальний час
 ## Technologies | Технології:
 > [!NOTE]
 > - Django (Python framework)
