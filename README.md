@@ -4,6 +4,12 @@
 > - []()
 
 # Main information of project | Основна інформація про проект: 
+## Purpose of creating the project | Мета створення проекту:
+### EN:
+The purpose of creating this project is to practice & improve the newly learned skills of Django Framework: Django Forms, Django Class Views, Django channels (for working with WebSocket), ajax (jquery) for sending data to the backend in real time with an instant response from the server, as well as working with the iso date format to format it in local time.
+____
+### UA:
+Мета створення цього проекту - вдосконалення навичок, які ми щонедавно почали вивчати: Django Forms, Django Class Views, Django channels (Для праці з WebSocket), ajax (jquery) для відправки даних на бек-енд у реальному часі з мгновеною відповіддю від серверу, а також робота з iso-форматом дат для форматування його у локальний час
 ## Technologies | Технології:
 > [!NOTE]
 > - Django (Python framework)
@@ -18,7 +24,6 @@
 > - Figma (Design)
 > - git 
 > - GitHub
-
 ## Why Project "World.IT-Messenger" if useful | Чому Проект "World.IT-Messenger" корисний:
 ### EN:
 - You can write & publish your ideas, thoughts and emotions
