@@ -1,0 +1,39 @@
+# Project "World.It-Messanger"
+## Navigation | Навігація:
+> [!TIP]
+> - []()
+
+# Main information of project | Основна інформація про проект: 
+## Technologies | Технології:
+> [!NOTE]
+> - Django (Python framework)
+> - pillow (Python module)
+> - os (Python module)
+> - daphne (Python module for async work)
+> - channels (Python module for websockets)
+> - SQLite (Database)
+> - Jquery 
+> - Ajax
+> - WebSocket
+> - Figma (Design)
+> - git 
+> - GitHub
+
+## Why Project "World.IT-Messenger" if useful | Чому Проект "World.IT-Messenger" корисний:
+### EN:
+- You can write & publish your ideas, thoughts and emotions
+- You can create albums & upload photo in them, also you can hide any albums if you want it
+- You can send a friend invitation to any user, you can also delete any user who has become your friend
+- You can create groups with your friends & manage them, also you can delete any group if you is admin of group
+- You can chatting with your friends in your group or personal chat in real time!
+- Also you can send messeges with any photo which you upload
+- You can change any your account settings: first name, surname, avatar, email, password etc.
+____
+### UA:
+- Ви можете записувати та публікувати свої ідеї, думки та емоції.
+- Ви можете створювати альбоми та завантажувати в них фотографії, а також можете приховувати будь-які альбоми, якщо хочете.
+- Ви можете надіслати запрошення до друзів будь-якому користувачеві, а також видалити будь-якого користувача, який став вашим другом.
+- Ви можете створювати групи зі своїми друзями та керувати ними, а також можете видалити будь-яку групу, якщо ви є адміністратором групи.
+- Ви можете спілкуватися з друзями у своїй групі або особистому чаті в режимі реального часу!
+- Також ви можете надсилати повідомлення з будь-якою фотографією, яку завантажуєте.
+- Ви можете змінити будь-які налаштування свого облікового запису: ім'я, прізвище, аватар, електронну пошту, пароль тощо.
