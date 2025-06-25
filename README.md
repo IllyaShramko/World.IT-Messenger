@@ -1,4 +1,4 @@
-# Project "World.It-Messanger"
+# Project "World.It-Messenger"
 ## Navigation | Навігація:
 > [!TIP]
 > - [Team Members | Delevopers](#team-members--delevopers--склад-команді)
