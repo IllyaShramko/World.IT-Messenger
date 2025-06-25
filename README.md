@@ -1,15 +1,16 @@
 # Project "World.It-Messanger"
 ## Navigation | Навігація:
 > [!TIP]
-> - [Team Members | Delevopers | Склад команді](#team-members--delevopers--склад-команді)
-> - [Purpose of creating the project | Мета створення проекту](#purpose-of-creating-the-project--мета-створення-проекту)
-> - [Technologies | Технології](#technologies--технології)
-> - [Why Project "World.IT-Messenger" if useful | Чому Проект "World.IT-Messenger" корисний](#why-project-worldit-messenger-if-useful--чому-проект-worldit-messenger-корисний)
+> - [Team Members | Delevopers](#team-members--delevopers--склад-команді)
+> - [Purpose of creating the project](#purpose-of-creating-the-project--мета-створення-проекту)
+> - [Technologies](#technologies--технології)
+> - [Why Project "World.IT-Messenger" if useful](#why-project-worldit-messenger-if-useful--чому-проект-worldit-messenger-корисний)
 ____
-> - [Team Members | Delevopers | Склад команді](#team-members--delevopers--склад-команді)
-> - [Purpose of creating the project | Мета створення проекту](#purpose-of-creating-the-project--мета-створення-проекту)
-> - [Technologies | Технології](#technologies--технології)
-> - [Why Project "World.IT-Messenger" if useful | Чому Проект "World.IT-Messenger" корисний](#why-project-worldit-messenger-if-useful--чому-проект-worldit-messenger-корисний)
+> [!TIP]
+> - [Склад команді](#team-members--delevopers--склад-команді)
+> - [Мета створення проекту](#purpose-of-creating-the-project--мета-створення-проекту)
+> - [Технології](#technologies--технології)
+> - [Чому Проект "World.IT-Messenger" корисний](#why-project-worldit-messenger-if-useful--чому-проект-worldit-messenger-корисний)
 ## Team Members | Delevopers | Склад команді:
 - [__Shramko Ilia__](https://github.com/IllyaShramko/World.IT-Messenger) - __Teamlead__
 - [__Halkin Yehor__](https://github.com/EgorGalkinORG/Worldit-Messager)
