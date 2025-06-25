@@ -87,6 +87,18 @@
 {% endblock %}
 
 {% block messages %}
+    <div class="right-side-menu-content">
+        {% for group in messages_groups %}
+            <a class="contact" value="contactOpen" href="{% url 'chat' group.pk  %}">
+                <img src="{{ group.avatar.url }}">
+                <div class="message-content">
+                    <div>
+                        <p>{{ group.name }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block groups %}

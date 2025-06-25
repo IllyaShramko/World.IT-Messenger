@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ChatsView, ChatView, redirect_to_personal_chat, delete_group, leave_group, get_group, edit_chat
+from .views import ChatsView, ChatView, redirect_to_personal_chat, delete_group, leave_group, get_group, edit_chat, ImageUploadView
 
 urlpatterns = [
     path('', ChatsView.as_view(), name = "all_chats"),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('leave_group/<int:group_pk>', leave_group, name = "leave_group"),
     path('get_group/<int:group_pk>', get_group, name="get_group"),
     path('edit_chat/<int:group_pk>', edit_chat, name="edit_chat"),
+    path("upload-image/", ImageUploadView.as_view(), name="upload-image"),
 ]

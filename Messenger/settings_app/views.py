@@ -83,31 +83,38 @@ class AlbumsSettingsView(View):
         if request.method == "POST":
             button = request.POST.get("button")
             if button == "album_create_1":
+                albums = Album.objects.filter(author_id = Profile.objects.get(user = request.user))
                 return render(
                     request,
                     "settings_app/album.html",
                     context = {
                         # "images": images,
                         "popup": True,
+                        'albums': albums,
+                        "tags": Tag.objects.all(),
                         "page": "settings"
                     }
                 )
             elif button == "submitAlbum":
                 title = request.POST.get("title")
-                subtitle = request.POST.get("subtitle")
+                subtitle_pk = request.POST.get("topic")
+                print(subtitle_pk)
+                topic = Tag.objects.get(pk = subtitle_pk)
                 date = request.POST.get("date")
                 print(date)
                 album= Album.objects.create(
                     name = title,
-                    topic = Tag.objects.get(pk=1)
+                    author = Profile.objects.get(user= request.user),
+                    topic = topic
                 )
+                albums = Album.objects.filter(author_id = Profile.objects.get(user = request.user))
                 return render(
                     request,
                     "settings_app/album.html",
                     context = {
                         # "images": images,
                         "popup": False,
-                        'album': album,
+                        'albums': albums,
                         "page": "settings"
                     }
                 )
@@ -136,20 +143,16 @@ class AlbumsSettingsView(View):
                 
         else:
             album = None
-            album_images = None
             try:
-                album = Album.objects.filter(author_id = request.user.id).first()
-                album_images = Image.objects.filter(album_id = album.id)
+                album = Album.objects.filter(author_id = Profile.objects.get(user = request.user))
             except:
                 print(Exception)
             return render(
                 request,
                 "settings_app/album.html",
                 context = {
-                    # "images": images,
-                    'album': album,
+                    'albums': album,
                     "page": "settings",
-                    "album_images": album_images,
                 }
             )
 
@@ -160,7 +163,8 @@ def upload_images(request):
         album = Album.objects.get(pk = request.POST.get("album_id"))
         images = request.FILES.getlist('images')
         for img in images:
-            Image.objects.create(album=album, image=img)
+            img_db = Image.objects.create(filename="123", file = img)
+            album.images.add(img_db)
         return JsonResponse({'status': 'ok', 'album_id': album.id})
 
 def delete_image(request, img_pk):

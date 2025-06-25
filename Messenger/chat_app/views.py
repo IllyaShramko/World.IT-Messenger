@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
+from django.http import JsonResponse
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 from django.views.generic.list import ListView
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from user_app.models import Friendship, Profile, Avatar
 from .models import ChatGroup, ChatMessage
+import os
 # Create your views here.
 
 class ChatsView(TemplateView):
@@ -27,6 +31,7 @@ class ChatsView(TemplateView):
         avatars = Avatar.objects.filter(profile__in = profiles_with_avatars).filter(active = True)
 
         context["groups"] = ChatGroup.objects.filter(members = context["user"]).exclude(is_personal_chat= True)
+        context["messages_groups"] = ChatGroup.objects.filter(members = context["user"]).filter(is_personal_chat= True)
 
         print(ChatGroup.objects.filter(members = context["user"]))
 
@@ -52,7 +57,7 @@ class ChatsView(TemplateView):
 
             print(avatar)
             if not avatar:
-                avatar= "images/group_avatars/Indicator_wngVNLF.png"
+                avatar = os.path.join("images", "group_avatars", "Indicator.png")
 
             group = ChatGroup.objects.create(
                 name = name,
@@ -84,6 +89,7 @@ class ChatsView(TemplateView):
         context["avatars"] = avatars
 
         context["groups"] = ChatGroup.objects.filter(members = context["user"]).exclude(is_personal_chat= True)
+        context["messages_groups"] = ChatGroup.objects.filter(members = context["user"]).filter(is_personal_chat= True)
 
         
         return render(
@@ -125,6 +131,7 @@ class ChatView(TemplateView):
         context["group_pk"] = kwargs.get('group_pk')
 
         context["groups"] = ChatGroup.objects.filter(members = context["user"]).exclude(is_personal_chat= True)
+        context["messages_groups"] = ChatGroup.objects.filter(members = context["user"]).filter(is_personal_chat= True)
 
         if context["user"] == chat.admin:
             context["is_me_admin"] = True
@@ -157,7 +164,7 @@ def redirect_to_personal_chat(request, user1_pk, user2_pk):
     # перевіряємо, якщо особистого чату між цими користувачами немає
     if not group:
         # створюємо групу (особистий чат)
-        group = ChatGroup.objects.create(name = f"Chats {user1}, {user2}", is_personal_chat = True, admin= user1, avatar = "images/group_avatars/Indicator_wngVNLF.png")
+        group = ChatGroup.objects.create(name = f"Chats {user1.user.first_name} {user1.user.last_name}, {user2.user.first_name} {user2.user.first_name}", is_personal_chat = True, admin= user1, avatar = "images/group_avatars/Indicator.png")
         # додаємо користувачів до групи
         group.members.add(user1, user2)
         # зберігаємо зміни у групі
@@ -211,3 +218,17 @@ def edit_chat(request, group_pk):
     group.save()
 
     return redirect("chat", group_pk)
+
+
+import uuid
+
+class ImageUploadView(View):
+    def post(self, request):
+        print(1111)
+        image = request.FILES.get("image")
+        if not image:
+            return JsonResponse({"error": "No image"}, status=400)
+        print(image)
+        filename = f"images/messages/{uuid.uuid4().hex}_{image.name}"
+        saved_path = default_storage.save(filename, ContentFile(image.read()))
+        return JsonResponse({"image_url": default_storage.url(saved_path)})

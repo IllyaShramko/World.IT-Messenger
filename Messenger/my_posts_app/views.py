@@ -56,7 +56,9 @@ class MyPostsView(ListView):
                     "page": "my_posts",
                     "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
                     "images": Image.objects.all(),
+                    "viewers": Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count(),
                     "tag_name": Profile.objects.get(user = request.user).tag_name,
+                    "friends_count": Friendship.objects.filter(accepted = True).filter(profile1 = Profile.objects.get(user= self.request.user)).count(),
                     "my_posts": Post.objects.filter(author= Profile.objects.get(user = self.request.user)),
                     "posts_count": Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count(),
                     "tags": tags,
@@ -102,7 +104,9 @@ class MyPostsView(ListView):
                     "page": "my_posts",
                     "images": Image.objects.all(),
                     "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                    "viewers": Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count(),
                     "tag_name": Profile.objects.get(user = request.user).tag_name,
+                    "friends_count": Friendship.objects.filter(accepted = True).filter(profile1 = Profile.objects.get(user= self.request.user)).count(),
                     "my_posts": Post.objects.filter(author= Profile.objects.get(user = self.request.user)),
                     "posts_count": Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count(),
                     }
@@ -142,10 +146,10 @@ class MyPostsView(ListView):
                     "page": "my_posts",
                     "images": Image.objects.all(),
                     "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
+                    "viewers": Post.objects.filter(author= Profile.objects.get(user = self.request.user)).count(),
                     "tag_name": Profile.objects.get(user = request.user).tag_name,
-                    "my_posts": Post.objects.filter(user= request.user),
-                    "viewers": request.user.viewers,
-                    "friends_count": request.user.friends.count(),
+                    "friends_count": Friendship.objects.filter(accepted = True).filter(profile1 = Profile.objects.get(user= self.request.user)).count(),
+                    "my_posts": Post.objects.filter(author= Profile.objects.get(user = self.request.user)),
                     "posts_count": Post.objects.filter(user = request.user).count(),
                     }
             )    
@@ -167,7 +171,7 @@ def delete_post(request, post_id):
     return redirect(reverse_lazy("my_posts"))
 
 def get_post(request, post_id):
-    post = Post.objects.get(user = request.user, id = post_id)
+    post = Post.objects.filter(author= Profile.objects.get(user = request.user), pk = post_id),
     form = PostForm()
     form.initial.setdefault(
         "title",

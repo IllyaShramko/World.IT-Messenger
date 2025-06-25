@@ -166,6 +166,17 @@
     gap: 10px;
     border-width: 1px;
 }
+.label-input select {
+
+    border: #81818D 1px solid;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-right: 16px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    gap: 10px;
+    border-width: 1px;
+}
 .cancel {
     position: relative;
     border: #543C52 1px solid;

@@ -24,7 +24,7 @@ class Image(models.Model):
 
 class Album(models.Model):
     name = models.CharField(max_length=255)
-    # author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name= "album")
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name= "album")
     created_at = models.DateTimeField(auto_now_add=True)
     preview_image = models.ImageField(upload_to='images/album_previews', null=True, blank=True)
     images = models.ManyToManyField(Image, blank=True)

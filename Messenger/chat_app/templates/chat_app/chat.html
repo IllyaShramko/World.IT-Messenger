@@ -39,7 +39,7 @@
             {% else %}
                 <div class="line-beetwen-buttons"></div>
                 <a href="{% url 'leave_group' group_pk %}" class="deleteButton" id="deleteButton">
-                    <img src="{% static 'chat_app/images/leftgroup.png' %}" alt="edit">
+                    <img src="{% static 'chat_app/images/leftgroup.png' %}" alt="leave">
                     <p>Покинути чат</p>
                 </a>
             {% endif %}
@@ -58,6 +58,9 @@
                                 <div>
                                     <div class="my-message">
                                         <h2>{{ message.content }}</h2>
+                                        {% if message.attached_image %}
+                                            <img src="{{ message.attached_image.url }}">
+                                        {% endif %}
                                         <div class = "check-message">
                                             <p>10:01</p>
                                             <img src="{% static 'chat_app/images/arrow.png' %}">
@@ -71,13 +74,16 @@
                                     <div class="companion-message-outside">
                                         {% for avatar in avatars %}
                                                 {% if avatar.profile == message.author %}
-                                                    <img src="{{ avatar.image.url }}">
+                                                    <img src="{{ avatar.image.url }}" class="avatar-companion">
                                                 {% endif %}
                                         {% endfor %}
                                         <div class="companion-message">
                                             <div class="all-message-message-content">
                                                 <h2 class="">{{ message.author.user.first_name }} {{ message.author.user.last_name }}</h2>
                                                 <p>{{ message.content }}</p>
+                                                {% if message.attached_image %}
+                                                    <img src="{{ message.attached_image.url }}">
+                                                {% endif %}
                                             </div>
                                             <div class="all-message-message-info">
                                                 <p>
@@ -95,13 +101,19 @@
             </div>
             <form class="send-form" action="" id="message">
                 {% csrf_token %}
+                <div class="attached_images" id="attachedImage">
+                    <!-- <div class="attached-img">
+                        <img src="" id="attaImg">
+                    </div> -->
+                </div>
                 <input class="send-form-input" type="text" id="messageInput" name="message" placeholder="Повідомлення">
                 <button class="send-form-emojes">
                     <img src="{% static 'chat_app/images/emodji.svg' %}">
                 </button>
-                <button class="send-form-images">
+                <label for="attachedImg" class="send-form-images">
                     <img src="{% static 'chat_app/images/image.svg' %}">
-                </button>
+                </label>
+                <input id="attachedImg" type="file" name="imageInput" id="imageInput" accept="images/*">
                 <button class="send-form-button">
                     <img src="{% static 'chat_app/images/send-message.png' %}">
                 </button>
@@ -152,22 +164,22 @@
         {% endif %}
     {% endfor %}
 {% endblock %}
+
 {% block messages %}
     <div class="right-side-menu-content">
-        {% for contact in request.user.friends.all %}
-            <a class="contact" value="contactOpen" type="submit" name="button" href="{% url 'personal_chat' user.pk contact.pk %}">
-                <img src="{{ contact.avatar.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
+        {% for group in messages_groups %}
+            <a class="contact" value="contactOpen" href="{% url 'chat' group.pk  %}">
+                <img src="{{ group.avatar.url }}">
                 <div class="message-content">
                     <div>
-                        <p>{{ contact.first_name }} {{ contact.last_name }}</p>
-                        <h2 class="message-time">1939</h2>
+                        <p>{{ group.name }}</p>
                     </div>
-                    <h2 class="message-text">Привіт пупсик</h2>
                 </div>
             </a>
         {% endfor %}
     </div>
 {% endblock %}
+
 {% block groups %}
     <div class="right-side-menu-content">
         {% for group in groups %}

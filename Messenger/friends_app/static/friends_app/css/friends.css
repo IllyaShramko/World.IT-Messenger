@@ -59,7 +59,6 @@
     padding: 1.11vw 0px;
     gap: 1.11vw;
     width: 19.95vw;
-    height: 23vw;
     background: #FFFFFF;
     border: 0.1vw solid #CDCED2;
     border-radius: 0.7vw;
@@ -80,8 +79,6 @@
     width: 10.5vh;
     height: 10.5vh;
     border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
 }
 
 .friend-request-profile h1 {

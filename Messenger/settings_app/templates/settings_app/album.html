@@ -39,7 +39,19 @@
         </div>
     </div>
     <div class="my-albums">
-        {% if album %}
+        <div class="text-add-album">
+            <h2>Немає жодного альбому</h2>
+            <form method="post">
+                {% csrf_token %}
+                <button name="button" value="album_create_1" class="create-album-button">
+                    <img src="{% static 'settings_app/images/plus.png' %}">
+                    <p>Створити альбом</p>
+                </button>
+            </form>
+        </div>
+    </div>
+    {% for album in albums %}
+        <div class="my-albums">
             <button id="dotsButton" class="dots">
                 <img class="dots-img" src="{% static 'images/Dots.svg' %}">
             </button>
@@ -62,18 +74,18 @@
                     <p>Видалити Альбом</p>  
                 </a>
             </div>
-            <h2 class="title">{{ album.title }}</h2>
+            <h2 class="title">{{ album.name }}</h2>
             <div class="subtitle-date">
-                <h3 class="subtitle">{{ album.subtitle }}</h3>
-                <h4 class="date">{{ album.date }}</h4>
+                <h3 class="subtitle">{{ album.topic }}</h3>
+                <h4 class="date">{{ album.created_at }}</h4>
             </div>
             <p class="photos-p">Фотографії</p>
             <div class="photos-album">
                 <input type="hidden" id="album-id" value="{{ album.id }}">
                 <div class="image-grid" id="image-preview-grid">
-                    {% for img in album_images %}
+                    {% for img in album.images.all %}
                         <div class="image-card">
-                            <img src="{{ img.image.url }}">
+                            <img src="{{ img.file.url }}">
                             <a href="{% url 'delete_image' img.pk %}">
                                 <img src="{% static 'settings_app/images/delete.png' %}">
                             </a>
@@ -85,19 +97,8 @@
                     </label>
                 </div>
             </div>
-        {% else %}
-            <div class="text-add-album">
-                <h2>Немає жодного альбому</h2>
-                <form method="post">
-                    {% csrf_token %}
-                    <button name="button" value="album_create_1" class="create-album-button">
-                        <img src="{% static 'settings_app/images/plus.png' %}">
-                        <p>Створити альбом</p>
-                    </button>
-                </form>
-            </div>
-        {% endif %}
-    </div>
+        </div>
+    {% endfor %}
 {% endblock %}
 
 {% block popups %}
@@ -115,8 +116,12 @@
                     <input type="text" name="title">
                 </div>
                 <div class="label-input">
-                    <label for="subtitle">Тема альбому</label>
-                    <input type="text" name="subtitle">
+                    <label for="topic">Тема альбому</label>
+                    <select name="topic" id="topic">
+                        {% for tag in tags %}
+                            <option value="{{ tag.pk }}">{{ tag.name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="label-input">
                     <label for="date">Рік альбому</label>

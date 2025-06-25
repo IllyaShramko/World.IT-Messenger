@@ -44,33 +44,7 @@
             <a href="invites">Дивитись всі</a>
         </div>
         <div class="invites">
-            <div>
-                <div>
-                    <img src="{% static 'images/inv-1.jpg' %}">
-                </div>
-                <div>
-                    <h1>Yehor Aung</h1>
-                    <p>4.3к підписників</p>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <img src="{% static 'images/inv-2.jpg' %}">
-                </div>
-                <div>
-                    <h1>Ann Ann</h1>
-                    <p>1.6к підписників</p>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <img src="{% static 'images/inv-3.jpg' %}">
-                </div>
-                <div>
-                    <h1>Yeugen Jenua</h1>
-                    <p>10.3к підписників</p>
-                </div>
-            </div>
+
         </div>
     </div>
     <div class="message">
@@ -82,7 +56,7 @@
             <a href="messages">Дивитись всі</a>
         </div>
         <div class="messages">
-            <div class="message1">
+            <!-- <div class="message1">
                 <div class="avatar-message">
                     <img src="{% static 'images/msg-1.jpg' %}">
                 </div>
@@ -93,31 +67,7 @@
                     </div>
                     <p>Привіт! Як справи ?</p>
                 </div>
-            </div>
-            <div class="message1">
-                <div class="avatar-message">
-                    <img src="{% static 'images/msg-2.jpg' %}">
-                </div>
-                <div class="name-message">
-                    <div class="name-time-message">
-                        <h1>Ann Ti</h1>
-                        <p>25.04.2025</p>
-                    </div>
-                    <p>Привіт!</p>
-                </div>
-            </div>
-            <div class="message1">
-                <div class="avatar-message">
-                    <img src="{% static 'images/msg-3.jpg' %}">
-                </div>
-                <div class="name-message">
-                    <div class="name-time-message">
-                        <h1>Ness Ty</h1>
-                        <p>25.04.2025</p>
-                    </div>
-                    <p>Привіт!</p>
-                </div>
-            </div>
+            </div> -->
         </div>
     </div>
 {% endblock %}
@@ -222,16 +172,11 @@
             </div>
             <div class="input-tags">
                 <div class="tagsdiv" id="tagsContainer">
-                    <span class="tag">#відпочинок</span>
-                    <span class="tag">#натхнення</span>
-                    <span class="tag">#життя</span>
-                    <span class="tag">#природа</span>
-                    <span class="tag">#читання</span>
-                    <span class="tag">#спокій</span>
-                    <span class="tag">#гармонія</span>
-                    <span class="tag">#музика</span>
-                    <span class="tag">#фільми</span>
-                    <span class="tag">#подорожі</span>
+                    {% for tag in tags %}
+                        <input name="tags" id = "tag{{ tag.pk }}" type="checkbox" value="{{ tag.pk }}">
+                        <label for="tag{{ tag.pk }}" class="tag">#{{ tag.name }}</label>
+                    {% endfor %}
+        
                     <button type="button" id="addTagBtn">
                         <img src="{% static 'my_post_app/images/plus.png' %}">
                     </button>
@@ -239,10 +184,7 @@
                 <input type="hidden" name="tags" id="tags" value="">
             </div>
             <div class="inputs-div">
-                <textarea name="text" id="text">
-
-                   
-                </textarea>
+                {{ form.content }}
             </div>
             <div class="inputs-div">
                 <p>Посилання:</p>
@@ -276,7 +218,7 @@
                     </button>
                 {% endif %}
             </div>
-            </form>
+        </form>
     {% endif %}
 {% endblock %}
 

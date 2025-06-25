@@ -1,11 +1,7 @@
 const blockImages = document.querySelector('.modal-images');
 const inputImages = document.getElementsByName("images")[0];
 
-
 let selectedFiles = [];
-
-
-
 
 inputImages.addEventListener('change', function (event) {
     const files = Array.from(event.target.files);

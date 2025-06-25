@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect, HttpResponse, HttpRequest
 from user_app.models import Profile, Friendship, Avatar
-from my_posts_app.models import Post, Image
+from my_posts_app.models import Post, Image, Tag
 from my_posts_app.forms import PostForm
 from django.urls import reverse_lazy
 # Create your views here.
@@ -25,6 +25,7 @@ class MainPageView(View):
                     "text",
                     text
                 )
+                tags = Tag.objects.all()
                 return render(
                     request,
                     "home_app/home.html",
@@ -36,6 +37,7 @@ class MainPageView(View):
                         "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
                         "tag_name": Profile.objects.get(user = request.user).tag_name,
                         "images": Image.objects.all(),
+                        "tags": tags,
                         "posts_list": Post.objects.all().reverse(),
                         "viewers": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
                         "friends_count": Friendship.objects.filter(profile2 = Profile.objects.get(user = request.user)).count(),
@@ -48,24 +50,30 @@ class MainPageView(View):
                 if form.is_valid():
                     images = request.FILES.getlist("images")
                     post = form.save(commit=False)
-                    post.user = request.user
-                    post.likes = 0
-                    post.views = 0
-                    text = request.POST.get("text")
-                    post.text = text
-
-                    post.tags = request.POST.get("tags").split(",")
-                    post.links = request.POST.get("links").split(",")
+                    post.author = Profile.objects.get(user = self.request.user)
+                    post.content = form.cleaned_data["content"]
                     post.save()
+                    tags_ids = request.POST.getlist("tags")
+                    del tags_ids[-1]
+                    print(tags_ids)
+                    tags = Tag.objects.filter(pk__in = tags_ids)
+                    print(tags)
+                    for tag in tags:
+                        print(tag)
+                        post.tags.add(tag)
+                        post.save()
+
                     print("картинки:", images)
                     for image in images:
-                        Image.objects.create(
-                            image = image,
-                            post = post,
-                            author = request.user
-                        )
 
-                    
+                        # post1 = Post.objects.get(pk = 5)
+                        # post1.images.
+                        img_db = Image.objects.create(
+                            filename = image.name,
+                            file = image
+                        )
+                        post.images.add(img_db)
+                        post.save()
                 return render(
                     request,
                     "home_app/home.html",

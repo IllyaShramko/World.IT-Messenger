@@ -310,6 +310,7 @@ body {
 
 .chat-with-users-chat {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: end;
@@ -361,7 +362,6 @@ body {
     border: 0.069vw solid #CDCED2;
     border-radius: 0.96vw;
 }
-
 .messages-groups-header {
     display: flex;
     flex-direction: row;
