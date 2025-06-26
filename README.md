@@ -60,3 +60,8 @@ ____
 - Ви можете спілкуватися з друзями у своїй групі або особистому чаті в режимі реального часу!
 - Також ви можете надсилати повідомлення з будь-якою фотографією, яку завантажуєте.
 - Ви можете змінити будь-які налаштування свого облікового запису: ім'я, прізвище, аватар, електронну пошту, пароль тощо.
+
+## Design & Structure of project | Дизайн та струтура проекту:
+- ![](imgs_for_readme/Figma.png) [Figma Design](https://www.figma.com/design/20TZphWNufeAQYOe7E1sze/%D0%A1%D0%BE%D1%86%D1%96%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0-%D0%BC%D0%B5%D1%80%D0%B5%D0%B6%D0%B0-World-IT?node-id=6-26&t=6FcZEGOAfhm7mSQr-1)
+____
+- ![](imgs_for_readme/Figma.png) [Фігма Дизайн](https://www.figma.com/design/20TZphWNufeAQYOe7E1sze/%D0%A1%D0%BE%D1%86%D1%96%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0-%D0%BC%D0%B5%D1%80%D0%B5%D0%B6%D0%B0-World-IT?node-id=6-26&t=6FcZEGOAfhm7mSQr-1)
