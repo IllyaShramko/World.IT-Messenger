@@ -93,8 +93,8 @@ ____
   ---
   > 💬 Chat_app - This is the main page of chats and chats themselves. By going to any chat, in the contact list, or on the right in the group list, you can write to other users and send any photos in real time using WebSocket. Also, if you are a group administrator, you can edit the name, avatar, and group users.
   
-   To send a message with an attached image, we wrote the following code snippet:
-    On the frontend in __chat.js__:
+  > To send a message with an attached image, we wrote the following code snippet:
+  On the frontend in __chat.js__:
   ```js
     const reader = new FileReader();
     reader.onload = function(event){
@@ -135,8 +135,8 @@ ____
   --- 
   > 💬 Chat_app - Це головна сторінка чатів та саме чати. Перейшовши в будь-який чат, у списку контактів, або справа у списку груп, ви можете писати іншим користувачам та відправляти будь-які фото у реальному часі за допомогую WebSocket. Також ви, якщо є адміністратором групи, можете редагувати ім'я, аватар, користувачів групи.
   
-   Щоб відправляти повідомлення з прикріпленним зображенням, ми написали такий фрагмент коду:
-   На фронтенді у __chat.js__:
+  > Щоб відправляти повідомлення з прикріпленним зображенням, ми написали такий фрагмент коду:
+  На фронтенді у __chat.js__:
   ```js
     const reader = new FileReader();
     reader.onload = function(event){
