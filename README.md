@@ -5,12 +5,16 @@
 > - [Purpose of creating the project](#purpose-of-creating-the-project--мета-створення-проекту)
 > - [Technologies](#technologies--технології)
 > - [Why Project "World.IT-Messenger" if useful](#why-project-worldit-messenger-if-useful--чому-проект-worldit-messenger-корисний)
+> - [Design & Structure of project](#design--structure-of-project--дизайн-та-струтура-проекту)
+> - [Functionality of each application](#functionality-of-each-application--функціонал-кожного-додатка)
 ____
 > [!TIP]
 > - [Склад команді](#team-members--delevopers--склад-команді)
 > - [Мета створення проекту](#purpose-of-creating-the-project--мета-створення-проекту)
 > - [Технології](#technologies--технології)
 > - [Чому Проект "World.IT-Messenger" корисний](#why-project-worldit-messenger-if-useful--чому-проект-worldit-messenger-корисний)
+> - [Дизайн та структура проекту](#design--structure-of-project--дизайн-та-струтура-проекту)
+> - [Функціонал кожного додатка](#functionality-of-each-application--функціонал-кожного-додатка)
 ## Team Members | Delevopers | Склад команді:
 - [__Shramko Ilia__](https://github.com/IllyaShramko/World.IT-Messenger) - __Teamlead__
 - [__Halkin Yehor__](https://github.com/EgorGalkinORG/Worldit-Messager)
@@ -34,6 +38,7 @@ ____
 > - pillow (Python module)
 > - os (Python module)
 > - daphne (Python module for async work)
+> - base64 (Python module for decode images)
 > - channels (Python module for websockets)
 > - SQLite (Database)
 > - Jquery 
