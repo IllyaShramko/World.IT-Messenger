@@ -76,14 +76,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def save_message_to_db(self, text_data):
         data = json.loads(text_data)
-        print(data)
-        print(11111111)
         message_text = str(data["message"])
         try:
             img = base64.b64decode(data.get('img'))
             img_type = data.get('imgType')
             django_file = ContentFile(img, name=f'fileo.{img_type}')
-            print(11)
             return ChatMessage.objects.create(
                 content=message_text,
                 author=Profile.objects.get(user=self.scope['user']),
@@ -91,7 +88,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 attached_image = django_file
             )
         except:
-            print(93, Exception)
             return ChatMessage.objects.create(
                 content=message_text,
                 author=Profile.objects.get(user=self.scope['user']),
