@@ -92,11 +92,9 @@ ____
   
   ---
   > 💬 Chat_app - This is the main page of chats and chats themselves. By going to any chat, in the contact list, or on the right in the group list, you can write to other users and send any photos in real time using WebSocket. Also, if you are a group administrator, you can edit the name, avatar, and group users.
-  --- 
-  > 💬 Chat_app - Це головна сторінка чатів та саме чати. Перейшовши в будь-який чат, у списку контактів, або справа у списку груп, ви можете писати іншим користувачам та відправляти будь-які фото у реальному часі за допомогую WebSocket. Також ви, якщо є адміністратором групи, можете редагувати ім'я, аватар, користувачів групи.
   
-   Щоб відправляти повідомлення з прикріпленним зображенням, ми написали такий фрагмент коду:
-  - На фронтенді у chat.js:
+   To send a message with an attached image, we wrote the following code snippet:
+    On the frontend in __chat.js__:
   ```js
     const reader = new FileReader();
     reader.onload = function(event){
@@ -109,8 +107,8 @@ ____
     }
     reader.readAsDataURL(file) 
   ```
-  > Тут ми отримуємо повідомлення та картинку, яку відправляємо у бітах на бекенд
-  ##### consumers.py:
+  > Here we receive a message and an image, which we send in bits to the backend
+  __consumers.py__:
   ```python
     @database_sync_to_async
     def save_message_to_db(self, text_data):
@@ -133,7 +131,49 @@ ____
                 chat_group=ChatGroup.objects.get(pk=self.room_group_name)
             )
   ```
-  > Тут ми отримуємо з text_dat наше повідомлення та його властивості. Потім ми пробуємо декодувати зображення, якщо його немає ми створюємо стандартне повідомлення без зображення. якщо декодування має успіх, ми створюємо об'єкт файла з його ім'ям та типом. Цей об'єкт файла ми передаємо у attached_image
+  > Here we get our message and its properties from text_data. Then we try to decode the image, if there is none we create a standard message without the image. If the decoding is successful, we create a file object with its name and type. We pass this file object to attached_image
+  --- 
+  > 💬 Chat_app - Це головна сторінка чатів та саме чати. Перейшовши в будь-який чат, у списку контактів, або справа у списку груп, ви можете писати іншим користувачам та відправляти будь-які фото у реальному часі за допомогую WebSocket. Також ви, якщо є адміністратором групи, можете редагувати ім'я, аватар, користувачів групи.
+  
+   Щоб відправляти повідомлення з прикріпленним зображенням, ми написали такий фрагмент коду:
+   На фронтенді у __chat.js__:
+  ```js
+    const reader = new FileReader();
+    reader.onload = function(event){
+        webSocket.send(JSON.stringify({
+            'message': messageText,
+            'img':reader.result.split(',')[1],
+            'imgType':file.type.split('/')[1]
+        }))
+        document.getElementById("attaImg").src = ''
+    }
+    reader.readAsDataURL(file) 
+  ```
+  > Тут ми отримуємо повідомлення та картинку, яку відправляємо у бітах на бекенд
+  __consumers.py__:
+  ```python
+    @database_sync_to_async
+    def save_message_to_db(self, text_data):
+        data = json.loads(text_data)
+        message_text = str(data["message"])
+        try:
+            img = base64.b64decode(data.get('img'))
+            img_type = data.get('imgType')
+            django_file = ContentFile(img, name=f'fileo.{img_type}')
+            return ChatMessage.objects.create(
+                content=message_text,
+                author=Profile.objects.get(user=self.scope['user']),
+                chat_group=ChatGroup.objects.get(pk=self.room_group_name),
+                attached_image = django_file
+            )
+        except:
+            return ChatMessage.objects.create(
+                content=message_text,
+                author=Profile.objects.get(user=self.scope['user']),
+                chat_group=ChatGroup.objects.get(pk=self.room_group_name)
+            )
+  ```
+  > Тут ми отримуємо з text_data наше повідомлення та його властивості. Потім ми пробуємо декодувати зображення, якщо його немає ми створюємо стандартне повідомлення без зображення. якщо декодування має успіх, ми створюємо об'єкт файла з його ім'ям та типом. Цей об'єкт файла ми передаємо у attached_image
 </details>
 
 <details>
