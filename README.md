@@ -73,11 +73,9 @@ ____
   <summary><b>📁 Home_app</b></summary>
   
   ---
-  > [!NOTE]
-  > Home_app is the home page where you can find the main information about yourself and other users. You can also create a new post and attach several images to it on the topic of the post.
+  > 🏠 Home_app is the home page where you can find the main information about yourself and other users. You can also create a new post and attach several images to it on the topic of the post.
   --- 
-  > [!NOTE]
-  > Home_app - це головна сторінка, де розміщується головна інформація, як про вас, так і про інших користувачів. Також на головній ви можете створити новий пост та прикріпити до нього декілька зображень на тему поста.
+  > 🏠 Home_app - це головна сторінка, де розміщується головна інформація, як про вас, так і про інших користувачів. Також на головній ви можете створити новий пост та прикріпити до нього декілька зображень на тему поста.
   
   
 </details>
