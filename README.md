@@ -63,5 +63,21 @@ ____
 
 ## Design & Structure of project | Дизайн та струтура проекту:
 - ![](imgs_for_readme/Figma.png) [Figma Design](https://www.figma.com/design/20TZphWNufeAQYOe7E1sze/%D0%A1%D0%BE%D1%86%D1%96%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0-%D0%BC%D0%B5%D1%80%D0%B5%D0%B6%D0%B0-World-IT?node-id=6-26&t=6FcZEGOAfhm7mSQr-1)
+- ![](imgs_for_readme/Figma.png) [FigJam Structure Project]()
 ____
 - ![](imgs_for_readme/Figma.png) [Фігма Дизайн](https://www.figma.com/design/20TZphWNufeAQYOe7E1sze/%D0%A1%D0%BE%D1%86%D1%96%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0-%D0%BC%D0%B5%D1%80%D0%B5%D0%B6%D0%B0-World-IT?node-id=6-26&t=6FcZEGOAfhm7mSQr-1)
+- ![](imgs_for_readme/Figma.png) [Фігджєм Структура Проекту]()
+
+## Functionality of each application | Функціонал кожного додатка:
+<details>
+  <summary><b>📁 Home_app</b></summary>
+  
+  ---
+  > [!NOTE]
+  > Home_app is the home page where you can find the main information about yourself and other users. You can also create a new post and attach several images to it on the topic of the post.
+  --- 
+  > [!NOTE]
+  > Home_app - це головна сторінка, де розміщується головна інформація, як про вас, так і про інших користувачів. Також на головній ви можете створити новий пост та прикріпити до нього декілька зображень на тему поста.
+  
+  
+</details>
