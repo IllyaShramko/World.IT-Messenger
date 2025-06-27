@@ -7,6 +7,8 @@
 > - [Why Project "World.IT-Messenger" if useful](#why-project-worldit-messenger-if-useful--чому-проект-worldit-messenger-корисний)
 > - [Design & Structure of project](#design--structure-of-project--дизайн-та-струтура-проекту)
 > - [Functionality of each application](#functionality-of-each-application--функціонал-кожного-додатка)
+> - [How to launch a project on your own PC](#how-to-launch-a-project-on-your-own-pc--як-самостійно-запустити-проект-на-власному-компютері)
+> - [Conlusion](#conlusion--висновок)
 ____
 > [!TIP]
 > - [Склад команді](#team-members--delevopers--склад-команді)
@@ -15,6 +17,8 @@ ____
 > - [Чому Проект "World.IT-Messenger" корисний](#why-project-worldit-messenger-if-useful--чому-проект-worldit-messenger-корисний)
 > - [Дизайн та структура проекту](#design--structure-of-project--дизайн-та-струтура-проекту)
 > - [Функціонал кожного додатка](#functionality-of-each-application--функціонал-кожного-додатка)
+> - [Як самостійно запустити проект на власному комп'ютері](#how-to-launch-a-project-on-your-own-pc--як-самостійно-запустити-проект-на-власному-компютері)
+> - [Висновок](#conlusion--висновок)
 ## Team Members | Delevopers | Склад команді:
 - [__Shramko Ilia__](https://github.com/IllyaShramko/World.IT-Messenger) - __Teamlead__
 - [__Halkin Yehor__](https://github.com/EgorGalkinORG/Worldit-Messager)
@@ -294,8 +298,8 @@ ____
 - Застосовувати Django Class-Based Views, Django Forms у своїх цілях.
 - Познайомились з python модулями як: `dapnhe`, для праці серверу у асинхронному режимі, також для праці модуля `channels`; `channels`, потрібен для праці з веб-сокетами.
 - Познайомились з поняттям типів БД: реляційних і нереляційних, використовуючи:
-  - __MySQL__ - для локальної розробки
-  - __SQLite__ - для глобальної роботи проекту
+  - __MySQL__ - для глобальної роботи проекту
+  - __SQLite__ - для локальної розробки
 
 - Окрему увагу було втілено для верстання дизайну сторінок, так як це важлива навичка для frontend-розробки:
   - Верстання за допомогу відносних розмірів `vw` / `vh`
@@ -308,6 +312,7 @@ ____
 
 > [!NOTE]
 > Завершивши проект, ми отримали досвід у роботі в команді, праці з Django Class-Based Views, Django Forms, з підключенням моделів ManyToMany (Багато-До-Багатьох), розробка чатів з використанням WebSocket для передавання повідомлень у реальному часі, Ajax-запити для швидкої взаємодії з користувачем, форматування дати та часу у ISO форматі.
+____
 ### EN:
 The __World.IT.Messenger__ project teaches us to work in a team and set an important stage in our educational activities.
 During its development, we:
@@ -315,8 +320,8 @@ During its development, we:
 - Use Django Class-Based Views, Django Forms for our own purposes.
 - Got acquainted with python modules such as: `dapnhe`, for a working server in asynchronous mode, also for the working module `channels`; `channels`, needed for working with web sockets.
 - We got acquainted with the concepts of database types: relational and non-relational, using:
-  - __MySQL__ - for local development
-  - __SQLite__ - for global project work
+  - __MySQL__ - for global project work
+  - __SQLite__ - for local development
 
 - Special attention was paid to page design layout, as this is an important skill for front-end development:
   - Layout to support relative `vw` / `vh` sizes
