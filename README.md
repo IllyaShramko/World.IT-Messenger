@@ -221,8 +221,72 @@ ____
 > Project will work correctly with Python version =>3.8. Under this version we do not promise the correct operation of the project.
 >
 > Проєкт працюватиме коректно з версією Python => 3.8. Ми не гарантуємо коректну роботу проєкту в цій версії.
+
+<details>
+  <summary><b>MacOS:</b></summary>
+  
+  ---
+  1. Завантажте останню версію Python на [оффіційному сайті](https://www.python.org/downloads/), клацнувши на `Download Python`, потім пролестніть вниз до `Files` та натисніть у таблиці на `macOS 64-bit universal2 installer`. Після заватаження .pkg файлу, відкрийте його, натиснувши на нього, встановіть собі Python, слідкуючи вказівкам.
+  ---
+  2. Завантажте Git, ввівши цю команду у термінал:
+  Homebrew:
+  ```
+  brew install git
+  ```
+  MacPorts
+  ```
+  sudo port install git
+  ```
+  ---
+  3. Завантажте Visual Studio Code з [оффіційного сайту](https://code.visualstudio.com/docs/setup/mac#_install-vs-code-on-macos) та встановіть його слідкуючи вказівкам.
+  ---
+  4. Відкрийте Visual Studio Code, створіть порожню теку на робочому столі, відкрийте її, натиснувши на верхній панелі File>Open Folder...,справа зверху натисніть на квадрат з прямокутникому знизу, потім у вас відкриється термінал, у нього потрібно вписати команду для клонування проекту:
+  ```
+  git clone https://github.com/IllyaShramko/World.IT-Messenger.git
+  ```
+  ---
+  5. Після клонування, потрібно перейти до теки проекта:
+  ```
+  cd World.IT-Messenger
+  ```
+  ---
+  6. Тепер потрібно створити віртуальне оточення та встановити в нього модулі, які необхідні для запуску проекта:
+  ```
+  python3 -m venv venv
+  ```
+  ---
+  7. Активуємо його для роботи:
+  ```
+  source venv/bin/activate
+  ```
+  ---
+  8. Якщо після активації у вас перед шляхом у терміналі з'явився `(venv)`, тоді ви на правильному шляху!
+  Тепер потрібно встановити модулі:
+  ```
+  pip install -r requirements.txt
+  ```
+  ---
+  9. Після завантаження модулів, перейдіть у теку проекта:
+  ```
+  cd Messenger
+  ```
+  ---
+  10. Для коректної праці потрібно провести міграції для праці з моделями у БД:
+  ```
+  python3 manage.py migrate
+  ```
+  ---
+  11. Якщо все вдачно, можемо запустити проект:
+  ```
+  python3 manage.py runserver
+  ```
+
+  > [!TIP]
+  > Ви успішно розгорнули та запустили проект на власному комп'ютері!
+</details>
 ____
 ## Conlusion | Висновок:
+### UA:
 Проект __World.IT.Messenger__ навчив нас працювати в команді та став важлививм етапом у нашому навчанні.
 Під час його розробки ми:
 - Навчились реалізовувати `Ajax`-запити для віправки та відображення даних без перезавантаження сторінки.
@@ -243,3 +307,23 @@ ____
 
 > [!NOTE]
 > Завершивши проект, ми отримали досвід у роботі в команді, праці з Django Class-Based Views, Django Forms, з підключенням моделів ManyToMany (Багато-До-Багатьох), розробка чатів з використанням WebSocket для передавання повідомлень у реальному часі, Ajax-запити для швидкої взаємодії з користувачем, форматування дати та часу у ISO форматі.
+### EN:
+The __World.IT.Messenger__ project teaches us to work in a team and set an important stage in our educational activities.
+During its development, we:
+- Learned to implement `Ajax` requests to correct and display data without reloading pages.
+- Use Django Class-Based Views, Django Forms for our own purposes.
+- Got acquainted with python modules such as: `dapnhe`, for a working server in asynchronous mode, also for the working module `channels`; `channels`, needed for working with web sockets.
+- We got acquainted with the concepts of database types: relational and non-relational, using:
+  - __MySQL__ - for local development
+  - __SQLite__ - for global project work
+
+- Special attention was paid to page design layout, as this is an important skill for front-end development:
+  - Layout to support relative `vw` / `vh` sizes
+  - Adaptive design that scales to the size of your monitor
+
+Difficulties during development:
+- Poor distribution during development
+- Some difficulties when resizing layout sizes to relative `vw` / `vh` sizes
+
+> [!NOTE]
+> After completing the project, we gained experience working in a team, working with Django Class-Based Views, Django Forms, connecting ManyToMany models, developing chats using WebSocket for real-time messaging, Ajax requests for fast user interaction, date and time formatting in ISO format.
