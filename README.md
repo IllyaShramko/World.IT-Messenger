@@ -230,7 +230,7 @@ ____
   <summary><b>MacOS:</b></summary>
   
   ---
-  1. Завантажте останню версію Python на [оффіційному сайті](https://www.python.org/downloads/), клацнувши на `Download Python`, потім пролестніть вниз до `Files` та натисніть у таблиці на `macOS 64-bit universal2 installer`. Після заватаження .pkg файлу, відкрийте його, натиснувши на нього, встановіть собі Python, слідкуючи вказівкам.
+  1. Завантажте останню версію Python на [офіційному сайті](https://www.python.org/downloads/), клацнувши на `Download Python`, потім пролестніть вниз до `Files` та натисніть у таблиці на `macOS 64-bit universal2 installer`. Після заватаження .pkg файлу, відкрийте його, натиснувши на нього, встановіть собі Python, слідкуючи вказівкам.
   ---
   2. Завантажте Git, ввівши цю команду у термінал:
   Homebrew:
@@ -242,7 +242,7 @@ ____
   sudo port install git
   ```
   ---
-  3. Завантажте Visual Studio Code з [оффіційного сайту](https://code.visualstudio.com/docs/setup/mac#_install-vs-code-on-macos) та встановіть його слідкуючи вказівкам.
+  3. Завантажте Visual Studio Code з [офіційного сайту](https://code.visualstudio.com/docs/setup/mac#_install-vs-code-on-macos) та встановіть його слідкуючи вказівкам.
   ---
   4. Відкрийте Visual Studio Code, створіть порожню теку на робочому столі, відкрийте її, натиснувши на верхній панелі File>Open Folder...,справа зверху натисніть на квадрат з прямокутникому знизу, потім у вас відкриється термінал, у нього потрібно вписати команду для клонування проекту:
   ```
@@ -288,6 +288,65 @@ ____
   > [!TIP]
   > Ви успішно розгорнули та запустили проект на власному комп'ютері!
 </details>
+
+<details>
+  <summary><b>Windows:</b></summary>
+
+  ---
+  1. Завантажте останню версію Python з [офіційного сайту](https://www.python.org/downloads/), натиснувши на кнопку `Download Python for Windows`. Під час встановлення **обов'язково** поставте галочку біля опції **Add Python to PATH**, щоб можна було запускати Python з командного рядка.
+  ---
+  2. Завантажте Git з [офіційного сайту](https://git-scm.com/download/win) та встановіть його, залишивши рекомендовані налаштування.
+  ---
+  3. Завантажте та встановіть Visual Studio Code з [офіційного сайту](https://code.visualstudio.com/).
+  ---
+  4. Відкрийте Visual Studio Code, створіть порожню теку на робочому столі, відкрийте її через **File > Open Folder...**.
+  ---
+  5. Відкрийте вбудований термінал VS Code (натисніть `Ctrl + ~` або через меню **View > Terminal**).
+  ---
+  6. У терміналі введіть команду для клонування репозиторію:
+  ```
+  git clone https://github.com/IllyaShramko/World.IT-Messenger.git
+  ```
+  ---
+  7. Перейдіть у теку проекту:
+  ```
+  cd World.IT-Messenger
+  ```
+  ---
+  8. Створіть віртуальне середовище Python:
+  ```
+  python -m venv venv
+  ```
+  ---
+  9. Активуйте віртуальне середовище:
+  ```
+  .\venv\Scripts\activate
+  ```
+  Після активації у терміналі має з’явитись префікс `(venv)`.
+  ---
+  10. Встановіть необхідні залежності:
+  ```
+  pip install -r requirements.txt
+  ```
+  ---
+  11. Перейдіть у теку Messenger: 
+  ```
+  cd Messenger
+  ```
+  ---
+  12. Проведіть міграції бази даних:
+  ```
+  python manage.py migrate
+  ```
+  ---
+  13. Запустіть сервер:
+  ```
+  python manage.py runserver
+  ```
+  > [!TIP]
+  > Ви успішно розгорнули та запустили проєкт на Windows!
+</details>
+
 
 ____
 ## Conlusion | Висновок:
