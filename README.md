@@ -380,22 +380,31 @@ ____
 > Таким чином, цей проєкт став для нас не лише навчальним, але й практичним досвідом створення повноцінного веб-додатку, який включає в себе сучасні технології, принципи побудови `UI`/`UX`, обмін даними в реальному часі та ефективну роботу з базами даних. Ми впевнено можемо сказати, що цей проєкт заклав основу для майбутніх більш складних розробок та підготував нас до реальних умов ІТ-галузі.
 ____
 ### EN:
-The __World.IT.Messenger__ project teaches us to work in a team and set an important stage in our educational activities.
-During its development, we:
-- Learned to implement `Ajax` requests to correct and display data without reloading pages.
-- Use Django Class-Based Views, Django Forms for our own purposes.
-- Got acquainted with python modules such as: `dapnhe`, for a working server in asynchronous mode, also for the working module `channels`; `channels`, needed for working with web sockets.
-- We got acquainted with the concepts of database types: relational and non-relational, using:
-  - __MySQL__ - for global project work
-  - __SQLite__ - for local development
+The project __World.IT.Messenger__ taught us how to work effectively in a team and became an important milestone in our professional development as future developers. During the implementation of this project, we gained invaluable experience in both `frontend` and `backend` development. Thanks to teamwork, we learned how to better distribute tasks, plan development stages, and find compromises in challenging situations.
 
-- Special attention was paid to page design layout, as this is an important skill for front-end development:
-  - Layout to support relative `vw` / `vh` sizes
-  - Adaptive design that scales to the size of your monitor
+#### During the project we:
 
-Difficulties during development:
-- Poor distribution during development
-- Some difficulties when resizing layout sizes to relative `vw` / `vh` sizes
+- Mastered `Ajax` requests for sending and receiving data without reloading the page. This made the interface __more dynamic__ and __user-friendly__.
+- Learned to apply __Django Class-Based Views__ and __Django Forms__, which significantly simplified the code structure and made it more readable and maintainable.
+- Became familiar with important Python modules, including:
+  - `Daphne`, which is used to run the server in __asynchronous__ mode, necessary for working with WebSockets.
+  - `Channels`, without which real-time message exchange is impossible.
+- Also gained an understanding of database types - __relational__ and __non-relational__. In our case, we used:
+  - __MySQL__ as the main database for project deployment.
+  - __SQLite__ for local development and testing, which greatly sped up the development process.
+
+- Special attention was given to page layout design, as it is an important skill for `frontend` development:
+  - Creating layouts using relative units (`vw`/`vh`), allowing for responsive design.
+  - Adaptive design that adjusts to your monitor’s size.
+
+- Challenges we faced during the process:
+  - Insufficiently clear distribution of responsibilities among team members at the start, leading to a rough beginning.
+  - Difficulties adapting layouts to relative units, especially when scaling to different screen resolutions.
+
+- Upon completing the project, we also:
+  - Understood how to implement `WebSocket` connections in `Django` and use them to transmit messages in real time.
+  - Gained skills in formatting date and time in `ISO` format, important for maintaining standards in international projects.
+  - Reinforced knowledge of model relationships in Django, particularly `ManyToMany` - "many-to-many", which is the basis for creating group chats.
 
 > [!NOTE]
-> After completing the project, we gained experience working in a team, working with Django Class-Based Views, Django Forms, connecting ManyToMany models, developing chats using WebSocket for real-time messaging, Ajax requests for fast user interaction, date and time formatting in ISO format.
+> Thus, this project was not only educational but also provided practical experience in creating a full-featured web application that includes modern technologies, `UI`/`UX` principles, real-time data exchange, and efficient database management. We can confidently say that this project laid the foundation for more complex future developments and prepared us for real-world conditions in the IT industry.
