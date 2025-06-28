@@ -664,22 +664,39 @@ input[type="checkbox"] {
 .albums {
     position: relative;
     width: 100%;
+    max-height: 30vh;
     display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
     border: #CDCED2 0.1vw solid;
     border-radius: 0.7vw;
     padding: 0.8vw;
+    overflow-y: auto;
+    padding-top: 3vh;
 }
 .album {
+    position: relative;
     display: flex;
     flex-direction: column;
+    margin-top: 2vh;
+
 }
 .upper-div {
+    position:fixed;
     display: flex;
+    width: 99%;
+    height: 5.8vh;
+    left: 0.1vw;
+    /* top:34vh; */
+    bottom: 24vh;
+    background-color: #ffffff;
+    z-index: 10;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
     flex-direction: row;
+    padding-left: 0.8vw;
+    padding-right: 0.8vw;
+    border-radius: 15px;
 }
 .information {
     display: flex;

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponseRedirect, HttpResponse, HttpRequest
+from django.http import HttpResponseRedirect, HttpResponse, HttpRequest, JsonResponse
 from user_app.models import Profile, Friendship, Avatar
 from my_posts_app.models import Post, Image, Tag
 from my_posts_app.forms import PostForm
@@ -127,9 +127,6 @@ class MainPageView(View):
                     "home_app/home.html",
                     {
                         'new_or_not': True,
-                        "images": Image.objects.all(),
-                        "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
-                        "posts_list": Post.objects.all().reverse(),
                         "viewers": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
                         "friends_count": Friendship.objects.filter(profile2 = Profile.objects.get(user = request.user)).count(),
                         "posts_count": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
@@ -143,9 +140,6 @@ class MainPageView(View):
                     {
                         "new_or_not": False,
                         "tag_name": Profile.objects.get(user = request.user).tag_name,
-                        "avatar": Avatar.objects.filter(profile = profile).filter(active = True).first(),
-                        "images": Image.objects.all(),
-                        "posts_list": Post.objects.all().reverse(),
                         "viewers": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
                         "friends_count": Friendship.objects.filter(profile2 = Profile.objects.get(user = request.user)).count(),
                         "posts_count": Post.objects.filter(author = Profile.objects.get(user = request.user)).count(),
@@ -153,4 +147,11 @@ class MainPageView(View):
                     }
                 )
         
-        
+def get_avatar(request: HttpRequest):
+    profile = Profile.objects.get(user = request.user)
+    avatar = Avatar.objects.filter(active = True).filter(profile = profile).first()
+    return JsonResponse({"avatar": avatar.image.url})
+
+def getposts(request: HttpRequest):
+    
+    return JsonResponse

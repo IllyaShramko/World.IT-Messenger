@@ -13,23 +13,23 @@
     <div class="me">
         <div class="me-about">
             <div class="me-image">
-                <img src="{{ user.avatar.url }}" class="profile-image">
+                <img src="{{ avatar.image.url }}" class="profile-image">
                 <div class="profile-status"></div>
             </div>
-            <p class="me-name">{{ user.first_name }} {{ user.last_name }}</p>
-            <p class="me-tag">{{ tag_name }}</p>
+            <p class="me-name">{{ user.user.first_name }} {{ user.user.last_name }}</p>
+            <p class="me-tag">{{ user.tag_name }}</p>
         </div>
         <div class="me-info">
             <div>
-                <p>566</p>
+                <p>0</p>
                 <h1>Дописи</h1>
             </div>
             <div class="me-info-center">
-                <p>12.1K</p>
+                <p>0</p>
                 <h1>Читачі</h1>
             </div>
             <div>
-                <p>222</p>
+                <p>0</p>
                 <h1>Друзі</h1>
             </div>
         </div>
@@ -44,7 +44,7 @@
         </form>
     </div>
     {% if album %}
-        {% if album.publish %}
+        {% if album.shown %}
             <div class="albums">
                 <div class="upper-div">
                     <h2>
@@ -57,12 +57,12 @@
                     <div class="information">
                         <h1>{{ album.title }}</h1>
                         <div class="sub-date">
-                            <h3>{{ album.subtitle }}</h3>
-                            <h4>{{ album.date }}</h4>
+                            <h3>{{ album.topic }}</h3>
+                            <h4>{{ album.created_at }}</h4>
                         </div> 
                         <div class="images">
-                            {% for img in album_images %}
-                                <img src="{{ img.image.url }}" style="z-index: 10;">
+                            {% for img in album.images.all %}
+                                <img src="{{ img.file.url }}" style="z-index: 2;">
                             {% endfor %}
                         </div>
                     </div>
@@ -75,12 +75,12 @@
 {% block content %}
     <div class="scroll">
         {% for post in posts %}
-        <div class="post-random">
+        <div class="post-random" style="margin-top: 1vh;">
             <div class="random-post-profile">
                 <div class="random-post-profile-pr">
                     <div>
-                        <img class="avatar" src="{{ user.avatar.url }}">
-                        <h1>{{ post.user }}</h1>
+                        <img class="avatar" src="{{ avatar.image.url }}">
+                        <h1>{{ post.author.user.first_name }} {{ post.author.user.last_name }}</h1>
                     </div>
                     <img class="podpis" src="{% static 'images/podpis.png' %}">
                 </div>
@@ -88,35 +88,27 @@
             <div class="random-post-profile-info">
                 <h2>{{ post.title }}</h2>
                 <div class="random-post-profile-text">
-                    <p>{{ post.text }}</p>
+                    <p>{{ post.content }}</p>
                     <p class="tags">
-                        {% if post.tags %}
-                            {% for tag in post.tags %}
-                            #{{ tag }} 
-                            {% endfor %}
-                        {% endif %}
+                        {% for tag in post.tags.all %}
+                            #{{ tag.name }} 
+                        {% endfor %}
                     </p>
-                    {% for link in post.links %}
-                        <a href="{{ link }}" class="linka">
-                            {{ link }}
-                        </a>
-                    {% endfor %}
+                    
                 </div>
                 <div class="random-post-profile-images">
-                    {% for image in images %}
-                        {% if image.post_id == post.id %}
-                            <img src="{{ image.image.url }}" alt="1">
-                        {% endif %}
+                    {% for image in post.images.all %}
+                        <img src="{{ image.file.url }}">
                     {% endfor %}
                 </div>                    
                 <div class="random-post-profile-bottom">
                     <div>
                         <img src="{% static 'images/Like.svg' %}">
-                        <p>{{ post.likes }} Вподобань</p>
+                        <p>{{ post.likes.count }} Вподобань</p>
                     </div>
                     <div>
                         <img src="{% static 'images/eye (1).svg' %}">
-                        <p>{{ post.views }} Переглядів</p>
+                        <p>{{ post.views.count }} Переглядів</p>
                     </div>
                 </div>
             </div>

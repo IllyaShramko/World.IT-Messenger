@@ -221,24 +221,24 @@ class UsersPostsView(ListView):
     context_object_name = "posts"
 
     def get_queryset(self):
-        queryset = Post.objects.filter(user_id = self.kwargs["user_pk"])    
+        queryset = Post.objects.filter(author_id = Profile.objects.get(user_id = self.kwargs["user_pk"]))    
         return queryset
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["page"] = 'friends'
-        user = get_user_model().objects.get(pk = self.kwargs["user_pk"])
+        user = Profile.objects.get(pk = self.kwargs["user_pk"])
         context["user"] = user
-        if user in self.request.user.friends.all():
-            context["is_friend"] = True
-        else:
-            context["is_friend"] = False
-        context['images'] = Image.objects.all()
+        context["avatar"] = Avatar.objects.filter(profile = user).first()
+        # if user i:
+        context["is_friend"] = False
+        # else:
+        #     context["is_friend"] = False
 
-        album = Album.objects.filter(author_id = user.id).first()
+
+        album = Album.objects.filter(author_id = self.kwargs["user_pk"]).first()
         print(album)
         context['album'] = album
-        if album:
-            context["album_images"] = Image.objects.filter(album_id = album.pk)
+
         return context
     def post(self, request: HttpRequest, user_pk):
         button = request.POST.get("button").split("-")

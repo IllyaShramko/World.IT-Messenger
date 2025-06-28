@@ -12,6 +12,7 @@
     <body>
         <header>
             <img class="logo" src="{% static 'images/WIA.svg' %}">
+            <input type="hidden" id="avatarUrlGet" value="{% url 'get_avatar' %}">
             <nav>
                 {% if page == "home" %}
                     <a href="/" class="selected">
@@ -97,9 +98,13 @@
                 
             {% endblock %}
         </div>
-        
+        <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
         {% block scripts %}
-        
+            
         {% endblock %}
+
+        <script src="{% static 'js/getAvatar.js' %}"></script>
     </body>
     </html>
+
+    

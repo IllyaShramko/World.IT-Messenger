@@ -17,7 +17,7 @@ Including another URLconf
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from home_app.views import MainPageView
+from home_app.views import MainPageView, get_avatar
 from my_posts_app.views import UsersPostsView
 from . import settings
 
@@ -30,6 +30,7 @@ urlpatterns = [
     path('friends/', include('friends_app.urls')),
     path('view_user/<int:user_pk>', UsersPostsView.as_view(), name = "view_user"),
     path('chats/', include('chat_app.urls')),
+    path('get_avatar/', get_avatar, name = "get_avatar"),
 ]
 
 if settings.DEBUG:
