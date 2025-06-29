@@ -1,4 +1,5 @@
 # Project "World.It-Messenger"
+![](imgs_for_readme/preview.jpg)
 ## Navigation | Навігація:
 > [!TIP]
 > - [Team Members | Delevopers](#team-members--delevopers--склад-команді)
