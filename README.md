@@ -150,7 +150,7 @@ ____
   > Щоб відправляти повідомлення з прикріпленним зображенням, ми написали такий фрагмент коду:
   На фронтенді у __chat.js__:
   ```js
-    const reader = new FileReader();
+    const reader = new FileReader(); 
     reader.onload = function(event){
         webSocket.send(JSON.stringify({
             'message': messageText,
@@ -228,7 +228,7 @@ ____
 > Проєкт працюватиме коректно з версією Python => 3.8. Ми не гарантуємо коректну роботу проєкту в цій версії.
 
 <details>
-  <summary><b>MacOS:</b></summary>
+  <summary><b> <img src="imgs_for_readme/Finder.png" width="25px" height="25px"> MacOS:</b></summary>
   
   ---
   1. Завантажте останню версію Python на [офіційному сайті](https://www.python.org/downloads/), клацнувши на `Download Python`, потім пролестніть вниз до `Files` та натисніть у таблиці на `macOS 64-bit universal2 installer`. Після заватаження .pkg файлу, відкрийте його, натиснувши на нього, встановіть собі Python, слідкуючи вказівкам.
