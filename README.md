@@ -228,7 +228,7 @@ ____
 > Проєкт працюватиме коректно з версією Python => 3.8. Ми не гарантуємо коректну роботу проєкту в цій версії.
 
 <details>
-  <summary><b> <img src="imgs_for_readme/Finder.png" width="20px" height="20px"> MacOS:</b></summary>
+  <summary><b> <img src="imgs_for_readme/Finder.png" width="20px" height="20px">MacOS:</b></summary>
   
   ---
   1. Завантажте останню версію Python на [офіційному сайті](https://www.python.org/downloads/), клацнувши на `Download Python`, потім пролестніть вниз до `Files` та натисніть у таблиці на `macOS 64-bit universal2 installer`. Після заватаження .pkg файлу, відкрийте його, натиснувши на нього, встановіть собі Python, слідкуючи вказівкам.
@@ -291,7 +291,7 @@ ____
 </details>
 
 <details>
-  <summary><b>Windows:</b></summary>
+  <summary><b><img src="imgs_for_readme/windows11.png" width="20px" height="20px">Windows:</b></summary>
 
   ---
   1. Завантажте останню версію Python з [офіційного сайту](https://www.python.org/downloads/), натиснувши на кнопку `Download Python for Windows`. Під час встановлення **обов'язково** поставте галочку біля опції **Add Python to PATH**, щоб можна було запускати Python з командного рядка.
